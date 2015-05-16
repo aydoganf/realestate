@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="138a02ff90e649d781c942540692ada3" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="RealEstateModel.AccountType" Width="2" PointX="1.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.AdvertFeatureRelation" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.AdvertType" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.City" Width="1.5" PointX="1.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Currency" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.District" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.EstateType" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Feature" Width="1.5" PointX="3" PointY="41.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.FeatureType" Width="1.5" PointX="0.75" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Floor" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.HeatingType" Width="1.5" PointX="0.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Person" Width="1.5" PointX="0.75" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Town" Width="1.5" PointX="1.5" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="RealEstateModel.FK_Person_AccountType" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_AdvertFeatureRelation_Feature" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Town_City" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_District_Town" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Feature_FeatureType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RealEstateModel.AdvertPhoto" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="RealEstateModel.MarketingType" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RealEstateModel.Advert" Width="2.75" PointX="4" PointY="17.25" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_AdvertType" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_Currency" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_Currency1" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_District" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_EstateType" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_Floor" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_HeatingType" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_Person" />
+        <AssociationConnector Association="RealEstateModel.FK_AdvertFeatureRelation_Advert" />
+        <AssociationConnector Association="RealEstateModel.FK_AdvertPhoto_Advert" />
+        <AssociationConnector Association="RealEstateModel.FK_EstateType_EstateType" />
+        <EntityTypeShape EntityType="RealEstateModel.RoomHall" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_RoomHall" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
