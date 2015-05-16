@@ -1,0 +1,3 @@
+components2.css in dizinini deðiþtirmeyelim. içinde tonla image path var baþka biyere koyarsak gelmezler.
+
+faruk
