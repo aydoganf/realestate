@@ -47,14 +47,12 @@ namespace DBLayer
                 CreateDate = DateTime.Now
             };
             AddToAdvert(obj);
-            SaveChanges();
-
             Random rnd = new Random();
             int number = rnd.Next(100000, 999999);
 
-            string advertNumber = obj.ObjectId.ToString() + "-" + number.ToString();
+            string advertNumber = number.ToString();
             obj.AdvertNumber = advertNumber;
-            SaveChanges();
+            SaveChanges();            
 
             return obj;
         }

@@ -273,6 +273,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Advert_MarketingType">
+          <End Role="MarketingType" Type="Self.MarketingType" Multiplicity="1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketingType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="MarketingTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Advert_Person">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
@@ -437,6 +449,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Advert_HeatingType" Association="Self.FK_Advert_HeatingType">
             <End Role="HeatingType" EntitySet="HeatingType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_MarketingType" Association="Self.FK_Advert_MarketingType">
+            <End Role="MarketingType" EntitySet="MarketingType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
           <AssociationSet Name="FK_Advert_Person" Association="Self.FK_Advert_Person">
@@ -757,6 +773,10 @@
             <End Role="HeatingType" EntitySet="HeatingType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
+          <AssociationSet Name="FK_Advert_MarketingType" Association="RealEstateModel.FK_Advert_MarketingType">
+            <End Role="MarketingType" EntitySet="MarketingType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
           <AssociationSet Name="FK_Advert_Person" Association="RealEstateModel.FK_Advert_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="Advert" EntitySet="Advert" />
@@ -793,6 +813,7 @@
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_MarketingType" FromRole="MarketingType" ToRole="Advert" />
         </EntityType>
         <Association Name="FK_EstateType_EstateType">
           <End Type="RealEstateModel.EstateType" Role="EstateType" Multiplicity="0..1" />
@@ -850,12 +871,13 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AdvertType" Relationship="RealEstateModel.FK_Advert_AdvertType" FromRole="Advert" ToRole="AdvertType" />
-          <NavigationProperty Name="Currency" Relationship="RealEstateModel.FK_Advert_Currency" FromRole="Advert" ToRole="Currency" />
-          <NavigationProperty Name="Currency1" Relationship="RealEstateModel.FK_Advert_Currency1" FromRole="Advert" ToRole="Currency" />
+          <NavigationProperty Name="DepositCurrency" Relationship="RealEstateModel.FK_Advert_Currency" FromRole="Advert" ToRole="Currency" />
+          <NavigationProperty Name="PriceCurrency" Relationship="RealEstateModel.FK_Advert_Currency1" FromRole="Advert" ToRole="Currency" />
           <NavigationProperty Name="District" Relationship="RealEstateModel.FK_Advert_District" FromRole="Advert" ToRole="District" />
           <NavigationProperty Name="EstateType" Relationship="RealEstateModel.FK_Advert_EstateType" FromRole="Advert" ToRole="EstateType" />
           <NavigationProperty Name="Floor" Relationship="RealEstateModel.FK_Advert_Floor" FromRole="Advert" ToRole="Floor" />
           <NavigationProperty Name="HeatingType" Relationship="RealEstateModel.FK_Advert_HeatingType" FromRole="Advert" ToRole="HeatingType" />
+          <NavigationProperty Name="MarketingType" Relationship="RealEstateModel.FK_Advert_MarketingType" FromRole="Advert" ToRole="MarketingType" />
           <NavigationProperty Name="Person" Relationship="RealEstateModel.FK_Advert_Person" FromRole="Advert" ToRole="Person" />
           <NavigationProperty Name="RoomHall" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="Advert" ToRole="RoomHall" />
           <NavigationProperty Name="AdvertFeatureRelation" Relationship="RealEstateModel.FK_AdvertFeatureRelation_Advert" FromRole="Advert" ToRole="AdvertFeatureRelation" />
@@ -942,6 +964,18 @@
             </Principal>
             <Dependent Role="Advert">
               <PropertyRef Name="HeatingTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_MarketingType">
+          <End Type="RealEstateModel.MarketingType" Role="MarketingType" Multiplicity="1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketingType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="MarketingTypeObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

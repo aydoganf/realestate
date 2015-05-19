@@ -33,6 +33,7 @@
                     <tr>
                         <td>İşlem</td>
                         <td>İlan Numarası</td>
+                        <td>Adres</td>
                         <td>Pazarlama Tipi</td>
                         <td>Emlak Tipi</td>
                         <td>Ücret</td>
@@ -45,11 +46,12 @@
         <ItemTemplate>
                 <tr>
                     <td>
-                        <a href='dashboard.aspx?person=<%#Eval("ObjectId") %>'>
+                        <a href='data.aspx?advert=<%#Eval("ObjectId") %>'>
                             <i class="fa fa-list"></i>&nbsp;Detay
                         </a>
                     </td>
                     <td><%#Eval("AdvertNumber") %></td>
+                    <td><%#Eval("GAddress") %></td>
                     <td><%#Eval("MarketingType.TypeName") %></td>
                     <td><%#Eval("EstateType.TypeName") %></td>
                     <td><%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %></td>

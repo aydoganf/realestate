@@ -32,6 +32,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.EstateType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Floor", "Floor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Floor), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_HeatingType", "HeatingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.HeatingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_MarketingType", "MarketingType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.MarketingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Person), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.RoomHall), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
@@ -1474,7 +1475,7 @@ namespace DBLayer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Currency", "Currency")]
-        public Currency Currency
+        public Currency DepositCurrency
         {
             get
             {
@@ -1490,7 +1491,7 @@ namespace DBLayer
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Currency> CurrencyReference
+        public EntityReference<Currency> DepositCurrencyReference
         {
             get
             {
@@ -1512,7 +1513,7 @@ namespace DBLayer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Currency1", "Currency")]
-        public Currency Currency1
+        public Currency PriceCurrency
         {
             get
             {
@@ -1528,7 +1529,7 @@ namespace DBLayer
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Currency> Currency1Reference
+        public EntityReference<Currency> PriceCurrencyReference
         {
             get
             {
@@ -1691,6 +1692,44 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HeatingType>("RealEstateModel.FK_Advert_HeatingType", "HeatingType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_MarketingType", "MarketingType")]
+        public MarketingType MarketingType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MarketingType>("RealEstateModel.FK_Advert_MarketingType", "MarketingType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MarketingType>("RealEstateModel.FK_Advert_MarketingType", "MarketingType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MarketingType> MarketingTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MarketingType>("RealEstateModel.FK_Advert_MarketingType", "MarketingType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MarketingType>("RealEstateModel.FK_Advert_MarketingType", "MarketingType", value);
                 }
             }
         }
@@ -3949,6 +3988,32 @@ namespace DBLayer
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_MarketingType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_MarketingType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_MarketingType", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>

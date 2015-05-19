@@ -207,6 +207,21 @@
                         </asp:Panel>
 
                         <asp:Panel ID="pnlAdvertPhoto" runat="server" Visible="false">
+                            
+                            <asp:Panel ID="pnlAdvertAdded" runat="server" CssClass="alert alert-success" Visible="false">
+                                <h4>Bilgi</h4>
+                                <p>
+                                    İlan başarıyla eklendi. Şimdi ilana fotoğraf ekleyebilirsiniz.
+                                </p>
+                            </asp:Panel>
+
+                            <asp:Panel ID="pnlAdvertPhotoAdded" runat="server" CssClass="alert alert-success" Visible="false">
+                                <h4>Bilgi</h4>
+                                <p>
+                                    Fotoğraf başarıyla eklenmiştir. Daha fazla fotoğraf ekleyebilirsiniz.
+                                </p>
+                            </asp:Panel>
+
                             <div class="form-horizontal">
                                 <div class="form-body">
                                     <div class="form-group">
@@ -217,7 +232,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-actions"></div>
+                            <div class="form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSavePicture_Click" />
+                            </div>
+                            </div>
                         </asp:Panel>
 
                     </div>
@@ -277,6 +296,11 @@
                     }
                 });
             });
+        }
+    </script>
+    <script type="text/javascript">
+        function setTab(tabId) {
+            $('a[href="#' + tabId + '"]').trigger("click");
         }
     </script>
 </asp:Content>

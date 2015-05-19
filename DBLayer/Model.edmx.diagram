@@ -27,7 +27,7 @@
         <EntityTypeShape EntityType="RealEstateModel.MarketingType" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="RealEstateModel.FK_EstateType_EstateType" />
         <EntityTypeShape EntityType="RealEstateModel.RoomHall" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="RealEstateModel.Advert" Width="3.75" PointX="4" PointY="11.875" />
+        <EntityTypeShape EntityType="RealEstateModel.Advert" Width="1.5" PointX="7.625" PointY="12.75" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_AdvertType" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Currency" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Currency1" />
@@ -35,6 +35,7 @@
         <AssociationConnector Association="RealEstateModel.FK_Advert_EstateType" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Floor" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_HeatingType" />
+        <AssociationConnector Association="RealEstateModel.FK_Advert_MarketingType" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Person" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_RoomHall" />
         <AssociationConnector Association="RealEstateModel.FK_AdvertFeatureRelation_Advert" />
