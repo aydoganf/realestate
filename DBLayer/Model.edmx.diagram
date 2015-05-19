@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="138a02ff90e649d781c942540692ada3" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="138a02ff90e649d781c942540692ada3" Name="Diagram1" ZoomLevel="78">
         <EntityTypeShape EntityType="RealEstateModel.AccountType" Width="2" PointX="1.5" PointY="35" IsExpanded="true" />
         <EntityTypeShape EntityType="RealEstateModel.AdvertFeatureRelation" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RealEstateModel.AdvertType" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
@@ -27,7 +27,7 @@
         <EntityTypeShape EntityType="RealEstateModel.MarketingType" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="RealEstateModel.FK_EstateType_EstateType" />
         <EntityTypeShape EntityType="RealEstateModel.RoomHall" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="RealEstateModel.Advert" Width="1.5" PointX="4" PointY="12.125" />
+        <EntityTypeShape EntityType="RealEstateModel.Advert" Width="3.75" PointX="4" PointY="11.875" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_AdvertType" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Currency" />
         <AssociationConnector Association="RealEstateModel.FK_Advert_Currency1" />
@@ -39,7 +39,7 @@
         <AssociationConnector Association="RealEstateModel.FK_Advert_RoomHall" />
         <AssociationConnector Association="RealEstateModel.FK_AdvertFeatureRelation_Advert" />
         <AssociationConnector Association="RealEstateModel.FK_AdvertPhoto_Advert" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

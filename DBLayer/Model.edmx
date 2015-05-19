@@ -43,6 +43,8 @@
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="GAddress" Type="nvarchar" MaxLength="150" />
           <Property Name="DistrictObjectId" Type="int" Nullable="false" />
+          <Property Name="TownObjectId" Type="int" Nullable="false" />
+          <Property Name="CityObjectId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -771,7 +773,7 @@
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertPhoto" EntitySet="AdvertPhoto" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="AdvertPhoto">
           <Key>
             <PropertyRef Name="ObjectId" />
@@ -843,11 +845,13 @@
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="DistrictObjectId" Type="Int32" Nullable="false" />
+          <Property Name="TownObjectId" Type="Int32" Nullable="false" />
+          <Property Name="CityObjectId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AdvertType" Relationship="RealEstateModel.FK_Advert_AdvertType" FromRole="Advert" ToRole="AdvertType" />
-          <NavigationProperty Name="DepositCurrency" Relationship="RealEstateModel.FK_Advert_Currency" FromRole="Advert" ToRole="Currency" />
-          <NavigationProperty Name="PriceCurrency" Relationship="RealEstateModel.FK_Advert_Currency1" FromRole="Advert" ToRole="Currency" />
+          <NavigationProperty Name="Currency" Relationship="RealEstateModel.FK_Advert_Currency" FromRole="Advert" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="RealEstateModel.FK_Advert_Currency1" FromRole="Advert" ToRole="Currency" />
           <NavigationProperty Name="District" Relationship="RealEstateModel.FK_Advert_District" FromRole="Advert" ToRole="District" />
           <NavigationProperty Name="EstateType" Relationship="RealEstateModel.FK_Advert_EstateType" FromRole="Advert" ToRole="EstateType" />
           <NavigationProperty Name="Floor" Relationship="RealEstateModel.FK_Advert_Floor" FromRole="Advert" ToRole="Floor" />
@@ -855,7 +859,7 @@
           <NavigationProperty Name="Person" Relationship="RealEstateModel.FK_Advert_Person" FromRole="Advert" ToRole="Person" />
           <NavigationProperty Name="RoomHall" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="Advert" ToRole="RoomHall" />
           <NavigationProperty Name="AdvertFeatureRelation" Relationship="RealEstateModel.FK_AdvertFeatureRelation_Advert" FromRole="Advert" ToRole="AdvertFeatureRelation" />
-          <NavigationProperty Name="AdvertPhotoList" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="Advert" ToRole="AdvertPhoto" />
+          <NavigationProperty Name="AdvertPhoto" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="Advert" ToRole="AdvertPhoto" />
         </EntityType>
         <Association Name="FK_Advert_AdvertType">
           <End Type="RealEstateModel.AdvertType" Role="AdvertType" Multiplicity="0..1" />
@@ -989,7 +993,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1166,6 +1170,8 @@
               <MappingFragment StoreEntitySet="Advert">
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CityObjectId" ColumnName="CityObjectId" />
+                <ScalarProperty Name="TownObjectId" ColumnName="TownObjectId" />
                 <ScalarProperty Name="DistrictObjectId" ColumnName="DistrictObjectId" />
                 <ScalarProperty Name="GAddress" ColumnName="GAddress" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />

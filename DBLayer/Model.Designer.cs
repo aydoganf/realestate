@@ -694,9 +694,11 @@ namespace DBLayer
         /// <param name="createdByPersonObjectId">Initial value of the CreatedByPersonObjectId property.</param>
         /// <param name="advertNumber">Initial value of the AdvertNumber property.</param>
         /// <param name="districtObjectId">Initial value of the DistrictObjectId property.</param>
+        /// <param name="townObjectId">Initial value of the TownObjectId property.</param>
+        /// <param name="cityObjectId">Initial value of the CityObjectId property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
         /// <param name="deleted">Initial value of the Deleted property.</param>
-        public static Advert CreateAdvert(global::System.Int32 objectId, global::System.String title, global::System.String description, global::System.Int32 area, global::System.Int32 age, global::System.Int32 marketingTypeObjectId, global::System.Int32 estateTypeObjectId, global::System.Int32 price, global::System.Int32 priceCurrencyObjectId, global::System.DateTime createDate, global::System.Int32 createdByPersonObjectId, global::System.String advertNumber, global::System.Int32 districtObjectId, global::System.Boolean isActive, global::System.Boolean deleted)
+        public static Advert CreateAdvert(global::System.Int32 objectId, global::System.String title, global::System.String description, global::System.Int32 area, global::System.Int32 age, global::System.Int32 marketingTypeObjectId, global::System.Int32 estateTypeObjectId, global::System.Int32 price, global::System.Int32 priceCurrencyObjectId, global::System.DateTime createDate, global::System.Int32 createdByPersonObjectId, global::System.String advertNumber, global::System.Int32 districtObjectId, global::System.Int32 townObjectId, global::System.Int32 cityObjectId, global::System.Boolean isActive, global::System.Boolean deleted)
         {
             Advert advert = new Advert();
             advert.ObjectId = objectId;
@@ -712,6 +714,8 @@ namespace DBLayer
             advert.CreatedByPersonObjectId = createdByPersonObjectId;
             advert.AdvertNumber = advertNumber;
             advert.DistrictObjectId = districtObjectId;
+            advert.TownObjectId = townObjectId;
+            advert.CityObjectId = cityObjectId;
             advert.IsActive = isActive;
             advert.Deleted = deleted;
             return advert;
@@ -1329,6 +1333,54 @@ namespace DBLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 TownObjectId
+        {
+            get
+            {
+                return _TownObjectId;
+            }
+            set
+            {
+                OnTownObjectIdChanging(value);
+                ReportPropertyChanging("TownObjectId");
+                _TownObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TownObjectId");
+                OnTownObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _TownObjectId;
+        partial void OnTownObjectIdChanging(global::System.Int32 value);
+        partial void OnTownObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CityObjectId
+        {
+            get
+            {
+                return _CityObjectId;
+            }
+            set
+            {
+                OnCityObjectIdChanging(value);
+                ReportPropertyChanging("CityObjectId");
+                _CityObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CityObjectId");
+                OnCityObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _CityObjectId;
+        partial void OnCityObjectIdChanging(global::System.Int32 value);
+        partial void OnCityObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Boolean IsActive
         {
             get
@@ -1422,7 +1474,7 @@ namespace DBLayer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Currency", "Currency")]
-        public Currency DepositCurrency
+        public Currency Currency
         {
             get
             {
@@ -1438,7 +1490,7 @@ namespace DBLayer
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Currency> DepositCurrencyReference
+        public EntityReference<Currency> CurrencyReference
         {
             get
             {
@@ -1460,7 +1512,7 @@ namespace DBLayer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Currency1", "Currency")]
-        public Currency PriceCurrency
+        public Currency Currency1
         {
             get
             {
@@ -1476,7 +1528,7 @@ namespace DBLayer
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Currency> PriceCurrencyReference
+        public EntityReference<Currency> Currency1Reference
         {
             get
             {
@@ -1748,7 +1800,7 @@ namespace DBLayer
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "AdvertPhoto")]
-        public EntityCollection<AdvertPhoto> AdvertPhotoList
+        public EntityCollection<AdvertPhoto> AdvertPhoto
         {
             get
             {

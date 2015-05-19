@@ -15,7 +15,7 @@ namespace DBLayer
 
     public partial class RealEstateEntities
     {
-        public Advert AddAdvert(string title, string description, int area, int age, int? heatingTypeObjectId, int? roomHallObjectId, int marketingTypeObjectId, int estateTypeObjectId, int? floorObjectId, int? advertTypeObjectId, int? bathCount, int? floorCount, int? deposit, int? depositCurrencyObjectId, int price, int priceCurrencyObjectId, int createdByPersonObjectId, string latitude, string longitude, string gAddress, int districtObjectId)
+        public Advert AddAdvert(string title, string description, int area, int age, int? heatingTypeObjectId, int? roomHallObjectId, int marketingTypeObjectId, int estateTypeObjectId, int? floorObjectId, int? advertTypeObjectId, int? bathCount, int? floorCount, int? deposit, int? depositCurrencyObjectId, int price, int priceCurrencyObjectId, int createdByPersonObjectId, string latitude, string longitude, string gAddress, int districtObjectId, int townObjectId, int cityObjectId)
         {
             Advert obj = new Advert() 
             {
@@ -40,6 +40,8 @@ namespace DBLayer
                 Longitude = longitude,
                 GAddress = gAddress,
                 DistrictObjectId = districtObjectId,
+                TownObjectId = townObjectId,
+                CityObjectId = cityObjectId,
                 IsActive = true,
                 Deleted = false,
                 CreateDate = DateTime.Now

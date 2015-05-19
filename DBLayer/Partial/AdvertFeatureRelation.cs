@@ -24,6 +24,7 @@ namespace DBLayer
                 Deleted = false
             };
             AddToAdvertFeatureRelation(obj);
+            SaveChanges();
             return obj;
         }
 

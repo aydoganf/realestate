@@ -11,6 +11,13 @@ namespace DBLayer
         {
             this.Deleted = true;
         }
+
+        public enum TypeOf
+        {
+            Ic = 1,
+            Dis = 2,
+            Konum = 3
+        }
     }
 
     public partial class RealEstateEntities
