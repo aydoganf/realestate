@@ -24,18 +24,18 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Town_City", "City", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.City), "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Town), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_District_Town", "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Town), "District", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.District), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Feature_FeatureType", "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.FeatureType), "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Feature), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertType", "AdvertType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.AdvertType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_EstateType_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.EstateType), "EstateType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.EstateType), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertType", "AdvertType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Currency", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Currency), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Currency1", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Currency), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_District", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.District), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.EstateType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Floor", "Floor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Floor), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_HeatingType", "HeatingType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.HeatingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Floor", "Floor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Floor), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_HeatingType", "HeatingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.HeatingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Person), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.RoomHall), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_EstateType_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.EstateType), "EstateType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.EstateType), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.RoomHall), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 
 #endregion
 
@@ -330,22 +330,6 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Advert> Advert
-        {
-            get
-            {
-                if ((_Advert == null))
-                {
-                    _Advert = base.CreateObjectSet<Advert>("Advert");
-                }
-                return _Advert;
-            }
-        }
-        private ObjectSet<Advert> _Advert;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<RoomHall> RoomHall
         {
             get
@@ -358,6 +342,22 @@ namespace DBLayer
             }
         }
         private ObjectSet<RoomHall> _RoomHall;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Advert> Advert
+        {
+            get
+            {
+                if ((_Advert == null))
+                {
+                    _Advert = base.CreateObjectSet<Advert>("Advert");
+                }
+                return _Advert;
+            }
+        }
+        private ObjectSet<Advert> _Advert;
 
         #endregion
 
@@ -484,19 +484,19 @@ namespace DBLayer
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Advert EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAdvert(Advert advert)
-        {
-            base.AddObject("Advert", advert);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the RoomHall EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRoomHall(RoomHall roomHall)
         {
             base.AddObject("RoomHall", roomHall);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Advert EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdvert(Advert advert)
+        {
+            base.AddObject("Advert", advert);
         }
 
         #endregion
@@ -686,14 +686,8 @@ namespace DBLayer
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="area">Initial value of the Area property.</param>
         /// <param name="age">Initial value of the Age property.</param>
-        /// <param name="heatingTypeObjectId">Initial value of the HeatingTypeObjectId property.</param>
-        /// <param name="roomHallObjectId">Initial value of the RoomHallObjectId property.</param>
         /// <param name="marketingTypeObjectId">Initial value of the MarketingTypeObjectId property.</param>
         /// <param name="estateTypeObjectId">Initial value of the EstateTypeObjectId property.</param>
-        /// <param name="floorObjectId">Initial value of the FloorObjectId property.</param>
-        /// <param name="advertTypeObjectId">Initial value of the AdvertTypeObjectId property.</param>
-        /// <param name="bathCount">Initial value of the BathCount property.</param>
-        /// <param name="floorCount">Initial value of the FloorCount property.</param>
         /// <param name="price">Initial value of the Price property.</param>
         /// <param name="priceCurrencyObjectId">Initial value of the PriceCurrencyObjectId property.</param>
         /// <param name="createDate">Initial value of the CreateDate property.</param>
@@ -702,7 +696,7 @@ namespace DBLayer
         /// <param name="districtObjectId">Initial value of the DistrictObjectId property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
         /// <param name="deleted">Initial value of the Deleted property.</param>
-        public static Advert CreateAdvert(global::System.Int32 objectId, global::System.String title, global::System.String description, global::System.Int32 area, global::System.Int32 age, global::System.Int32 heatingTypeObjectId, global::System.Int32 roomHallObjectId, global::System.Int32 marketingTypeObjectId, global::System.Int32 estateTypeObjectId, global::System.Int32 floorObjectId, global::System.Int32 advertTypeObjectId, global::System.Int32 bathCount, global::System.Int32 floorCount, global::System.Int32 price, global::System.Int32 priceCurrencyObjectId, global::System.DateTime createDate, global::System.Int32 createdByPersonObjectId, global::System.String advertNumber, global::System.Int32 districtObjectId, global::System.Boolean isActive, global::System.Boolean deleted)
+        public static Advert CreateAdvert(global::System.Int32 objectId, global::System.String title, global::System.String description, global::System.Int32 area, global::System.Int32 age, global::System.Int32 marketingTypeObjectId, global::System.Int32 estateTypeObjectId, global::System.Int32 price, global::System.Int32 priceCurrencyObjectId, global::System.DateTime createDate, global::System.Int32 createdByPersonObjectId, global::System.String advertNumber, global::System.Int32 districtObjectId, global::System.Boolean isActive, global::System.Boolean deleted)
         {
             Advert advert = new Advert();
             advert.ObjectId = objectId;
@@ -710,14 +704,8 @@ namespace DBLayer
             advert.Description = description;
             advert.Area = area;
             advert.Age = age;
-            advert.HeatingTypeObjectId = heatingTypeObjectId;
-            advert.RoomHallObjectId = roomHallObjectId;
             advert.MarketingTypeObjectId = marketingTypeObjectId;
             advert.EstateTypeObjectId = estateTypeObjectId;
-            advert.FloorObjectId = floorObjectId;
-            advert.AdvertTypeObjectId = advertTypeObjectId;
-            advert.BathCount = bathCount;
-            advert.FloorCount = floorCount;
             advert.Price = price;
             advert.PriceCurrencyObjectId = priceCurrencyObjectId;
             advert.CreateDate = createDate;
@@ -859,9 +847,9 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 HeatingTypeObjectId
+        public Nullable<global::System.Int32> HeatingTypeObjectId
         {
             get
             {
@@ -876,16 +864,16 @@ namespace DBLayer
                 OnHeatingTypeObjectIdChanged();
             }
         }
-        private global::System.Int32 _HeatingTypeObjectId;
-        partial void OnHeatingTypeObjectIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _HeatingTypeObjectId;
+        partial void OnHeatingTypeObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnHeatingTypeObjectIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 RoomHallObjectId
+        public Nullable<global::System.Int32> RoomHallObjectId
         {
             get
             {
@@ -900,8 +888,8 @@ namespace DBLayer
                 OnRoomHallObjectIdChanged();
             }
         }
-        private global::System.Int32 _RoomHallObjectId;
-        partial void OnRoomHallObjectIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _RoomHallObjectId;
+        partial void OnRoomHallObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnRoomHallObjectIdChanged();
     
         /// <summary>
@@ -955,9 +943,9 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 FloorObjectId
+        public Nullable<global::System.Int32> FloorObjectId
         {
             get
             {
@@ -972,16 +960,16 @@ namespace DBLayer
                 OnFloorObjectIdChanged();
             }
         }
-        private global::System.Int32 _FloorObjectId;
-        partial void OnFloorObjectIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _FloorObjectId;
+        partial void OnFloorObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnFloorObjectIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 AdvertTypeObjectId
+        public Nullable<global::System.Int32> AdvertTypeObjectId
         {
             get
             {
@@ -996,16 +984,16 @@ namespace DBLayer
                 OnAdvertTypeObjectIdChanged();
             }
         }
-        private global::System.Int32 _AdvertTypeObjectId;
-        partial void OnAdvertTypeObjectIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _AdvertTypeObjectId;
+        partial void OnAdvertTypeObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnAdvertTypeObjectIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 BathCount
+        public Nullable<global::System.Int32> BathCount
         {
             get
             {
@@ -1020,16 +1008,16 @@ namespace DBLayer
                 OnBathCountChanged();
             }
         }
-        private global::System.Int32 _BathCount;
-        partial void OnBathCountChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _BathCount;
+        partial void OnBathCountChanging(Nullable<global::System.Int32> value);
         partial void OnBathCountChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 FloorCount
+        public Nullable<global::System.Int32> FloorCount
         {
             get
             {
@@ -1044,8 +1032,8 @@ namespace DBLayer
                 OnFloorCountChanged();
             }
         }
-        private global::System.Int32 _FloorCount;
-        partial void OnFloorCountChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _FloorCount;
+        partial void OnFloorCountChanging(Nullable<global::System.Int32> value);
         partial void OnFloorCountChanged();
     
         /// <summary>
@@ -1699,8 +1687,46 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall")]
+        public RoomHall RoomHall
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<RoomHall> RoomHallReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "AdvertFeatureRelation")]
-        public EntityCollection<AdvertFeatureRelation> AdvertFeatureRelationList
+        public EntityCollection<AdvertFeatureRelation> AdvertFeatureRelation
         {
             get
             {
@@ -1733,44 +1759,6 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AdvertPhoto>("RealEstateModel.FK_AdvertPhoto_Advert", "AdvertPhoto", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall")]
-        public RoomHall RoomHall
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<RoomHall> RoomHallReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall", value);
                 }
             }
         }
@@ -3014,28 +3002,6 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_EstateType", "Advert")]
-        public EntityCollection<Advert> Advert
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_EstateType_EstateType", "EstateType1")]
         public EntityCollection<EstateType> ChildEstateTypeList
         {
@@ -3086,6 +3052,28 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EstateType>("RealEstateModel.FK_EstateType_EstateType", "EstateType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_EstateType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert", value);
                 }
             }
         }

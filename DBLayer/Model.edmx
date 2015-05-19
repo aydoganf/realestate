@@ -23,14 +23,14 @@
           <Property Name="Description" Type="text" Nullable="false" />
           <Property Name="Area" Type="int" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="HeatingTypeObjectId" Type="int" Nullable="false" />
-          <Property Name="RoomHallObjectId" Type="int" Nullable="false" />
+          <Property Name="HeatingTypeObjectId" Type="int" />
+          <Property Name="RoomHallObjectId" Type="int" />
           <Property Name="MarketingTypeObjectId" Type="int" Nullable="false" />
           <Property Name="EstateTypeObjectId" Type="int" Nullable="false" />
-          <Property Name="FloorObjectId" Type="int" Nullable="false" />
-          <Property Name="AdvertTypeObjectId" Type="int" Nullable="false" />
-          <Property Name="BathCount" Type="int" Nullable="false" />
-          <Property Name="FloorCount" Type="int" Nullable="false" />
+          <Property Name="FloorObjectId" Type="int" />
+          <Property Name="AdvertTypeObjectId" Type="int" />
+          <Property Name="BathCount" Type="int" />
+          <Property Name="FloorCount" Type="int" />
           <Property Name="Deposit" Type="int" />
           <Property Name="DepositCurrencyObjectId" Type="int" />
           <Property Name="Price" Type="int" Nullable="false" />
@@ -188,7 +188,7 @@
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Advert_AdvertType">
-          <End Role="AdvertType" Type="Self.AdvertType" Multiplicity="1" />
+          <End Role="AdvertType" Type="Self.AdvertType" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdvertType">
@@ -248,7 +248,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Advert_Floor">
-          <End Role="Floor" Type="Self.Floor" Multiplicity="1" />
+          <End Role="Floor" Type="Self.Floor" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Floor">
@@ -260,7 +260,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Advert_HeatingType">
-          <End Role="HeatingType" Type="Self.HeatingType" Multiplicity="1" />
+          <End Role="HeatingType" Type="Self.HeatingType" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HeatingType">
@@ -284,7 +284,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Advert_RoomHall">
-          <End Role="RoomHall" Type="Self.RoomHall" Multiplicity="1" />
+          <End Role="RoomHall" Type="Self.RoomHall" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoomHall">
@@ -551,10 +551,10 @@
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_EstateType" FromRole="EstateType" ToRole="Advert" />
           <Property Name="ParentEstateTypeObjectId" Type="Int32" />
           <NavigationProperty Name="ChildEstateTypeList" Relationship="RealEstateModel.FK_EstateType_EstateType" FromRole="EstateType" ToRole="EstateType1" />
           <NavigationProperty Name="ParentEstateType" Relationship="RealEstateModel.FK_EstateType_EstateType" FromRole="EstateType1" ToRole="EstateType" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_EstateType" FromRole="EstateType" ToRole="Advert" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -721,6 +721,11 @@
           </AssociationSet>
           <EntitySet Name="AdvertPhoto" EntityType="RealEstateModel.AdvertPhoto" />
           <EntitySet Name="MarketingType" EntityType="RealEstateModel.MarketingType" />
+          <AssociationSet Name="FK_EstateType_EstateType" Association="RealEstateModel.FK_EstateType_EstateType">
+            <End Role="EstateType" EntitySet="EstateType" />
+            <End Role="EstateType1" EntitySet="EstateType" />
+          </AssociationSet>
+          <EntitySet Name="RoomHall" EntityType="RealEstateModel.RoomHall" />
           <EntitySet Name="Advert" EntityType="RealEstateModel.Advert" />
           <AssociationSet Name="FK_Advert_AdvertType" Association="RealEstateModel.FK_Advert_AdvertType">
             <End Role="AdvertType" EntitySet="AdvertType" />
@@ -754,6 +759,10 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
+          <AssociationSet Name="FK_Advert_RoomHall" Association="RealEstateModel.FK_Advert_RoomHall">
+            <End Role="RoomHall" EntitySet="RoomHall" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
           <AssociationSet Name="FK_AdvertFeatureRelation_Advert" Association="RealEstateModel.FK_AdvertFeatureRelation_Advert">
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertFeatureRelation" EntitySet="AdvertFeatureRelation" />
@@ -761,15 +770,6 @@
           <AssociationSet Name="FK_AdvertPhoto_Advert" Association="RealEstateModel.FK_AdvertPhoto_Advert">
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertPhoto" EntitySet="AdvertPhoto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EstateType_EstateType" Association="RealEstateModel.FK_EstateType_EstateType">
-            <End Role="EstateType" EntitySet="EstateType" />
-            <End Role="EstateType1" EntitySet="EstateType" />
-          </AssociationSet>
-          <EntitySet Name="RoomHall" EntityType="RealEstateModel.RoomHall" />
-          <AssociationSet Name="FK_Advert_RoomHall" Association="RealEstateModel.FK_Advert_RoomHall">
-            <End Role="RoomHall" EntitySet="RoomHall" />
-            <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdvertPhoto">
@@ -792,6 +792,28 @@
           <Property Name="TypeKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
+        <Association Name="FK_EstateType_EstateType">
+          <End Type="RealEstateModel.EstateType" Role="EstateType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.EstateType" Role="EstateType1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="EstateType1">
+              <PropertyRef Name="ParentEstateTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoomHall">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomHallName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RoomHallKey" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="RoomHall" ToRole="Advert" />
+        </EntityType>
         <EntityType Name="Advert">
           <Key>
             <PropertyRef Name="ObjectId" />
@@ -801,14 +823,14 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Area" Type="Int32" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="HeatingTypeObjectId" Type="Int32" Nullable="false" />
-          <Property Name="RoomHallObjectId" Type="Int32" Nullable="false" />
+          <Property Name="HeatingTypeObjectId" Type="Int32" />
+          <Property Name="RoomHallObjectId" Type="Int32" />
           <Property Name="MarketingTypeObjectId" Type="Int32" Nullable="false" />
           <Property Name="EstateTypeObjectId" Type="Int32" Nullable="false" />
-          <Property Name="FloorObjectId" Type="Int32" Nullable="false" />
-          <Property Name="AdvertTypeObjectId" Type="Int32" Nullable="false" />
-          <Property Name="BathCount" Type="Int32" Nullable="false" />
-          <Property Name="FloorCount" Type="Int32" Nullable="false" />
+          <Property Name="FloorObjectId" Type="Int32" />
+          <Property Name="AdvertTypeObjectId" Type="Int32" />
+          <Property Name="BathCount" Type="Int32" />
+          <Property Name="FloorCount" Type="Int32" />
           <Property Name="Deposit" Type="Int32" />
           <Property Name="DepositCurrencyObjectId" Type="Int32" />
           <Property Name="Price" Type="Int32" Nullable="false" />
@@ -831,12 +853,12 @@
           <NavigationProperty Name="Floor" Relationship="RealEstateModel.FK_Advert_Floor" FromRole="Advert" ToRole="Floor" />
           <NavigationProperty Name="HeatingType" Relationship="RealEstateModel.FK_Advert_HeatingType" FromRole="Advert" ToRole="HeatingType" />
           <NavigationProperty Name="Person" Relationship="RealEstateModel.FK_Advert_Person" FromRole="Advert" ToRole="Person" />
-          <NavigationProperty Name="AdvertFeatureRelationList" Relationship="RealEstateModel.FK_AdvertFeatureRelation_Advert" FromRole="Advert" ToRole="AdvertFeatureRelation" />
-          <NavigationProperty Name="AdvertPhotoList" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="Advert" ToRole="AdvertPhoto" />
           <NavigationProperty Name="RoomHall" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="Advert" ToRole="RoomHall" />
+          <NavigationProperty Name="AdvertFeatureRelation" Relationship="RealEstateModel.FK_AdvertFeatureRelation_Advert" FromRole="Advert" ToRole="AdvertFeatureRelation" />
+          <NavigationProperty Name="AdvertPhotoList" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="Advert" ToRole="AdvertPhoto" />
         </EntityType>
         <Association Name="FK_Advert_AdvertType">
-          <End Type="RealEstateModel.AdvertType" Role="AdvertType" Multiplicity="1" />
+          <End Type="RealEstateModel.AdvertType" Role="AdvertType" Multiplicity="0..1" />
           <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdvertType">
@@ -896,7 +918,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Advert_Floor">
-          <End Type="RealEstateModel.Floor" Role="Floor" Multiplicity="1" />
+          <End Type="RealEstateModel.Floor" Role="Floor" Multiplicity="0..1" />
           <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Floor">
@@ -908,7 +930,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Advert_HeatingType">
-          <End Type="RealEstateModel.HeatingType" Role="HeatingType" Multiplicity="1" />
+          <End Type="RealEstateModel.HeatingType" Role="HeatingType" Multiplicity="0..1" />
           <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HeatingType">
@@ -928,6 +950,18 @@
             </Principal>
             <Dependent Role="Advert">
               <PropertyRef Name="CreatedByPersonObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_RoomHall">
+          <End Type="RealEstateModel.RoomHall" Role="RoomHall" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomHall">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="RoomHallObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -952,40 +986,6 @@
             </Principal>
             <Dependent Role="AdvertPhoto">
               <PropertyRef Name="AdvertObjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EstateType_EstateType">
-          <End Type="RealEstateModel.EstateType" Role="EstateType" Multiplicity="0..1" />
-          <End Type="RealEstateModel.EstateType" Role="EstateType1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EstateType">
-              <PropertyRef Name="ObjectId" />
-            </Principal>
-            <Dependent Role="EstateType1">
-              <PropertyRef Name="ParentEstateTypeObjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="RoomHall">
-          <Key>
-            <PropertyRef Name="ObjectId" />
-          </Key>
-          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoomHallName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="RoomHallKey" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="RoomHall" ToRole="Advert" />
-        </EntityType>
-        <Association Name="FK_Advert_RoomHall">
-          <End Type="RealEstateModel.RoomHall" Role="RoomHall" Multiplicity="1" />
-          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomHall">
-              <PropertyRef Name="ObjectId" />
-            </Principal>
-            <Dependent Role="Advert">
-              <PropertyRef Name="RoomHallObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1151,6 +1151,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RoomHall">
+            <EntityTypeMapping TypeName="RealEstateModel.RoomHall">
+              <MappingFragment StoreEntitySet="RoomHall">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="RoomHallKey" ColumnName="RoomHallKey" />
+                <ScalarProperty Name="RoomHallName" ColumnName="RoomHallName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Advert">
             <EntityTypeMapping TypeName="RealEstateModel.Advert">
               <MappingFragment StoreEntitySet="Advert">
@@ -1180,16 +1190,6 @@
                 <ScalarProperty Name="Area" ColumnName="Area" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoomHall">
-            <EntityTypeMapping TypeName="RealEstateModel.RoomHall">
-              <MappingFragment StoreEntitySet="RoomHall">
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="RoomHallKey" ColumnName="RoomHallKey" />
-                <ScalarProperty Name="RoomHallName" ColumnName="RoomHallName" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
               </MappingFragment>
             </EntityTypeMapping>
