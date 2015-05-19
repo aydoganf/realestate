@@ -16,7 +16,7 @@
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
             <li>
-                <a href="create.aspx">
+                <a href="data.aspx">
                     <i class="fa fa-plus-square"></i>
                     <span>Yeni İlan Ekle</span>
                 </a>
@@ -28,7 +28,7 @@
 
     <asp:Repeater ID="rptAdvert" runat="server">
         <HeaderTemplate>
-            <table class="table table-striped table-bordered table-advance table-hover dataTable" id="personTable">
+            <table class="table table-striped table-bordered table-advance table-hover dataTable" id="advertTable">
                 <thead>
                     <tr>
                         <td>İşlem</td>

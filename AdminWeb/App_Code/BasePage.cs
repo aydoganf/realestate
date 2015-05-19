@@ -53,6 +53,29 @@ public class BasePage : System.Web.UI.Page
         return sb.ToString();
     }
 
+
+    private Person currentPerson;
+
+    public Person CurrentPerson
+    {
+        get 
+        {
+            if (currentPerson == default(Person))
+            {
+                if (Page.User.Identity.IsAuthenticated)
+                {
+                    currentPerson = DBProvider.GetPersonByEmailAddress(Page.User.Identity.Name);
+                }
+                else
+                {
+                    currentPerson = null;
+                }
+            }
+            return currentPerson; 
+        }
+    }
+    
+
 	public BasePage()
 	{
 	}
