@@ -8,10 +8,11 @@ using DBLayer;
 
 public partial class advert_data : BasePage
 {
+    #region Props
     private Advert currentAdvert;
     public Advert CurrentAdvert
     {
-        get 
+        get
         {
             if (currentAdvert == default(Advert))
             {
@@ -24,11 +25,14 @@ public partial class advert_data : BasePage
                     currentAdvert = null;
                 }
             }
-            return currentAdvert; 
+            return currentAdvert;
         }
     }
 
     private static readonly string[] _validExtensions = { "image/gif", "image/jpeg", "image/jpg", "image/png" };
+    #endregion
+    
+    #region Helpers
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -39,7 +43,6 @@ public partial class advert_data : BasePage
         }
     }
 
-    #region Helpers
     protected void SetTab()
     {
         if (Request.QueryString["tab"] != null)
@@ -89,6 +92,10 @@ public partial class advert_data : BasePage
         #region Features
 
         List<Feature> featureList = DBProvider.GetFeatureList();
+        cblIcOzellikler.Items.Clear();
+        cblDisOzellikler.Items.Clear();
+        cblKonumOzellikleri.Items.Clear();
+
         foreach (Feature item in featureList)
         {
             if (item.FeatureTypeObjectId == (int)Feature.TypeOf.Ic)
@@ -129,9 +136,16 @@ public partial class advert_data : BasePage
             ddlDepositCurrency.SelectedValue = CurrentAdvert.DepositCurrencyObjectId.HasValue ? CurrentAdvert.DepositCurrencyObjectId.ToString() : "1";
             tbPrice.Text = CurrentAdvert.Price.ToString();
             ddlPriceCurreny.SelectedValue = CurrentAdvert.PriceCurrencyObjectId.ToString();
+            
             ddlCity.SelectedValue = CurrentAdvert.CityObjectId.ToString();
+            ddlTown.DataSource = DBProvider.GetTownListByCityObjectId(currentAdvert.CityObjectId);
+            ddlTown.DataBind();
             ddlTown.SelectedValue = CurrentAdvert.TownObjectId.ToString();
+
+            ddlDistrict.DataSource = DBProvider.GetDistrictListByTownObjectId(CurrentAdvert.TownObjectId);
+            ddlDistrict.DataBind();
             ddlDistrict.SelectedValue = CurrentAdvert.DistrictObjectId.ToString();
+            
             hfLat.Value = CurrentAdvert.Latitude;
             hfLong.Value = CurrentAdvert.Longitude;
             tbGAddress.Text = CurrentAdvert.GAddress;
@@ -158,12 +172,24 @@ public partial class advert_data : BasePage
 
             #region AdvertPhotos
             pnlAdvertPhoto.Visible = true;
+            BindAdvertPhotos();
             if (Request.QueryString["advert_status"] == "0")
             {
                 pnlAdvertAdded.Visible = true;
             }
             #endregion
         }
+    }
+
+    protected void BindAdvertPhotos()
+    {
+        rptAdvertPhotos.DataSource = CurrentAdvert.AdvertPhoto.Where(i => i.Deleted == false).OrderBy(i => i.SortOrder);
+        rptAdvertPhotos.DataBind();
+
+        if (rptAdvertPhotos.Items.Count == 0)
+            rptAdvertPhotos.Visible = false;
+        else
+            rptAdvertPhotos.Visible = true;        
     }
     #endregion    
 
@@ -200,7 +226,7 @@ public partial class advert_data : BasePage
     }
     #endregion
 
-    #region ButtonClicks
+    #region Button Clicks
     protected void btnSave_Click(object sender, EventArgs e)
     {
         string _title = tbTitle.Text.Trim();
@@ -317,6 +343,7 @@ public partial class advert_data : BasePage
                 CurrentAdvert.Latitude = _lat;
                 CurrentAdvert.Longitude = _lng;
                 CurrentAdvert.GAddress = _gAddress;
+                CurrentAdvert.UpdateDate = DateTime.Now;
 
                 foreach (ListItem item in cblIcOzellikler.Items)
                 {
@@ -325,7 +352,7 @@ public partial class advert_data : BasePage
                     {
                         DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
                     }
-                    else if (CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
+                    else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
                     {
                         CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
                     }
@@ -337,7 +364,7 @@ public partial class advert_data : BasePage
                     {
                         DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
                     }
-                    else if (CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
+                    else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
                     {
                         CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
                     }
@@ -349,13 +376,14 @@ public partial class advert_data : BasePage
                     {
                         DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
                     }
-                    else if (CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
+                    else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
                     {
                         CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
                     }
                 }
                 DBProvider.SaveChanges();
-
+                BindData();
+                SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan değişiklikleri başarıyla kaydedilmiştir.", "alert alert-success");
                 #endregion
             }
         }
@@ -371,10 +399,48 @@ public partial class advert_data : BasePage
         if (fuPic.HasFile && _validExtensions.Contains(fuPic.PostedFile.ContentType))
         {
             FileProcess fp = new FileProcess();
-            string pic = fp.UploadImage(fuPic.PostedFile.InputStream, 570, 425, "uploadPath");
+            string pic = fp.UploadImage(fuPic.PostedFile.InputStream, 570, 425, "~/uploads/");
+            if (!string.IsNullOrEmpty(pic))
+            {
+                AdvertPhoto photo = DBProvider.AddAdvertPhoto(pic, CurrentAdvert.ObjectId, 0);
+                DBProvider.SaveChanges();
+                if (photo != null)
+                {
+                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan fotoğrafı başarıyla kaydedilmiştir.", "alert alert-success");
+                    BindAdvertPhotos();
+                }
+                else
+                {
+                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Hata!", "Lütfen geçerli formatta bir resim seçiniz.", "alert alert-danger");
+                }
+            }
         }
+        else
+        {
+            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Hata!", "Lütfen geçerli formatta bir resim seçiniz.", "alert alert-danger");
+        }
+
+        string script = "setTab('tab2');";
+        RegisterStartupScript("setTabKey", script);
     }
     #endregion
 
+    #region Repeater Events
+    protected void rptAdvertPhotos_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "deletePhoto")
+        {
+            int photoId = Convert.ToInt32(e.CommandArgument);
+            AdvertPhoto photo = DBProvider.GetAdvertPhotoByObjectId(photoId);
+            photo.Delete();
+            DBProvider.SaveChanges();
+
+            BindAdvertPhotos();
+            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan fotoğrafı başarıyla silinmiştir.", "alert alert-success");
+            string script = "setTab('tab2');";
+            RegisterStartupScript("setTabKey", script);
+        }
+    }
+    #endregion
     
 }

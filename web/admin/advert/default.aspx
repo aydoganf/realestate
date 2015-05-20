@@ -26,7 +26,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
 
-    <asp:Repeater ID="rptAdvert" runat="server">
+    <asp:Panel ID="pnlOperationStatus" runat="server" Visible="false">
+        <h4 id="h4StatusTitle" runat="server"></h4>
+        <p id="pStatusInfo" runat="server"></p>
+    </asp:Panel>
+
+    <asp:Repeater ID="rptAdvert" runat="server" OnItemDataBound="rptAdvert_ItemDataBound" OnItemCommand="rptAdvert_ItemCommand">
         <HeaderTemplate>
             <table class="table table-striped table-bordered table-advance table-hover dataTable" id="advertTable">
                 <thead>
@@ -44,30 +49,45 @@
                 <tbody id="content">
         </HeaderTemplate>
         <ItemTemplate>
-                <tr>
-                    <td>
-                        <a href='data.aspx?advert=<%#Eval("ObjectId") %>'>
-                            <i class="fa fa-list"></i>&nbsp;Detay
-                        </a>
-                    </td>
-                    <td><%#Eval("AdvertNumber") %></td>
-                    <td><%#Eval("GAddress") %></td>
-                    <td><%#Eval("MarketingType.TypeName") %></td>
-                    <td><%#Eval("EstateType.TypeName") %></td>
-                    <td><%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %></td>
-                    <td><%#Eval("Area") %></td>
-                    <td><%# (bool)Eval("IsActive") ? "Aktif" : "Pasif" %></td>
-                </tr>
+            <tr>
+                <td>
+                    <a href='data.aspx?advert=<%#Eval("ObjectId") %>' class="btn btn-xs blue">
+                        <i class="fa fa-list"></i>&nbsp;Detay
+                    </a>&nbsp;
+                        <asp:LinkButton ID="lbtnDeactivate" runat="server" CssClass="btn btn-xs yellow" Visible="false"
+                            CommandName="deactivate" CommandArgument='<%#Eval("ObjectId") %>'
+                            OnClientClick="return confirm('Pasife almak istediğinize emin misiniz?');">
+                            <i class="fa fa-exclamation"></i>&nbsp;Pasife Al
+                        </asp:LinkButton>
+                    <asp:LinkButton ID="lbtnActivate" runat="server" CssClass="btn btn-xs green" Visible="false"
+                        CommandName="activate" CommandArgument='<%#Eval("ObjectId") %>'
+                        OnClientClick="return confirm('Aktife almak istediğinize emin misiniz?');">
+                            <i class="fa fa-flash"></i>&nbsp;Aktife Al
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-xs red"
+                        CommandName="delete" CommandArgument='<%#Eval("ObjectId") %>'
+                        OnClientClick="return confirm('Silmek istediğinize emin misiniz?');">
+                            <i class="fa fa-trash-o"></i>&nbsp;Sil
+                    </asp:LinkButton>
+                </td>
+                <td><%#Eval("AdvertNumber") %></td>
+                <td><%# TruncateString(Eval("GAddress").ToString(), 50) %>..</td>
+                <td><%#Eval("MarketingType.TypeName") %></td>
+                <td><%#Eval("EstateType.TypeName") %></td>
+                <td><%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %></td>
+                <td><%#Eval("Area") %></td>
+                <td><%# (bool)Eval("IsActive") ? "Aktif" : "Pasif" %></td>
+            </tr>
         </ItemTemplate>
         <FooterTemplate>
-                </tbody>
+            </tbody>
             </table>
             <div style="height: 50px;"></div>
         </FooterTemplate>
     </asp:Repeater>
 
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" runat="Server">    
+<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
             $('#advertTable').dataTable({

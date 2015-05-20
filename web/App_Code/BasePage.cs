@@ -6,6 +6,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 /// <summary>
 /// Summary description for BasePage
@@ -75,6 +77,19 @@ public class BasePage : System.Web.UI.Page
         }
     }
 
+
+    public void SetOperationStatus(Panel panel, HtmlGenericControl h4, HtmlGenericControl p, string title, string info, string cssClass)
+    {
+        panel.CssClass = cssClass;
+        h4.InnerText = title;
+        p.InnerHtml = info;
+        panel.Visible = true;
+    }
+
+    public void RegisterStartupScript(string scriptKey, string script)
+    {
+        ClientScript.RegisterStartupScript(GetType(), scriptKey, script, true);
+    }
 
     public BasePage()
     {

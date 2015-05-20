@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DBLayer;
 
 public partial class advert_default : BasePage
 {
@@ -19,5 +20,50 @@ public partial class advert_default : BasePage
     {
         rptAdvert.DataSource = DBProvider.GetAdvertList();
         rptAdvert.DataBind();
+    }
+    protected void rptAdvert_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Advert advert = e.Item.DataItem as Advert;
+            LinkButton lbtnDeactivate = e.Item.FindControl("lbtnDeactivate") as LinkButton;
+            LinkButton lbtnActivate = e.Item.FindControl("lbtnActivate") as LinkButton;
+
+            if (advert.IsActive)
+            {
+                lbtnDeactivate.Visible = true;
+            }
+            else
+            {
+                lbtnActivate.Visible = true;
+            }
+        }
+    }
+
+    public static string TruncateString(string str, int maxLength)
+    {
+        return str.Substring(0, Math.Min(str.Length, maxLength));
+    }
+    protected void rptAdvert_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        int advertId = Convert.ToInt32(e.CommandArgument);
+        Advert advert = DBProvider.GetAdvertByObjectId(advertId);
+
+        if (e.CommandName == "deactivate")
+        {
+            advert.IsActive = false;
+        }
+        else if (e.CommandName == "activate")
+        {
+            advert.IsActive = true;
+        }
+        else if (e.CommandName == "delete")
+        {
+            advert.Delete();
+        }
+
+        DBProvider.SaveChanges();
+        BindData();
+        SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı!", "İşleminiz başarıyla gerçekleştirildi.", "alert alert-success");
     }
 }

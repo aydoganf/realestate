@@ -32,5 +32,10 @@ namespace DBLayer
         {
             return AdvertPhoto.Where(i => i.AdvertObjectId == advertObjectId && i.Deleted == false).OrderBy(i => i.SortOrder).ToList();
         }
+
+        public AdvertPhoto GetAdvertPhotoByObjectId(int objectId)
+        {
+            return AdvertPhoto.FirstOrDefault(i => i.ObjectId == objectId && i.Deleted == false);
+        }
     }
 }

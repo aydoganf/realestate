@@ -35,6 +35,12 @@
                     </li>
                 </ul>
                 <div class="tab-content">
+
+                    <asp:Panel ID="pnlOperationStatus" runat="server" Visible="false">
+                        <h4 id="h4StatusTitle" runat="server"></h4>
+                        <p id="pStatusInfo" runat="server"></p>
+                    </asp:Panel>
+
                     <div class="tab-pane active" id="tab1">
                         <div class="form-horizontal">
                             <div class="form-body">
@@ -222,6 +228,29 @@
                                 </p>
                             </asp:Panel>
 
+                            <asp:Repeater ID="rptAdvertPhotos" runat="server" OnItemCommand="rptAdvertPhotos_ItemCommand">
+                                <HeaderTemplate>
+                                    <div class="row">
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <div class="col-md-3 margin-bottom-10">
+                                        <img src="/uploads/<%#Eval("PhotoName") %>" class="img-responsive" />
+                                        <div class="text-center">
+                                            <asp:LinkButton ID="lbtnDeletePhoto" runat="server" CssClass="btn btn-danger" 
+                                                CommandName="deletePhoto" CommandArgument='<%#Eval("ObjectId") %>' 
+                                                OnClientClick="return confirm('Bu fotoğrafı silmek istediğinize emin misiniz?');">
+                                                <i class="fa fa-trash-o"></i>&nbsp;Sil
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+                                    <%# (Container.ItemIndex) % 4 == 3 ? "</div><div class='row'>" : ""  %>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </div>
+                                </FooterTemplate>
+                            </asp:Repeater>
+
+                            <div class="clearfix margin-bottom-25"></div>
                             <div class="form-horizontal">
                                 <div class="form-body">
                                     <div class="form-group">
@@ -250,6 +279,7 @@
     <script type="text/javascript" src="/admin/design/plugins/select2/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            //$('.bxslider').bxSlider();
             $('select').select2();
             $(".mask_number").inputmask({
                 "mask": "9",
@@ -260,7 +290,6 @@
     </script>
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
     <script type="text/javascript" src="/admin/design/plugins/locationpicker/location.picker.min.js"></script>
-    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
     <script type="text/javascript">
         var lat;
         var long;
