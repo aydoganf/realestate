@@ -11,7 +11,7 @@
         <i class="fa fa-angle-right"></i>
         <span>Hesap Bilgilerim</span>        
     </li>
-    <%--<li class="btn-group">
+    <li class="btn-group">
         <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
             <span>İşlemler
             </span>
@@ -19,13 +19,13 @@
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
             <li>
-                <a href="data.aspx">
+                <a href="change-password.aspx">
                     <i class="fa fa-plus-square"></i>
-                    <span>Yeni Pazarlama Tipi Ekle</span>
+                    <span>Şifre Değiştirme</span>
                 </a>
             </li>
         </ul>
-    </li>--%>
+    </li>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" Runat="Server">
     <div class="portlet box blue">

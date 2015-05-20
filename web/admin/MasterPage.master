@@ -149,8 +149,7 @@
                             <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                             <ul class="page-breadcrumb breadcrumb">
                                 <li>
-                                    <a href='<%=Page.ResolveUrl("~/default.aspx") %>'>Veri Servisleri</a>
-                                    <span id="spNavMan" runat="server" visible="false">Veri Servisleri</span>
+                                    <a href='<%=Page.ResolveUrl("~/admin/default.aspx") %>'>Admin Paneli</a>
                                 </li>
                                 <asp:ContentPlaceHolder ID="cphNavigation" runat="server"></asp:ContentPlaceHolder>
                             </ul>
