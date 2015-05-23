@@ -1,17 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/MasterPage.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="person_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" runat="Server">
     <link rel="stylesheet" type="text/css" href="/admin/design/datatable/media/css/demo_table.css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" Runat="Server">
-     <li>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
+    <li>
         <i class="fa fa-angle-right"></i>
-        <span>Kullanıcılar</span>        
+        <span>Kullanıcılar</span>
     </li>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphMain" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
 
-    <asp:Repeater ID="rptPerson" runat="server">
+    <asp:Panel ID="pnlOperationStatus" runat="server" Visible="false">
+        <h4 id="h4StatusTitle" runat="server"></h4>
+        <p id="pStatusInfo" runat="server"></p>
+    </asp:Panel>
+
+    <asp:Repeater ID="rptPerson" runat="server" OnItemDataBound="rptPerson_ItemDataBound" OnItemCommand="rptPerson_ItemCommand">
         <HeaderTemplate>
             <table class="table table-striped table-bordered table-advance table-hover dataTable" id="personTable">
                 <thead>
@@ -22,35 +27,55 @@
                         <td>Email Adresi</td>
                         <td>Telefon</td>
                         <td>Hesap Türü</td>
-                        <td>Aktivasyon Durumu</td>                        
+                        <td>Aktivasyon Durumu</td>
                     </tr>
                 </thead>
                 <tbody id="content">
         </HeaderTemplate>
         <ItemTemplate>
-                    <tr>
-                        <td>
-                            <a href='dashboard.aspx?person=<%#Eval("ObjectId") %>'>
-                                <i class="fa fa-list"></i>&nbsp;Detay
-                            </a>
-                        </td>
-                        <td><%#Eval("FirstName") %></td>
-                        <td><%#Eval("LastName") %></td>
-                        <td><%#Eval("Email") %></td>
-                        <td><%#Eval("Phone") %></td>
-                        <td><%#Eval("AccountType.AccountTypeName") %></td>
-                        <td><%# (bool)Eval("IsActive") ? "Aktif" : "Pasif" %></td>
-                    </tr>
+            <tr>
+                <td>
+                    <a href='dashboard.aspx?person=<%#Eval("ObjectId") %>' class="btn btn-xs blue">
+                        <i class="fa fa-list"></i>&nbsp;Detay
+                    </a>
+                    <asp:LinkButton ID="lbtnDeactivate" runat="server" CssClass="btn btn-xs yellow" Visible="false"
+                        CommandName="deactivate" CommandArgument='<%#Eval("ObjectId") %>'
+                        OnClientClick="return confirm('Pasife almak istediğinize emin misiniz?');">
+                            <i class="fa fa-exclamation"></i>&nbsp;Pasife Al
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="lbtnActivate" runat="server" CssClass="btn btn-xs green" Visible="false"
+                        CommandName="activate" CommandArgument='<%#Eval("ObjectId") %>'
+                        OnClientClick="return confirm('Aktife almak istediğinize emin misiniz?');">
+                            <i class="fa fa-flash"></i>&nbsp;Aktife Al
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-xs red"
+                        CommandName="delete" CommandArgument='<%#Eval("ObjectId") %>'
+                        OnClientClick="return confirm('Silmek istediğinize emin misiniz?');">
+                            <i class="fa fa-trash-o"></i>&nbsp;Sil
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="lbtnAdmin" runat="server" CssClass="btn btn-xs green" Visible="false"
+                        CommandName="admin" CommandArgument='<%#Eval("ObjectId") %>' 
+                        OnClientClick="return confirm('Admin yapmak istediğinize emin misiniz?');">
+                        <i class="fa fa-star"></i>&nbsp;Admin Yap
+                    </asp:LinkButton>
+                </td>
+                <td><%#Eval("FirstName") %></td>
+                <td><%#Eval("LastName") %></td>
+                <td><%#Eval("Email") %></td>
+                <td><%#Eval("Phone") %></td>
+                <td><%#Eval("AccountType.AccountTypeName") %></td>
+                <td><%# (bool)Eval("IsActive") ? "Aktif" : "Pasif" %></td>
+            </tr>
         </ItemTemplate>
         <FooterTemplate>
-                </tbody>
+            </tbody>
             </table>
             <div style="height: 50px;"></div>
         </FooterTemplate>
     </asp:Repeater>
 
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">    
+<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
             $('#personTable').dataTable({

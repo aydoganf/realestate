@@ -383,7 +383,7 @@ public partial class advert_data : BasePage
                 }
                 DBProvider.SaveChanges();
                 BindData();
-                SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan değişiklikleri başarıyla kaydedilmiştir.", "alert alert-success");
+                SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.OperationStatus.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
                 #endregion
             }
         }
@@ -406,18 +406,18 @@ public partial class advert_data : BasePage
                 DBProvider.SaveChanges();
                 if (photo != null)
                 {
-                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan fotoğrafı başarıyla kaydedilmiştir.", "alert alert-success");
+                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.Operations.AdvertPhoto.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
                     BindAdvertPhotos();
                 }
                 else
                 {
-                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Hata!", "Lütfen geçerli formatta bir resim seçiniz.", "alert alert-danger");
+                    SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusERRORTitle, ApplicationGenericControls.Operations.AdvertPhoto.StatusERRORDescription, ApplicationGenericControls.OperationStatus.StatusERRORCSS);
                 }
             }
         }
         else
         {
-            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Hata!", "Lütfen geçerli formatta bir resim seçiniz.", "alert alert-danger");
+            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusERRORTitle, ApplicationGenericControls.Operations.AdvertPhoto.StatusERRORDescription, ApplicationGenericControls.OperationStatus.StatusERRORCSS);
         }
 
         string script = "setTab('tab2');";
@@ -436,7 +436,7 @@ public partial class advert_data : BasePage
             DBProvider.SaveChanges();
 
             BindAdvertPhotos();
-            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı", "İlan fotoğrafı başarıyla silinmiştir.", "alert alert-success");
+            SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.Operations.AdvertPhoto.StatusDELETEDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
             string script = "setTab('tab2');";
             RegisterStartupScript("setTabKey", script);
         }

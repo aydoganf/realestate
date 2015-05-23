@@ -64,6 +64,6 @@ public partial class advert_default : BasePage
 
         DBProvider.SaveChanges();
         BindData();
-        SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, "Başarılı!", "İşleminiz başarıyla gerçekleştirildi.", "alert alert-success");
+        SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.OperationStatus.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
     }
 }
