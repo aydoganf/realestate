@@ -67,7 +67,7 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href='<%=Page.ResolveUrl("~/logout.aspx") %>'><i class="fa fa-sign-out"></i>Çıkış Yap</a></li>
+                            <li><a href='<%=Page.ResolveUrl("~/admin/logout.aspx") %>'><i class="fa fa-sign-out"></i>Çıkış Yap</a></li>
                         </ul>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
@@ -173,7 +173,7 @@
         <!-- BEGIN FOOTER -->
         <div class="footer">
             <div class="footer-inner">
-                <%=DateTime.Now.Year %> &copy; İTÜ BİDB
+                <%=DateTime.Now.Year %> &copy; Faruk Aydoğan
             </div>
             <div class="footer-tools">
                 <span class="go-top">
