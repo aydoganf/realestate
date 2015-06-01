@@ -43,9 +43,21 @@
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="GAddress" Type="nvarchar" MaxLength="150" />
           <Property Name="DistrictObjectId" Type="int" Nullable="false" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
           <Property Name="TownObjectId" Type="int" Nullable="false" />
+          <Property Name="TownName" Type="nvarchar" MaxLength="50" />
           <Property Name="CityObjectId" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AdvertOwnerTypeObjectId" Type="int" />
+          <Property Name="IsFlatForLandMethod" Type="bit" />
+          <Property Name="CreditTypeObjectId" Type="int" />
+          <Property Name="DeedTypeObjectId" Type="int" />
+          <Property Name="IsExchangable" Type="bit" />
+          <Property Name="FuelTypeObjectId" Type="int" />
+          <Property Name="IsSublease" Type="bit" />
+          <Property Name="AdvertStatusObjectId" Type="int" />
+          <Property Name="AdvertUsingTypeObjectId" Type="int" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AdvertFeatureRelation">
@@ -57,14 +69,33 @@
           <Property Name="FeatureObjectId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="AdvertOwnerType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="AdvertPhoto">
           <Key>
             <PropertyRef Name="ObjectId" />
           </Key>
           <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PhotoName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SmallPhotoName" Type="nvarchar" MaxLength="50" />
           <Property Name="AdvertObjectId" Type="int" Nullable="false" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertStatus">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AdvertType">
@@ -73,6 +104,15 @@
           </Key>
           <Property Name="ObjectId" Type="int" Nullable="false" />
           <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertUsingType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="City">
@@ -84,12 +124,30 @@
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="CreditType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Currency">
           <Key>
             <PropertyRef Name="ObjectId" />
           </Key>
           <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CurrencyName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeedType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="District">
@@ -136,6 +194,15 @@
           <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FloorName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="FloorKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FuelType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="HeatingType">
@@ -189,6 +256,30 @@
           <Property Name="CityObjectId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Advert_AdvertOwnerType">
+          <End Role="AdvertOwnerType" Type="Self.AdvertOwnerType" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertOwnerType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertOwnerTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_AdvertStatus">
+          <End Role="AdvertStatus" Type="Self.AdvertStatus" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertStatus">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertStatusObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Advert_AdvertType">
           <End Role="AdvertType" Type="Self.AdvertType" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
@@ -198,6 +289,30 @@
             </Principal>
             <Dependent Role="Advert">
               <PropertyRef Name="AdvertTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_AdvertUsingType">
+          <End Role="AdvertUsingType" Type="Self.AdvertUsingType" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertUsingType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertUsingTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_CreditType">
+          <End Role="CreditType" Type="Self.CreditType" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="CreditTypeObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,6 +337,18 @@
             </Principal>
             <Dependent Role="Advert">
               <PropertyRef Name="PriceCurrencyObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_DeedType">
+          <End Role="DeedType" Type="Self.DeedType" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeedType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="DeedTypeObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,6 +385,18 @@
             </Principal>
             <Dependent Role="Advert">
               <PropertyRef Name="FloorObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_FuelType">
+          <End Role="FuelType" Type="Self.FuelType" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="FuelTypeObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,22 +548,44 @@
           <EntitySet Name="AccountType" EntityType="Self.AccountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Advert" EntityType="Self.Advert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertFeatureRelation" EntityType="Self.AdvertFeatureRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertOwnerType" EntityType="Self.AdvertOwnerType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertPhoto" EntityType="Self.AdvertPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertStatus" EntityType="Self.AdvertStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdvertType" EntityType="Self.AdvertType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertUsingType" EntityType="Self.AdvertUsingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditType" EntityType="Self.CreditType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeedType" EntityType="Self.DeedType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstateType" EntityType="Self.EstateType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeatureType" EntityType="Self.FeatureType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HeatingType" EntityType="Self.HeatingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketingType" EntityType="Self.MarketingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomHall" EntityType="Self.RoomHall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Advert_AdvertOwnerType" Association="Self.FK_Advert_AdvertOwnerType">
+            <End Role="AdvertOwnerType" EntitySet="AdvertOwnerType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_AdvertStatus" Association="Self.FK_Advert_AdvertStatus">
+            <End Role="AdvertStatus" EntitySet="AdvertStatus" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
           <AssociationSet Name="FK_Advert_AdvertType" Association="Self.FK_Advert_AdvertType">
             <End Role="AdvertType" EntitySet="AdvertType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_AdvertUsingType" Association="Self.FK_Advert_AdvertUsingType">
+            <End Role="AdvertUsingType" EntitySet="AdvertUsingType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_CreditType" Association="Self.FK_Advert_CreditType">
+            <End Role="CreditType" EntitySet="CreditType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
           <AssociationSet Name="FK_Advert_Currency" Association="Self.FK_Advert_Currency">
@@ -433,6 +594,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Advert_Currency1" Association="Self.FK_Advert_Currency1">
             <End Role="Currency" EntitySet="Currency" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_DeedType" Association="Self.FK_Advert_DeedType">
+            <End Role="DeedType" EntitySet="DeedType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
           <AssociationSet Name="FK_Advert_District" Association="Self.FK_Advert_District">
@@ -445,6 +610,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Advert_Floor" Association="Self.FK_Advert_Floor">
             <End Role="Floor" EntitySet="Floor" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_FuelType" Association="Self.FK_Advert_FuelType">
+            <End Role="FuelType" EntitySet="FuelType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
           <AssociationSet Name="FK_Advert_HeatingType" Association="Self.FK_Advert_HeatingType">
@@ -793,6 +962,36 @@
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertPhoto" EntitySet="AdvertPhoto" />
           </AssociationSet>
+          <EntitySet Name="AdvertOwnerType" EntityType="RealEstateModel.AdvertOwnerType" />
+          <EntitySet Name="CreditType" EntityType="RealEstateModel.CreditType" />
+          <EntitySet Name="DeedType" EntityType="RealEstateModel.DeedType" />
+          <EntitySet Name="FuelType" EntityType="RealEstateModel.FuelType" />
+          <AssociationSet Name="FK_Advert_AdvertOwnerType" Association="RealEstateModel.FK_Advert_AdvertOwnerType">
+            <End Role="AdvertOwnerType" EntitySet="AdvertOwnerType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_CreditType" Association="RealEstateModel.FK_Advert_CreditType">
+            <End Role="CreditType" EntitySet="CreditType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_DeedType" Association="RealEstateModel.FK_Advert_DeedType">
+            <End Role="DeedType" EntitySet="DeedType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_FuelType" Association="RealEstateModel.FK_Advert_FuelType">
+            <End Role="FuelType" EntitySet="FuelType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <EntitySet Name="AdvertStatus" EntityType="RealEstateModel.AdvertStatus" />
+          <AssociationSet Name="FK_Advert_AdvertStatus" Association="RealEstateModel.FK_Advert_AdvertStatus">
+            <End Role="AdvertStatus" EntitySet="AdvertStatus" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <EntitySet Name="AdvertUsingType" EntityType="RealEstateModel.AdvertUsingType" />
+          <AssociationSet Name="FK_Advert_AdvertUsingType" Association="RealEstateModel.FK_Advert_AdvertUsingType">
+            <End Role="AdvertUsingType" EntitySet="AdvertUsingType" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdvertPhoto">
           <Key>
@@ -804,6 +1003,7 @@
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="AdvertPhoto" ToRole="Advert" />
+          <Property Name="SmallPhotoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MarketingType">
           <Key>
@@ -882,6 +1082,24 @@
           <NavigationProperty Name="RoomHall" Relationship="RealEstateModel.FK_Advert_RoomHall" FromRole="Advert" ToRole="RoomHall" />
           <NavigationProperty Name="AdvertFeatureRelation" Relationship="RealEstateModel.FK_AdvertFeatureRelation_Advert" FromRole="Advert" ToRole="AdvertFeatureRelation" />
           <NavigationProperty Name="AdvertPhoto" Relationship="RealEstateModel.FK_AdvertPhoto_Advert" FromRole="Advert" ToRole="AdvertPhoto" />
+          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TownName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdvertOwnerTypeObjectId" Type="Int32" />
+          <Property Name="IsFlatForLandMethod" Type="Boolean" />
+          <Property Name="CreditTypeObjectId" Type="Int32" />
+          <Property Name="DeedTypeObjectId" Type="Int32" />
+          <Property Name="IsExchangable" Type="Boolean" />
+          <Property Name="FuelTypeObjectId" Type="Int32" />
+          <Property Name="IsSublease" Type="Boolean" />
+          <Property Name="AdvertStatusObjectId" Type="Int32" />
+          <NavigationProperty Name="AdvertOwnerType" Relationship="RealEstateModel.FK_Advert_AdvertOwnerType" FromRole="Advert" ToRole="AdvertOwnerType" />
+          <NavigationProperty Name="CreditType" Relationship="RealEstateModel.FK_Advert_CreditType" FromRole="Advert" ToRole="CreditType" />
+          <NavigationProperty Name="DeedType" Relationship="RealEstateModel.FK_Advert_DeedType" FromRole="Advert" ToRole="DeedType" />
+          <NavigationProperty Name="FuelType" Relationship="RealEstateModel.FK_Advert_FuelType" FromRole="Advert" ToRole="FuelType" />
+          <NavigationProperty Name="AdvertStatus" Relationship="RealEstateModel.FK_Advert_AdvertStatus" FromRole="Advert" ToRole="AdvertStatus" />
+          <Property Name="AdvertUsingTypeObjectId" Type="Int32" />
+          <NavigationProperty Name="AdvertUsingType" Relationship="RealEstateModel.FK_Advert_AdvertUsingType" FromRole="Advert" ToRole="AdvertUsingType" />
         </EntityType>
         <Association Name="FK_Advert_AdvertType">
           <End Type="RealEstateModel.AdvertType" Role="AdvertType" Multiplicity="0..1" />
@@ -1024,6 +1242,138 @@
             </Principal>
             <Dependent Role="AdvertPhoto">
               <PropertyRef Name="AdvertObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdvertOwnerType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_AdvertOwnerType" FromRole="AdvertOwnerType" ToRole="Advert" />
+        </EntityType>
+        <EntityType Name="CreditType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_CreditType" FromRole="CreditType" ToRole="Advert" />
+        </EntityType>
+        <EntityType Name="DeedType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_DeedType" FromRole="DeedType" ToRole="Advert" />
+        </EntityType>
+        <EntityType Name="FuelType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_FuelType" FromRole="FuelType" ToRole="Advert" />
+        </EntityType>
+        <Association Name="FK_Advert_AdvertOwnerType">
+          <End Type="RealEstateModel.AdvertOwnerType" Role="AdvertOwnerType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertOwnerType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertOwnerTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_CreditType">
+          <End Type="RealEstateModel.CreditType" Role="CreditType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="CreditTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_DeedType">
+          <End Type="RealEstateModel.DeedType" Role="DeedType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeedType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="DeedTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_FuelType">
+          <End Type="RealEstateModel.FuelType" Role="FuelType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="FuelTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdvertStatus">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_AdvertStatus" FromRole="AdvertStatus" ToRole="Advert" />
+        </EntityType>
+        <Association Name="FK_Advert_AdvertStatus">
+          <End Type="RealEstateModel.AdvertStatus" Role="AdvertStatus" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertStatus">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertStatusObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdvertUsingType">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_AdvertUsingType" FromRole="AdvertUsingType" ToRole="Advert" />
+        </EntityType>
+        <Association Name="FK_Advert_AdvertUsingType">
+          <End Type="RealEstateModel.AdvertUsingType" Role="AdvertUsingType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertUsingType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="AdvertUsingTypeObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1171,6 +1521,7 @@
           <EntitySetMapping Name="AdvertPhoto">
             <EntityTypeMapping TypeName="RealEstateModel.AdvertPhoto">
               <MappingFragment StoreEntitySet="AdvertPhoto">
+                <ScalarProperty Name="SmallPhotoName" ColumnName="SmallPhotoName" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="AdvertObjectId" ColumnName="AdvertObjectId" />
@@ -1202,6 +1553,18 @@
           <EntitySetMapping Name="Advert">
             <EntityTypeMapping TypeName="RealEstateModel.Advert">
               <MappingFragment StoreEntitySet="Advert">
+                <ScalarProperty Name="AdvertUsingTypeObjectId" ColumnName="AdvertUsingTypeObjectId" />
+                <ScalarProperty Name="AdvertStatusObjectId" ColumnName="AdvertStatusObjectId" />
+                <ScalarProperty Name="IsSublease" ColumnName="IsSublease" />
+                <ScalarProperty Name="FuelTypeObjectId" ColumnName="FuelTypeObjectId" />
+                <ScalarProperty Name="IsExchangable" ColumnName="IsExchangable" />
+                <ScalarProperty Name="DeedTypeObjectId" ColumnName="DeedTypeObjectId" />
+                <ScalarProperty Name="CreditTypeObjectId" ColumnName="CreditTypeObjectId" />
+                <ScalarProperty Name="IsFlatForLandMethod" ColumnName="IsFlatForLandMethod" />
+                <ScalarProperty Name="AdvertOwnerTypeObjectId" ColumnName="AdvertOwnerTypeObjectId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CityObjectId" ColumnName="CityObjectId" />
@@ -1230,6 +1593,66 @@
                 <ScalarProperty Name="Area" ColumnName="Area" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertOwnerType">
+            <EntityTypeMapping TypeName="RealEstateModel.AdvertOwnerType">
+              <MappingFragment StoreEntitySet="AdvertOwnerType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditType">
+            <EntityTypeMapping TypeName="RealEstateModel.CreditType">
+              <MappingFragment StoreEntitySet="CreditType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeedType">
+            <EntityTypeMapping TypeName="RealEstateModel.DeedType">
+              <MappingFragment StoreEntitySet="DeedType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuelType">
+            <EntityTypeMapping TypeName="RealEstateModel.FuelType">
+              <MappingFragment StoreEntitySet="FuelType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertStatus">
+            <EntityTypeMapping TypeName="RealEstateModel.AdvertStatus">
+              <MappingFragment StoreEntitySet="AdvertStatus">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertUsingType">
+            <EntityTypeMapping TypeName="RealEstateModel.AdvertUsingType">
+              <MappingFragment StoreEntitySet="AdvertUsingType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
               </MappingFragment>
             </EntityTypeMapping>

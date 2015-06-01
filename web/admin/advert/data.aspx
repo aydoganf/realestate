@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" runat="Server">
     <link rel="stylesheet" type="text/css" href="/admin/design/plugins/select2/select2_metro.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/design/plugins/jstree/themes/default/style.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
     <li>
@@ -107,8 +108,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Emlak Tipi *</label>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="ddlEstateType" runat="server" DataTextField="TypeName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
+                                    <div class="col-md-6">                                        
+                                        <asp:HiddenField ID="hfSelectedEstateTypeId" runat="server" />
+                                        <asp:HiddenField ID="hfSelectedEstateTypeName" runat="server" />
+                                        <div class="jstree-holder" style="height:250px; overflow-y:auto">
+                                            <div class="kk-arama">
+                                                <div class="input-group">
+                                                    <input type="text" id="konu-kodu-arama" 
+                                                        autocomplete="off" onkeydown="if(event.keyCode==13) { $('#kk-ara').click(); return false; }" class="form-control" />
+                                                    <span class="input-group-btn">
+                                                        <button type="button" id="kk-ara" class="btn blue">arama yap</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div id="jstree"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -213,7 +227,7 @@
                         </asp:Panel>
 
                         <asp:Panel ID="pnlAdvertPhoto" runat="server" Visible="false">
-                            
+
                             <asp:Panel ID="pnlAdvertAdded" runat="server" CssClass="alert alert-success" Visible="false">
                                 <h4>Bilgi</h4>
                                 <p>
@@ -236,8 +250,8 @@
                                     <div class="col-md-3 margin-bottom-10">
                                         <img src="/uploads/<%#Eval("PhotoName") %>" class="img-responsive" />
                                         <div class="text-center">
-                                            <asp:LinkButton ID="lbtnDeletePhoto" runat="server" CssClass="btn btn-danger" 
-                                                CommandName="deletePhoto" CommandArgument='<%#Eval("ObjectId") %>' 
+                                            <asp:LinkButton ID="lbtnDeletePhoto" runat="server" CssClass="btn btn-danger"
+                                                CommandName="deletePhoto" CommandArgument='<%#Eval("ObjectId") %>'
                                                 OnClientClick="return confirm('Bu fotoğrafı silmek istediğinize emin misiniz?');">
                                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                                             </asp:LinkButton>
@@ -263,8 +277,8 @@
                             </div>
                             <div class="form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSavePicture_Click" />
-                            </div>
+                                    <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSavePicture_Click" />
+                                </div>
                             </div>
                         </asp:Panel>
 
@@ -277,6 +291,7 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" runat="Server">
     <script type="text/javascript" src="/admin/design/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             //$('.bxslider').bxSlider();
@@ -290,6 +305,7 @@
     </script>
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
     <script type="text/javascript" src="/admin/design/plugins/locationpicker/location.picker.min.js"></script>
+    <script type="text/javascript" src="/admin/design/plugins/jstree/jstree.min.js"></script>
     <script type="text/javascript">
         var lat;
         var long;
@@ -328,6 +344,92 @@
         }
     </script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#konu-kodu-arama').keyup(function () {
+                if ($(this).val() == '') {
+                    $('#kk-ara').click();
+                }
+            });
+
+            UITree.init();
+        });
+
+        var UITree = function () {
+
+            var handleUnitJSTree = function () {
+                //Unit Tree
+                $('#jstree').jstree({
+                    'plugins': ["wholerow", "search", "checkbox", "types"],
+                    'core': {
+                        "themes": {
+                            "responsive": true,
+                            "icons": false
+                        },
+                        "multiple": false,
+                        "data": {
+                            "type": "POST",
+                            "dataType": "json",
+                            "contentType": "application/json; charset=utf-8",
+                            "url": "<%=Page.ResolveUrl("~/service/service.aspx/GetEstateTypeTreeList")%>",
+
+                            "success": function (retval) {
+                                return retval.d;
+                            },
+                            "failure": function (retval) {
+                                OnError(retval);
+                                return false;
+                            },
+                        },
+                    },
+                    'search': {
+                        "show_only_matches": true,
+                        "fuzzy": false,
+                    },
+                    'checkbox': {
+                        "three_state": false
+                    },
+
+
+                }).on('check_node.jstree', function (e, data) {
+
+                });
+
+                if ($('#<%=hfCurrentAdvert.ClientID%>').val() != '') {
+                    $('#jstree').bind("loaded.jstree", function () {
+                        $('#konu-kodu-arama').val($('#<%=hfSelectedEstateTypeName.ClientID%>').val());
+                        $("#jstree").jstree("select_node", $('#<%=hfSelectedEstateTypeId.ClientID%>').val(), false).trigger("select_node.jstree");                        
+                    });
+                }
+
+                $('#jstree').bind("select_node.jstree", function (e, data) {
+                    $('#<%=hfSelectedEstateTypeId.ClientID%>').val(data.node.id);
+                });
+
+                $('#jstree').bind("deselect_node.jstree", function (e, data) {
+                    $('#<%=hfSelectedEstateTypeId.ClientID%>').val('');
+                });
+
+                var to = false;
+                $('#kk-ara').click(function () {
+                    if (to) { clearTimeout(to); }
+                    to = setTimeout(function () {
+                        var v = $('#konu-kodu-arama').val();
+                        $('#jstree').jstree(true).search(v);
+                    }, 500);
+                });
+                //Tree
+            }
+
+            return {
+                //main function to initiate the module
+                init: function () {
+                    handleUnitJSTree();
+                }
+
+            };
+
+        }();
+
         function setTab(tabId) {
             $('a[href="#' + tabId + '"]').trigger("click");
         }

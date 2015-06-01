@@ -17,6 +17,8 @@ public class ApplicationGenericControls
         public static string StatusERRORTitle = "Hata !";
         public static string StatusERRORDescription = "İşleminiz sırasında bir hata oluştu.";
         public static string StatusERRORCSS = "alert alert-danger";
+
+        public static string StatusEMPTYDescription = "Lütfen * ile belirtilen alanları doldurunuz.";
     }
 
     public static class Operations
@@ -34,6 +36,19 @@ public class ApplicationGenericControls
             public static string StatusOKDescription = "İlan fotoğrafı başarıyla kaydedilmiştir.";
             public static string StatusERRORDescription = "Lütfen geçerli formatta bir resim seçiniz.";
             public static string StatusDELETEDescription = "İlan fotoğrafı başarıyla silinmiştir.";
+        }
+
+        public static class Person
+        {
+            public static class Add
+            {
+                public static string StatusOKDescription = "Kullanıcı başarıyla oluşturulmuştur.";
+            }
+        }
+
+        public static  class Password
+        {
+            public static string PasswordRepeatERRORDescription = "Girilen şifreler uyuşmuyor.";
         }
     }
 }

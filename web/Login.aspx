@@ -36,39 +36,42 @@
 <!-- BEGIN BODY -->
 <body class="login">
 <!-- BEGIN LOGO -->
-<div class="logo">
-	<img src="/admin/design/img/logo-big.png" alt=""/>
+<div class="logo" style="color:white">
+	<%--<img src="/admin/design/img/logo-big.png" alt=""/>--%>
+    <%=SiteName %>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
 	<!-- BEGIN LOGIN FORM -->
 	<form class="login-form" id="form1" runat="server">
-		<h3 class="form-title">Login to your account</h3>
+		<h3 class="form-title">Admin paneline giris yapın</h3>
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
 				 Enter any username and password.
 			</span>
 		</div>
-		<div class="form-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Username</label>
-			<div class="input-icon">
-				<i class="fa fa-user"></i>
-                <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control placeholder-no-fix" placeholder="Email"></asp:TextBox>				
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<div class="input-icon">
-				<i class="fa fa-lock"></i>
-                <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control placeholder-no-fix" placeholder="Şifre" TextMode="Password"></asp:TextBox>
-			</div>
-		</div>
-		<div class="form-actions">
-            <asp:Button ID="btnLogin" runat="server" Text="Giriş Yap" CssClass="btn green pull-right" OnClick="btnLogin_Click" />            
-		</div>
+        <asp:Panel ID="pnlLogin" runat="server" DefaultButton="btnLogin">
+		    <div class="form-group">
+			    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+			    <label class="control-label visible-ie8 visible-ie9">Username</label>
+			    <div class="input-icon">
+				    <i class="fa fa-user"></i>
+                    <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control placeholder-no-fix" placeholder="Email"></asp:TextBox>				
+			    </div>
+		    </div>
+		    <div class="form-group">
+			    <label class="control-label visible-ie8 visible-ie9">Password</label>
+			    <div class="input-icon">
+				    <i class="fa fa-lock"></i>
+                    <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control placeholder-no-fix" placeholder="Şifre" TextMode="Password"></asp:TextBox>
+			    </div>
+		    </div>
+		    <div class="form-actions">
+                <asp:Button ID="btnLogin" runat="server" Text="Giriş Yap" CssClass="btn green pull-right" OnClick="btnLogin_Click" />            
+		    </div>
+        </asp:Panel>
 		
 	</form>
 	<!-- END LOGIN FORM -->
@@ -76,7 +79,7 @@
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright">
-	 2013 &copy; Metronic. Admin Dashboard Template.
+	 <%=DateTime.Now.Year %> &copy; <%=SiteName %>. Admin Paneli.
 </div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

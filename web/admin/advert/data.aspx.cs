@@ -68,8 +68,6 @@ public partial class advert_data : BasePage
         ddlRoomHall.DataBind();
         ddlRoomHall.Items.Insert(0, new ListItem("Seçebilirsiniz", ""));
 
-        ddlEstateType.DataSource = DBProvider.GetEstateTypeList();
-        ddlEstateType.DataBind();
 
         ddlMarketingType.DataSource = DBProvider.GetMarketingTypeList();
         ddlMarketingType.DataBind();
@@ -130,7 +128,6 @@ public partial class advert_data : BasePage
             ddlFloor.SelectedValue = CurrentAdvert.FloorObjectId.HasValue ? CurrentAdvert.FloorObjectId.ToString() : "";
             ddlHeatingType.SelectedValue = CurrentAdvert.HeatingTypeObjectId.HasValue ? CurrentAdvert.HeatingTypeObjectId.ToString() : "";
             ddlRoomHall.SelectedValue = CurrentAdvert.RoomHallObjectId.HasValue ? CurrentAdvert.RoomHallObjectId.ToString() : "";
-            ddlEstateType.SelectedValue = CurrentAdvert.EstateTypeObjectId.ToString();
             ddlMarketingType.SelectedValue = CurrentAdvert.MarketingTypeObjectId.ToString();
             tbDeposit.Text = CurrentAdvert.Deposit.HasValue ? CurrentAdvert.Deposit.ToString() : "";
             ddlDepositCurrency.SelectedValue = CurrentAdvert.DepositCurrencyObjectId.HasValue ? CurrentAdvert.DepositCurrencyObjectId.ToString() : "1";
@@ -150,6 +147,8 @@ public partial class advert_data : BasePage
             hfLong.Value = CurrentAdvert.Longitude;
             tbGAddress.Text = CurrentAdvert.GAddress;
             hfCurrentAdvert.Value = CurrentAdvert.ObjectId.ToString();
+            hfSelectedEstateTypeId.Value = CurrentAdvert.EstateTypeObjectId.ToString();
+            hfSelectedEstateTypeName.Value = CurrentAdvert.EstateType.TypeName;
             #region AdvertFeatures
             List<AdvertFeatureRelation> relation = DBProvider.GetAdvertFeatureRelationListByAdvertObjectId(CurrentAdvert.ObjectId);
             foreach (ListItem item in cblIcOzellikler.Items)
@@ -238,7 +237,7 @@ public partial class advert_data : BasePage
         string _floor = ddlFloor.SelectedValue;
         string _heatingType = ddlHeatingType.SelectedValue;
         string _roomHall = ddlRoomHall.SelectedValue;
-        string _estateType = ddlEstateType.SelectedValue;
+        string _estateType = hfSelectedEstateTypeId.Value;
         string _marketingType = ddlMarketingType.SelectedValue;
         string _depositPrice = tbDeposit.Text.Trim();
         string _depositCurreny = ddlDepositCurrency.SelectedValue;
@@ -288,6 +287,9 @@ public partial class advert_data : BasePage
             int city = Convert.ToInt32(_city);
             int town = Convert.ToInt32(_town);
             int district = Convert.ToInt32(_district);
+            City selectedCity = DBProvider.GetCityByObjectId(city);
+            Town selectedTown = DBProvider.GetTownByObjectId(town);
+            District selectedDistrict = DBProvider.GetDistrictByObjectId(district);
 
             if (CurrentAdvert == null)
             {
@@ -313,6 +315,9 @@ public partial class advert_data : BasePage
                             DBProvider.AddAdvertFeatureRelation(advert.ObjectId, Convert.ToInt32(item.Value));
                     }
                     advert.AdvertNumber = advert.ObjectId.ToString() + "-" + advert.AdvertNumber;
+                    advert.CityName = selectedCity.CityName;
+                    advert.TownName = selectedTown.TownName;
+                    advert.DistrictName = selectedDistrict.DistrictName;
                     DBProvider.SaveChanges();
                     Response.Redirect("data.aspx?advert=" + advert.ObjectId.ToString() + "&advert_status=0&tab=tab2");
                 }
@@ -344,6 +349,9 @@ public partial class advert_data : BasePage
                 CurrentAdvert.Longitude = _lng;
                 CurrentAdvert.GAddress = _gAddress;
                 CurrentAdvert.UpdateDate = DateTime.Now;
+                CurrentAdvert.CityName = selectedCity.CityName;
+                CurrentAdvert.TownName = selectedTown.TownName;
+                CurrentAdvert.DistrictName = selectedDistrict.DistrictName;
 
                 foreach (ListItem item in cblIcOzellikler.Items)
                 {
@@ -399,10 +407,12 @@ public partial class advert_data : BasePage
         if (fuPic.HasFile && _validExtensions.Contains(fuPic.PostedFile.ContentType))
         {
             FileProcess fp = new FileProcess();
-            string pic = fp.UploadImage(fuPic.PostedFile.InputStream, 570, 425, "~/uploads/");
+            string pic = fp.UploadImageConstantSize(fuPic.PostedFile.InputStream, 570, 425, "~/uploads/");
+            string picSmall = fp.UploadImageConstantSize(fuPic.PostedFile.InputStream, 270, 201, "~/uploads/");
+
             if (!string.IsNullOrEmpty(pic))
             {
-                AdvertPhoto photo = DBProvider.AddAdvertPhoto(pic, CurrentAdvert.ObjectId, 0);
+                AdvertPhoto photo = DBProvider.AddAdvertPhoto(pic, picSmall, CurrentAdvert.ObjectId, 0);
                 DBProvider.SaveChanges();
                 if (photo != null)
                 {

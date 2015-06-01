@@ -19,6 +19,14 @@ public class FileProcess
         return uploadedImageName;
     }
 
+    public string UploadImageConstantSize(Stream streamImage, int width, int height, string path)
+    {
+        Bitmap resizedImage = ResizeImageConstant(streamImage, width, height);
+        string uploadedImageName = Guid.NewGuid().ToString() + ".jpg";
+        resizedImage.Save(HttpContext.Current.Server.MapPath(path) + uploadedImageName, ImageFormat.Jpeg);
+        return uploadedImageName;
+    }
+
     public void DeleteImage(string filePath)
     {
         File.Delete(HttpContext.Current.Server.MapPath(filePath));
@@ -43,5 +51,11 @@ public class FileProcess
         }
 
         return new Bitmap(originalImage, newWidth, newHeight);
+    }
+
+    private Bitmap ResizeImageConstant(Stream streamImage, int width, int height)
+    {
+        Bitmap originalImage = new Bitmap(streamImage);
+        return new Bitmap(originalImage, width, height);
     }
 }

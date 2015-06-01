@@ -11,6 +11,36 @@ namespace DBLayer
         {
             this.Deleted = true;
         }
+
+        public string PrimaryAdvertPhoto
+        {
+            get
+            {
+                if (this.AdvertPhoto.FirstOrDefault(i=> i.Deleted == false) != null)
+                {
+                    return this.AdvertPhoto.FirstOrDefault(i => i.Deleted == false).PhotoName;
+                }
+                else
+                {
+                    return "no-photo.jpg";
+                }
+            }
+        }
+
+        public string PrimarySmallAdvertPhoto
+        {
+            get
+            {
+                if (this.AdvertPhoto.FirstOrDefault(i=> i.Deleted == false) != null)
+                {
+                    return this.AdvertPhoto.FirstOrDefault(i => i.Deleted == false).SmallPhotoName;
+                }
+                else
+                {
+                    return "no-photo.jpg";
+                }
+            }
+        }
     }
 
     public partial class RealEstateEntities
@@ -44,7 +74,8 @@ namespace DBLayer
                 CityObjectId = cityObjectId,
                 IsActive = true,
                 Deleted = false,
-                CreateDate = DateTime.Now
+                CreateDate = DateTime.Now,
+                UpdateDate = DateTime.Now
             };
             AddToAdvert(obj);
             Random rnd = new Random();
@@ -70,6 +101,39 @@ namespace DBLayer
         public int GetAdvertCount()
         {
             return Advert.Where(i => i.Deleted == false).Count();
+        }
+
+        public List<Advert> GetMostRecentAdvertList(int count)
+        {
+            return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Take(count).ToList();
+        }
+
+        public List<Advert> GetMostRecentAdvertList(int count, int skip)
+        {
+            int total = Advert.Where(i => i.Deleted == false).Count();
+            if (total >= (count + skip))
+                return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip(skip).Take(count).ToList();
+            else if(total >= skip)
+                return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip(skip).Take(total - skip).ToList();
+            else
+                return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).ToList();
+        }
+
+        public List<Advert> QuickSearchAdvert(SearchQuery obj)
+        {
+            return Advert.Where(
+                i => (obj.CityId != -1 ? i.CityObjectId == obj.CityId : true) &&
+                    (obj.TownId != -1 ? i.TownObjectId == obj.TownId : true) &&
+                    (obj.DistrictId != -1 ? i.DistrictObjectId == obj.DistrictId : true) &&
+                    (obj.EstateTypeId != -1 ? obj.EstateTypeChildIdList.Contains(i.EstateTypeObjectId) : true) &&
+                    (obj.MarketingTypeId != -1 ? i.MarketingTypeObjectId == obj.MarketingTypeId : true) &&
+                    (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
+                    (obj.AreaTo != -1 ? i.Area <= obj.AreaTo : true) &&
+                    (obj.PriceFrom != -1 ? i.Price >= obj.PriceFrom : true) &&
+                    (obj.PriceTo != -1 ? i.Price <= obj.PriceTo : true) &&
+                    (obj.PriceCurrencyId != -1 ? i.PriceCurrencyObjectId == obj.PriceCurrencyId : true) &&
+                    i.Deleted == false && i.IsActive
+                ).Distinct().OrderByDescending(i=> i.UpdateDate).ThenByDescending(i=> i.CreateDate).ToList();
         }
     }
 }

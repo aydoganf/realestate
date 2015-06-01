@@ -42,5 +42,10 @@ namespace DBLayer
         {
             return EstateType.Where(i => i.ParentEstateTypeObjectId == parentId && i.Deleted == false).ToList();
         }
+
+        public List<EstateType> GetBaseEstateTypeList()
+        {
+            return EstateType.Where(i => i.ParentEstateTypeObjectId == null && i.Deleted == false).ToList();
+        }
     }
 }

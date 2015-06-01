@@ -1,14 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/MasterPage.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="settings_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
     <li>
         <i class="fa fa-angle-right"></i>
-        <span>Ayarlar</span>        
+        <span>Ayarlar</span>
     </li>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphMain" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
     <div class="row">
         <div class="col-md-4">
             <div class="portlet box blue">
@@ -23,7 +23,7 @@
                         <li class="li-first">
                             <a href="account/" class="btn blue a-item">
                                 <i class="fa fa-search"></i>Hesap Bilgilerim </a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -38,12 +38,12 @@
                 <div class="portlet-body">
                     <h5 class="block">Sistemde tanımlı pazarlama tiplerini buradan yönetebilirsiniz. Ör:(Kiralık, Satılık)</h5>
                     <ul class="list-inline">
-                        
+
                         <li class="li-first">
                             <a href="marketing/" class="btn blue a-item">
                                 <i class="fa fa-tasks"></i>Pazarlama </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -58,12 +58,12 @@
                 <div class="portlet-body">
                     <h5 class="block">Sistemde tanımlı emlak tiplerini buradan yönetebilirsiniz. Ör:(Arsa, Daire, İşyeri)</h5>
                     <ul class="list-inline">
-                        
+
                         <li class="li-first">
                             <a href="estatetype/" class="btn blue a-item">
                                 <i class="fa fa-tasks"></i>Emlak Tipleri </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -119,31 +119,65 @@
             <div class="portlet box green">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-book"></i>Konut Bilgileri
+                        <i class="fa fa-book"></i>Emlak Bilgileri
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <h5 class="block">Sistemde kayıtlı konut bilgileri verilerini buradan yönetebilirsiniz.</h5>
+                    <h5 class="block">Sistemde kayıtlı emlak bilgileri verilerini buradan yönetebilirsiniz.</h5>
                     <ul class="list-inline">
-                        <li class="li-outdent">
+                        <li class="li-first">
                             <a href="housing/heating" class="btn green a-item">
                                 <i class="fa fa-outdent"></i>Isınma Türleri </a>
                         </li>
-                        <li class="li-outdent">
-                            <a href="housing/roomhall" class="btn green a-item">
-                                <i class="fa fa-outdent"></i>Oda Sayıları </a>
+                        <li>
+                            <a href="housing/fuel" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Yakıt Türleri </a>
                         </li>
-                        <li class="li-outdent">
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
                             <a href="housing/floor" class="btn green a-item">
                                 <i class="fa fa-outdent"></i>Kat Bilgileri </a>
                         </li>
-                        <li class="li-outdent">
+                        <li>
                             <a href="housing/extra" class="btn green a-item">
                                 <i class="fa fa-outdent"></i>Extra Özellikler</a>
                         </li>
-                        <li class="li-outdent">
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="housing/roomhall" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Oda Sayıları </a>
+                        </li>
+                        <li>
+                            <a href="housing/deed" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Tapu Bilgileri </a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
                             <a href="housing/extratype" class="btn green a-item">
                                 <i class="fa fa-outdent"></i>Extra Özellikler Tipleri</a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="housing/owner" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>İlan Sahibi Bilgileri </a>
+                        </li>
+                        <li>
+                            <a href="housing/credit" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Kredi Bilgileri </a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="housing/status" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Yapının Durumu </a>
+                        </li>
+                        <li>
+                            <a href="housing/using" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Kullanım Durumu </a>
                         </li>
                     </ul>
                 </div>
@@ -151,6 +185,6 @@
         </div>
     </div>
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">
+<asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" runat="Server">
 </asp:Content>
 

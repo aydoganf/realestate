@@ -15,11 +15,12 @@ namespace DBLayer
 
     public partial class RealEstateEntities
     {
-        public AdvertPhoto AddAdvertPhoto(string photoName, int advertObjectId, int sortOrder)
+        public AdvertPhoto AddAdvertPhoto(string photoName, string smallPhotoName, int advertObjectId, int sortOrder)
         {
             AdvertPhoto obj = new AdvertPhoto() 
             {
                 PhotoName = photoName,
+                SmallPhotoName = smallPhotoName,
                 AdvertObjectId = advertObjectId,
                 SortOrder = sortOrder,
                 Deleted = false

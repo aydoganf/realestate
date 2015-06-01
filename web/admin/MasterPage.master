@@ -173,7 +173,7 @@
         <!-- BEGIN FOOTER -->
         <div class="footer">
             <div class="footer-inner">
-                <%=DateTime.Now.Year %> &copy; Faruk Aydoğan
+                <%=DateTime.Now.Year %> &copy; <%=SiteName %> | Faruk Aydoğan 
             </div>
             <div class="footer-tools">
                 <span class="go-top">

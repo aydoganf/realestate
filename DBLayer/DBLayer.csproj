@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\SearchQuery.cs" />
     <Compile Include="Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -54,15 +55,21 @@
     <Compile Include="Partial\AccountType.cs" />
     <Compile Include="Partial\Advert.cs" />
     <Compile Include="Partial\AdvertFeatureRelation.cs" />
+    <Compile Include="Partial\AdvertOwnerType.cs" />
     <Compile Include="Partial\AdvertPhoto.cs" />
+    <Compile Include="Partial\AdvertStatus.cs" />
     <Compile Include="Partial\AdvertType.cs" />
+    <Compile Include="Partial\AdvertUsingType.cs" />
     <Compile Include="Partial\City.cs" />
+    <Compile Include="Partial\CreditType.cs" />
     <Compile Include="Partial\Currency.cs" />
+    <Compile Include="Partial\DeedType.cs" />
     <Compile Include="Partial\District.cs" />
     <Compile Include="Partial\EstateType.cs" />
     <Compile Include="Partial\Feature.cs" />
     <Compile Include="Partial\FeatureType.cs" />
     <Compile Include="Partial\Floor.cs" />
+    <Compile Include="Partial\FuelType.cs" />
     <Compile Include="Partial\HeatingType.cs" />
     <Compile Include="Partial\MarketingType.cs" />
     <Compile Include="Partial\Person.cs" />

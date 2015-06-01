@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+<br />
+<b>Warning</b>:  Cannot modify header information - headers already sent by (output started at /home/aviators/webapps/properta_html/index.php:3) in <b>/home/aviators/webapps/properta_html/index.php</b> on line <b>21</b><br />
+
+
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aviators, http://themes.byaviators.com">
+
+    <link rel="shortcut icon" href="../../../img/favicon.png" type="image/png">
+
+    <!--[if lt IE 9]>
+    <script src="../../../js/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <meta name='robots' content='noindex,nofollow'/>
+
+    <link rel='stylesheet' id='font-css'
+          href='../../../../../fonts.googleapis.com/css@family=Open+Sans_253A400_252C700_252C300&subset=latin_252Clatin-ext&ver=3.6'
+          type='text/css' media='all'/>
+
+
+    <link rel='stylesheet' id='revolution-fullwidth' href='../css/fullwidth.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='revolution-settings' href='../css/settings.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-css' href='../../bootstrap/css/bootstrap.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='bootstrap-responsive-css' href='../../bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all'/>
+
+    <link rel='stylesheet' id='pictopro-normal-css' href='../../../icons/pictopro-normal/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='justvector-web-font-css' href='../../../icons/justvector-web-font/stylesheet.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='chosen-css' href='../../chosen/chosen.css' type='text/css' media='all'/>
+
+    <link rel='stylesheet' id='aviators-css' href='../../../css/jquery.bxslider.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='properta-css' href='../../../css/properta.css' type='text/css' media='all'/>
+
+    <script type='text/javascript' src='../../../../../code.jquery.com/jquery-1.7.2.min.js'></script>
+    <script type='text/javascript' src='../../../js/aviators-settings.js'></script>
+    <script type='text/javascript' src='../../chosen/chosen.jquery.min.js'></script>
+    <script type='text/javascript' src='../js/jquery.themepunch.revolution.min.js'></script>
+    <script type='text/javascript' src='../js/jquery.themepunch.plugins.min.js'></script>
+
+    <title>Properta | Real Estate Template</title>
+</head>
+
+<body class="home page page-template">
+
+<div class="top">
+    <div class="container">
+        <div class="top-inner inverted">
+            <div class="header clearfix">
+                <div id="language-switch" class="languages">
+                    <div id="lang_sel_list" class="lang_sel_list_horizontal">
+                        <ul>
+                            <li class="language-en">
+                                <a href="#" class="language-active">
+                                    <img class="iclflag"
+                                         src="../../../img/flags/en.png" alt="en"
+                                         title="English"/>
+                                </a>
+                            </li>
+                            <li class="language-fr">
+                                <a href="#">
+                                    <img class="language-flag"
+                                         src="../../../img/flags/fr.png" alt="fr"
+                                         title="Français"/>
+                                </a>
+                            </li>
+                            <li class="language-de">
+                                <a href="#">
+                                    <img class="language-flag"
+                                         src="../../../img/flags/de.png" alt="de"
+                                         title="Deutsch"/>
+                                </a>
+                            </li>
+                            <li class="language-it">
+                                <a href="#">
+
+                                    <img class="language-flag"
+                                         src="../../../img/flags/it.png" alt="it"
+                                         title="Italiano"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="branding pull-left">
+                    <div class="logo">
+                        <a href="../../../../default.htm" title="Home">
+                            <img src="../../../img/logo.png" alt="Home">
+                        </a>
+                    </div>
+                    <!-- /.logo -->
+
+                    <div class="site-name">
+                        <a href="../../../../default.htm" title="Home" class="brand">
+                            Properta
+                        </a>
+                    </div>
+                    <!-- /.site-name -->
+                </div>
+
+                <div class="contact-top">
+                    <ul class="menu nav">
+                        <li class="first leaf facebook">
+                            <a href="../../../../../www.facebook.com/default.htm" class="facebook"><i>F</i></a>
+                        </li>
+
+                        <li class="leaf flickr"><a href="../../../../../www.flickr.com/default.htm" class="flickr"><i>n</i></a></li>
+
+                        <li class="leaf google-plus"><a href="../../../../../plus.google.com/default.htm" class="google"><i>g</i></a></li>
+
+                        <li class="leaf linkedin"><a href="../../../../../linkedin.com/default.htm" class="linkedin"><i>l</i></a></li>
+
+                        <li class="leaf twitter"><a href="../../../../../www.twitter.com/default.htm" class="twitter"><i>T</i></a></li>
+
+                        <li class="last leaf vimeo"><a href="../../../../../vimeo.com/default.htm" class="vimeo"><i>v</i></a></li>
+                    </ul>
+                </div>
+
+                <div class="user-area pull-right">
+                    <div class="menu-anonymous-container">
+                        <ul id="menu-anonymous" class="nav nav-pills">
+                            <li class="menu-item"><a href="../../../../register">Register</a></li>
+                            <li class="menu-item"><a href="../../../../login">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.user-area -->
+            </div>
+            <!-- /.header --><div class="navigation navbar clearfix">
+    <div class="pull-left">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="nav-collapse collapse">
+            <ul id="menu-main" class="nav">
+                <li class="menu-item active-menu-item menu-item-parent">
+                    <a href="../../../../default.htm">Homepage</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a href="../../../../frontpage-slider">Revolution slider</a></li>
+                        <li class="menu-item"><a href="../../../../frontpage-map-vertical">Homepage - Vertical filter</a></li>
+                        <li class="menu-item"><a href="../../../../default.htm">Homepage - Horizontal filter</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item menu-item-parent">
+                    <a href="#">Listings</a>
+
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a href="../../../../properties">Properties listing</a></li>
+                        <li class="menu-item"><a href="../../../../properties/property-detail">Property detail</a></li>
+
+                        <li class="menu-item"><a href="../../../../agencies">Agencies listing</a></li>
+                        <li class="menu-item"><a href="../../../../agencies/agency-detail">Agencies detail</a></li>
+
+                        <li class="menu-item"><a href="../../../../agents">Agents listing</a></li>
+                        <li class="menu-item"><a href="../../../../agents/agent-detail">Agent detail</a></li>
+
+                        <li class="menu-item"><a href="../../../../register">Register</a></li>
+                        <li class="menu-item"><a href="../../../../login">Login</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item menu-item-parent">
+                    <a href="#">Pages</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a href="../../../../404">404 page</a></li>
+                        <li class="menu-item"><a href="../../../../faq">FAQ page</a></li>
+                        <li class="menu-item"><a href="../../../../pricing">Pricing</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item menu-item-parent">
+                    <a href="#">Submissions</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a href="../../../../submissions">List submissions</a></li>
+                        <li class="menu-item"><a href="../../../../submissions/add">Add submission</a></li>
+                        <li class="menu-item"><a href="../../../../submissions/edit">Edit submission</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item menu-item-parent">
+                    <a href="#">Templates</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item"><a href="../../../../templates/default-left">Left sidebar</a></li>
+                        <li class="menu-item"><a href="../../../../templates/default-right">Right sidebar</a></li>
+                        <li class="menu-item"><a href="../../../../templates/default-full">Full width</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="../../../../contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pull-right">
+        <div class="list-property">
+            <a href="../../../../submissions">List your property<div class="ribbon"><span class="icon icon-normal-circle-plus"></span></div>
+            </a>
+        </div>
+        <!-- /.list-property -->
+    </div>
+    <!-- /.pull-right -->
+
+</div>
+
+<div class="breadcrumb pull-left">
+    <!-- Breadcrumb NavXT 4.4.0 -->
+    <a title="Go to Properta." href="../../../../default.htm" class="home">Properta</a> &gt; Page
+</div>
+
+<!-- /.breadcrumb -->
+</div>
+</div>
+</div>
+
+<div id="content" class="clearfix">
+
+    <div class="container">
+        <div class="row">
+
+
+            <div id="main" class="span12 error404">
+
+                <div class="not-found">
+                    <h1>404</h1>
+
+                    <h2>The page cannot be found</h2>
+                    <hr>
+
+                    <div class="row">
+                        <div class="search-404 span4 offset4">
+                            <div class="content">
+                                <form method="get" class="site-search" action="javascript:void(0)">
+                                    <input class="search-query form-text" placeholder="Search" type="text">
+                                    <button type="submit" class="btn">Search</button>
+                                </form>
+                                <!-- /.site-search -->
+                            </div>
+                            <!-- /.inner -->
+                        </div>
+                        <!-- /.search-404 -->
+                    </div>
+                    <!-- /.offset4 -->
+
+                    <p>
+                        Please use search box or <a href="javascript: window.history.go(-1)">return back</a>
+                    </p>
+                </div>
+            </div>
+            <!-- /#main -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /#content -->
+<div id="footer-wrapper">
+
+<div id="footer-top">
+<div id="footer-top-inner" class="container">
+<div class="row">
+<div class="span3">
+    <div id="mostrecentproperties_widget-3" class="widget properties">
+
+        <h2>Most Recent Properties</h2>
+
+        <div class="content">
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/19.jpg"
+                             class="thumbnail-image " alt="19"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                643 37th Ave
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Burrville</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        Contact us
+                    </div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    800m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    2
+                </div>
+                <!-- /.bedrooms -->
+
+            </div>
+            <!-- /.info -->
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/20.jpg"
+                             class="thumbnail-image " alt="20"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                2459 Tilden St
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Judiciary Square</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        500 € <span class="suffix">/ per month</span></div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    1030m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    12
+                </div>
+                <!-- /.bedrooms -->
+
+                <div class="bathrooms">
+                    <i class="icon icon-normal-shower"></i>
+                    6
+                </div>
+                <!-- /.bathrooms -->
+            </div>
+            <!-- /.info -->
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/17.jpg"
+                             class="thumbnail-image " alt="17"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                677 Cottage Terrace
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Spring Valley</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        59,600 €
+                    </div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    650m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    1
+                </div>
+                <!-- /.bedrooms -->
+
+                <div class="bathrooms">
+                    <i class="icon icon-normal-shower"></i>
+                    1
+                </div>
+                <!-- /.bathrooms -->
+            </div>
+            <!-- /.info -->
+        </div>
+        <!-- /.content -->
+
+    </div>
+</div>
+
+<div class="span3">
+    <div id="nav_menu-2" class="widget widget-nav_menu"><h2>Helpful Links</h2>
+
+        <div class="menu-helpful-links-container">
+            <ul id="menu-helpful-links" class="menu">
+                <li class="menu-item"><a
+                      href="../../../../templates/default-left">Default Template</a></li>
+                <li class="menu-item"><a
+                      href="../../../../templates/default-right">Right Sidebar Template</a></li>
+                <li class="menu-item"><a
+                      href="../../../../templates/default-full">Fullwidth Template</a></li>
+                <li class="menu-item"><a
+                      href="../../../../properties">Properties Grid Template</a></li>
+                <li class="menu-item"><a
+                      href="../../../../faq">FAQ</a></li>
+                <li class="menu-item"><a
+                      href="../../../../404">404 page</a></li>
+                <li class="menu-item"><a
+                      href="../../../../login">Login Template</a></li>
+                <li class="menu-item"><a
+                      href="../../../../register">Register Template</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="span3">
+    <div id="agents_widget-2" class="widget our-agents">
+
+        <h2>Agents</h2>
+
+        <div class="content">
+            <div class="agent clearfix">
+                <div class="image">
+                    <a href="../../../../agents/agent-detail">
+                        <img src="../../../img/agents/2.jpg" alt="Cynthia G. Stenson">
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="name">
+                    <a href="../../../../agents/agent-detail">Cynthia G. Stenson</a>
+                </div>
+                <!-- /.name -->
+
+                <div class="phone">
+                    <i class="icon icon-normal-phone"></i>
+                    985-632-254
+                </div>
+                <!-- /.phone -->
+
+                <div class="email">
+                    <i class="icon icon-normal-mail"></i>
+                    <a href="mailto:cynthia@example.com">cynthia@example.com</a>
+                </div>
+                <!-- /.email -->
+            </div>
+            <!-- /.agent -->
+            <div class="agent clearfix">
+                <div class="image">
+                    <a href="../../../../agents/agent-detail">
+                        <img src="../../../img/agents/1.jpg" alt="Stephen E. Kennedy">
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="name">
+                    <a href="../../../../agents/agent-detail">Stephen E. Kennedy</a>
+                </div>
+                <!-- /.name -->
+
+                <div class="phone">
+                    <i class="icon icon-normal-phone"></i>
+                    987-852-123
+                </div>
+                <!-- /.phone -->
+
+                <div class="email">
+                    <i class="icon icon-normal-mail"></i>
+                    <a href="mailto:stephen@example.com">stephen@example.com</a>
+                </div>
+                <!-- /.email -->
+            </div>
+            <!-- /.agent -->
+            <div class="agent clearfix">
+                <div class="image">
+                    <a href="../../../../agents/agent-detail">
+                        <img src="../../../img/agents/2.jpg" alt="Myrtle J. Metz">
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="name">
+                    <a href="../../../../agents/agent-detail">Myrtle J. Metz</a>
+                </div>
+                <!-- /.name -->
+
+                <div class="phone">
+                    <i class="icon icon-normal-phone"></i>
+                    987-963-654
+                </div>
+                <!-- /.phone -->
+
+                <div class="email">
+                    <i class="icon icon-normal-mail"></i>
+                    <a href="mailto:myrtle@example.com">myrtle@example.com</a>
+                </div>
+                <!-- /.email -->
+            </div>
+            <!-- /.agent -->
+        </div>
+        <!-- /.content -->
+
+    </div>
+</div>
+
+<div class="span3">
+    <div id="featuredproperties_widget-2" class="widget properties">
+
+        <h2>Featured Properties</h2>
+
+        <div class="content">
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/1.jpg"
+                             class="thumbnail-image " alt="1"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                20th St NE
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Benning</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        85,600 €
+                    </div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    450m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    1
+                </div>
+                <!-- /.bedrooms -->
+
+                <div class="bathrooms">
+                    <i class="icon icon-normal-shower"></i>
+                    2
+                </div>
+                <!-- /.bathrooms -->
+            </div>
+            <!-- /.info -->
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/12.jpg"
+                             class="thumbnail-image " alt="12"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                246 Varnum Pl NE
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Kingman Park</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        32,500 €
+                    </div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    500m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    2
+                </div>
+                <!-- /.bedrooms -->
+
+                <div class="bathrooms">
+                    <i class="icon icon-normal-shower"></i>
+                    3
+                </div>
+                <!-- /.bathrooms -->
+            </div>
+            <!-- /.info -->
+            <div class="property clearfix">
+                <div class="image">
+                    <a href="../../../../properties/property-detail">
+                        <img width="570" height="425" src="../../../img/property/6.jpg"
+                             class="thumbnail-image " alt="6"/>
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="wrapper">
+                    <div class="title">
+                        <h3><a href="../../../../properties/property-detail">
+                                Randolph St NW
+                            </a></h3>
+                    </div>
+                    <!-- /.title -->
+
+                    <div class="location">Civic Betterment</div>
+                    <!-- /.location -->
+
+                    <div class="price">
+                        97,400 €
+                    </div>
+                    <!-- /.price -->
+                </div>
+                <!-- /.wrapper -->
+            </div>
+            <!-- /.property -->
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    680m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    3
+                </div>
+                <!-- /.bedrooms -->
+
+                <div class="bathrooms">
+                    <i class="icon icon-normal-shower"></i>
+                    2
+                </div>
+                <!-- /.bathrooms -->
+            </div>
+            <!-- /.info -->
+        </div>
+        <!-- /.content -->
+
+    </div>
+</div>
+</div>
+<!-- /.row -->
+</div>
+<!-- /#footer-top-inner -->
+</div>
+<!-- /#footer-top -->
+
+<div class="footer-bottom">
+    <div id="footer" class="footer container">
+        <div id="footer-inner">
+            <div class="row">
+                <div class="span6">
+                    <div id="text-3" class="widget widget-text">
+                        <div class="textwidget">&copy; 2013 Aviators, All Rights reserved</div>
+                    </div>
+                </div>
+                <!-- /.copyright -->
+
+                <div class="span6">
+                    <div id="nav_menu-3" class="widget widget-nav_menu">
+                        <div class="menu-footer-links-container">
+                            <ul id="menu-footer-links" class="menu">
+                                <li class="menu-item active"><a href="../../../../default.htm">Homepage</a></li>
+                                <li class="menu-item"><a href="../../../../pricing">Pricing</a></li>
+                                <li class="menu-item"><a href="../../../../faq">FAQ</a></li>
+                                <li class="menu-item"><a href="../../../../contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.span6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#footer-inner -->
+    </div>
+    <!-- /#footer -->
+</div>
+</div>
+<!-- /#footer-wrapper -->
+<script type='text/javascript' src='../../../../../maps.googleapis.com/maps/api/js@v=3&sensor=true&ver=3.6'></script>
+<script type='text/javascript' src='../../../js/aviators-map.js'></script>
+<script type='text/javascript' src='../../../js/gmap3.infobox.min.js'></script>
+<script type='text/javascript' src='../../../js/bootstrap.min.js'></script>
+<script type='text/javascript' src='../../../js/retina.js'></script>
+<script type='text/javascript' src='../../../js/gmap3.clusterer.js'></script>
+<script type='text/javascript' src='../../../js/jquery.ezmark.js'></script>
+<script type='text/javascript' src='../../../js/carousel.js'></script>
+<script type='text/javascript' src='../../../js/jquery.bxslider.js'></script>
+<script type='text/javascript' src='../../../js/properta.js'></script>
+<script type='text/javascript' src='../../../js/jquery.bxslider.min.js'></script>
+</body>
+</html>

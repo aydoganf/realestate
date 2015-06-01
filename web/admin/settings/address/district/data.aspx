@@ -37,12 +37,22 @@
                             <asp:DropDownList ID="ddlTownList" runat="server" DataTextField="TownName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divAddUnique">
                         <label class="control-label col-md-3">Semt Adı</label>
                         <div class="col-md-6">
                             <asp:TextBox ID="tbDistrictName" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
+                    <asp:Panel ID="pnlAddPart" runat="server" CssClass="form-group" Visible="false">
+                        <label class="control-label col-md-3">Çoklu Ekle</label>
+                        <div class="col-md-6">
+                            <asp:CheckBox ID="cbAddMultiple" runat="server" />
+                            <div class="hidden" id="divAddMultiple">
+                                <i>Semtler arasına virgül koyunuz</i>
+                                <asp:TextBox ID="tbDistricts" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
             </div>
             <div class="form-actions">
@@ -54,5 +64,19 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#<%=cbAddMultiple.ClientID%>').change(function () {
+                console.log($(this).is(':checked'));
+                if ($(this).is(':checked'))
+                    $('#divAddMultiple').removeClass('hidden');
+                else
+                    $('#divAddMultiple').addClass('hidden');
+
+            });
+
+        });
+    </script>
 </asp:Content>
 

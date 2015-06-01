@@ -8,6 +8,21 @@
         <i class="fa fa-angle-right"></i>
         <span>Kullanıcılar</span>
     </li>
+    <li class="btn-group">
+        <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+            <span>İşlemler
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <ul class="dropdown-menu pull-right" role="menu">
+            <li>
+                <a href="create.aspx">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Yeni Kullanıcı Ekle</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
 

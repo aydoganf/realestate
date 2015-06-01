@@ -1,0 +1,32 @@
+﻿.property-filter.widget .content .property-types-custom .property-type-custom {
+    line-height:40px;
+    padding-left:20px;
+}
+
+.property-filter.widget .content .property-types-custom .property-type-custom{
+    color:white;
+    text-decoration:none;
+}
+.property-filter.widget .content .property-types-custom .property-type-custom:hover {    
+    background:#04596E;
+}
+
+.property-filter.widget.property-type-list  {
+    padding:0px !important;
+}
+
+.currency-list label {
+    display:inline-grid !important;
+}
+
+.mb-5 {
+    margin-bottom:5px !important;
+}
+
+.mb-10 {
+    margin-bottom:10px !important;
+}
+
+.mb-20 {
+    margin-bottom:20px !important;
+}

@@ -37,6 +37,12 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.RoomHall), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertOwnerType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.CreditType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.DeedType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.FuelType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertStatus), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertUsingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 
 #endregion
 
@@ -359,6 +365,102 @@ namespace DBLayer
             }
         }
         private ObjectSet<Advert> _Advert;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AdvertOwnerType> AdvertOwnerType
+        {
+            get
+            {
+                if ((_AdvertOwnerType == null))
+                {
+                    _AdvertOwnerType = base.CreateObjectSet<AdvertOwnerType>("AdvertOwnerType");
+                }
+                return _AdvertOwnerType;
+            }
+        }
+        private ObjectSet<AdvertOwnerType> _AdvertOwnerType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CreditType> CreditType
+        {
+            get
+            {
+                if ((_CreditType == null))
+                {
+                    _CreditType = base.CreateObjectSet<CreditType>("CreditType");
+                }
+                return _CreditType;
+            }
+        }
+        private ObjectSet<CreditType> _CreditType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DeedType> DeedType
+        {
+            get
+            {
+                if ((_DeedType == null))
+                {
+                    _DeedType = base.CreateObjectSet<DeedType>("DeedType");
+                }
+                return _DeedType;
+            }
+        }
+        private ObjectSet<DeedType> _DeedType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FuelType> FuelType
+        {
+            get
+            {
+                if ((_FuelType == null))
+                {
+                    _FuelType = base.CreateObjectSet<FuelType>("FuelType");
+                }
+                return _FuelType;
+            }
+        }
+        private ObjectSet<FuelType> _FuelType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AdvertStatus> AdvertStatus
+        {
+            get
+            {
+                if ((_AdvertStatus == null))
+                {
+                    _AdvertStatus = base.CreateObjectSet<AdvertStatus>("AdvertStatus");
+                }
+                return _AdvertStatus;
+            }
+        }
+        private ObjectSet<AdvertStatus> _AdvertStatus;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AdvertUsingType> AdvertUsingType
+        {
+            get
+            {
+                if ((_AdvertUsingType == null))
+                {
+                    _AdvertUsingType = base.CreateObjectSet<AdvertUsingType>("AdvertUsingType");
+                }
+                return _AdvertUsingType;
+            }
+        }
+        private ObjectSet<AdvertUsingType> _AdvertUsingType;
 
         #endregion
 
@@ -498,6 +600,54 @@ namespace DBLayer
         public void AddToAdvert(Advert advert)
         {
             base.AddObject("Advert", advert);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AdvertOwnerType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdvertOwnerType(AdvertOwnerType advertOwnerType)
+        {
+            base.AddObject("AdvertOwnerType", advertOwnerType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CreditType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCreditType(CreditType creditType)
+        {
+            base.AddObject("CreditType", creditType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DeedType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDeedType(DeedType deedType)
+        {
+            base.AddObject("DeedType", deedType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FuelType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFuelType(FuelType fuelType)
+        {
+            base.AddObject("FuelType", fuelType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AdvertStatus EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdvertStatus(AdvertStatus advertStatus)
+        {
+            base.AddObject("AdvertStatus", advertStatus);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AdvertUsingType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdvertUsingType(AdvertUsingType advertUsingType)
+        {
+            base.AddObject("AdvertUsingType", advertUsingType);
         }
 
         #endregion
@@ -1424,6 +1574,294 @@ namespace DBLayer
         private global::System.Boolean _Deleted;
         partial void OnDeletedChanging(global::System.Boolean value);
         partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DistrictName
+        {
+            get
+            {
+                return _DistrictName;
+            }
+            set
+            {
+                OnDistrictNameChanging(value);
+                ReportPropertyChanging("DistrictName");
+                _DistrictName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DistrictName");
+                OnDistrictNameChanged();
+            }
+        }
+        private global::System.String _DistrictName;
+        partial void OnDistrictNameChanging(global::System.String value);
+        partial void OnDistrictNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TownName
+        {
+            get
+            {
+                return _TownName;
+            }
+            set
+            {
+                OnTownNameChanging(value);
+                ReportPropertyChanging("TownName");
+                _TownName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TownName");
+                OnTownNameChanged();
+            }
+        }
+        private global::System.String _TownName;
+        partial void OnTownNameChanging(global::System.String value);
+        partial void OnTownNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CityName
+        {
+            get
+            {
+                return _CityName;
+            }
+            set
+            {
+                OnCityNameChanging(value);
+                ReportPropertyChanging("CityName");
+                _CityName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CityName");
+                OnCityNameChanged();
+            }
+        }
+        private global::System.String _CityName;
+        partial void OnCityNameChanging(global::System.String value);
+        partial void OnCityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AdvertOwnerTypeObjectId
+        {
+            get
+            {
+                return _AdvertOwnerTypeObjectId;
+            }
+            set
+            {
+                OnAdvertOwnerTypeObjectIdChanging(value);
+                ReportPropertyChanging("AdvertOwnerTypeObjectId");
+                _AdvertOwnerTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AdvertOwnerTypeObjectId");
+                OnAdvertOwnerTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AdvertOwnerTypeObjectId;
+        partial void OnAdvertOwnerTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAdvertOwnerTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsFlatForLandMethod
+        {
+            get
+            {
+                return _IsFlatForLandMethod;
+            }
+            set
+            {
+                OnIsFlatForLandMethodChanging(value);
+                ReportPropertyChanging("IsFlatForLandMethod");
+                _IsFlatForLandMethod = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsFlatForLandMethod");
+                OnIsFlatForLandMethodChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsFlatForLandMethod;
+        partial void OnIsFlatForLandMethodChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsFlatForLandMethodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CreditTypeObjectId
+        {
+            get
+            {
+                return _CreditTypeObjectId;
+            }
+            set
+            {
+                OnCreditTypeObjectIdChanging(value);
+                ReportPropertyChanging("CreditTypeObjectId");
+                _CreditTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreditTypeObjectId");
+                OnCreditTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CreditTypeObjectId;
+        partial void OnCreditTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCreditTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DeedTypeObjectId
+        {
+            get
+            {
+                return _DeedTypeObjectId;
+            }
+            set
+            {
+                OnDeedTypeObjectIdChanging(value);
+                ReportPropertyChanging("DeedTypeObjectId");
+                _DeedTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeedTypeObjectId");
+                OnDeedTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DeedTypeObjectId;
+        partial void OnDeedTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDeedTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExchangable
+        {
+            get
+            {
+                return _IsExchangable;
+            }
+            set
+            {
+                OnIsExchangableChanging(value);
+                ReportPropertyChanging("IsExchangable");
+                _IsExchangable = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExchangable");
+                OnIsExchangableChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExchangable;
+        partial void OnIsExchangableChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExchangableChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FuelTypeObjectId
+        {
+            get
+            {
+                return _FuelTypeObjectId;
+            }
+            set
+            {
+                OnFuelTypeObjectIdChanging(value);
+                ReportPropertyChanging("FuelTypeObjectId");
+                _FuelTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FuelTypeObjectId");
+                OnFuelTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FuelTypeObjectId;
+        partial void OnFuelTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnFuelTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSublease
+        {
+            get
+            {
+                return _IsSublease;
+            }
+            set
+            {
+                OnIsSubleaseChanging(value);
+                ReportPropertyChanging("IsSublease");
+                _IsSublease = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSublease");
+                OnIsSubleaseChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSublease;
+        partial void OnIsSubleaseChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSubleaseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AdvertStatusObjectId
+        {
+            get
+            {
+                return _AdvertStatusObjectId;
+            }
+            set
+            {
+                OnAdvertStatusObjectIdChanging(value);
+                ReportPropertyChanging("AdvertStatusObjectId");
+                _AdvertStatusObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AdvertStatusObjectId");
+                OnAdvertStatusObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AdvertStatusObjectId;
+        partial void OnAdvertStatusObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAdvertStatusObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AdvertUsingTypeObjectId
+        {
+            get
+            {
+                return _AdvertUsingTypeObjectId;
+            }
+            set
+            {
+                OnAdvertUsingTypeObjectIdChanging(value);
+                ReportPropertyChanging("AdvertUsingTypeObjectId");
+                _AdvertUsingTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AdvertUsingTypeObjectId");
+                OnAdvertUsingTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AdvertUsingTypeObjectId;
+        partial void OnAdvertUsingTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAdvertUsingTypeObjectIdChanged();
 
         #endregion
 
@@ -1853,6 +2291,234 @@ namespace DBLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType")]
+        public AdvertOwnerType AdvertOwnerType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertOwnerType> AdvertOwnerTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType")]
+        public CreditType CreditType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CreditType> CreditTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType")]
+        public DeedType DeedType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DeedType> DeedTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType")]
+        public FuelType FuelType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FuelType> FuelTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus")]
+        public AdvertStatus AdvertStatus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertStatus> AdvertStatusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType")]
+        public AdvertUsingType AdvertUsingType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertUsingType> AdvertUsingTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2076,6 +2742,165 @@ namespace DBLayer
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="AdvertOwnerType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AdvertOwnerType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AdvertOwnerType object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static AdvertOwnerType CreateAdvertOwnerType(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            AdvertOwnerType advertOwnerType = new AdvertOwnerType();
+            advertOwnerType.ObjectId = objectId;
+            advertOwnerType.TypeName = typeName;
+            advertOwnerType.Deleted = deleted;
+            return advertOwnerType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertOwnerType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertOwnerType", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="AdvertPhoto")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2228,6 +3053,30 @@ namespace DBLayer
         private global::System.Boolean _Deleted;
         partial void OnDeletedChanging(global::System.Boolean value);
         partial void OnDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SmallPhotoName
+        {
+            get
+            {
+                return _SmallPhotoName;
+            }
+            set
+            {
+                OnSmallPhotoNameChanging(value);
+                ReportPropertyChanging("SmallPhotoName");
+                _SmallPhotoName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SmallPhotoName");
+                OnSmallPhotoNameChanged();
+            }
+        }
+        private global::System.String _SmallPhotoName;
+        partial void OnSmallPhotoNameChanging(global::System.String value);
+        partial void OnSmallPhotoNameChanged();
 
         #endregion
 
@@ -2268,6 +3117,165 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_AdvertPhoto_Advert", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="AdvertStatus")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AdvertStatus : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AdvertStatus object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static AdvertStatus CreateAdvertStatus(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            AdvertStatus advertStatus = new AdvertStatus();
+            advertStatus.ObjectId = objectId;
+            advertStatus.TypeName = typeName;
+            advertStatus.Deleted = deleted;
+            return advertStatus;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertStatus", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertStatus", "Advert", value);
                 }
             }
         }
@@ -2403,6 +3411,165 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertType", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="AdvertUsingType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AdvertUsingType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AdvertUsingType object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static AdvertUsingType CreateAdvertUsingType(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            AdvertUsingType advertUsingType = new AdvertUsingType();
+            advertUsingType.ObjectId = objectId;
+            advertUsingType.TypeName = typeName;
+            advertUsingType.Deleted = deleted;
+            return advertUsingType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertUsingType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_AdvertUsingType", "Advert", value);
                 }
             }
         }
@@ -2575,6 +3742,165 @@ namespace DBLayer
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="CreditType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CreditType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CreditType object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static CreditType CreateCreditType(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            CreditType creditType = new CreditType();
+            creditType.ObjectId = objectId;
+            creditType.TypeName = typeName;
+            creditType.Deleted = deleted;
+            return creditType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_CreditType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_CreditType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_CreditType", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="Currency")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2721,6 +4047,165 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_Currency1", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="DeedType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DeedType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DeedType object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static DeedType CreateDeedType(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            DeedType deedType = new DeedType();
+            deedType.ObjectId = objectId;
+            deedType.TypeName = typeName;
+            deedType.Deleted = deleted;
+            return deedType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_DeedType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_DeedType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_DeedType", "Advert", value);
                 }
             }
         }
@@ -3686,6 +5171,165 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_Floor", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="FuelType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FuelType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FuelType object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="typeName">Initial value of the TypeName property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static FuelType CreateFuelType(global::System.Int32 objectId, global::System.String typeName, global::System.Boolean deleted)
+        {
+            FuelType fuelType = new FuelType();
+            fuelType.ObjectId = objectId;
+            fuelType.TypeName = typeName;
+            fuelType.Deleted = deleted;
+            return fuelType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TypeName
+        {
+            get
+            {
+                return _TypeName;
+            }
+            set
+            {
+                OnTypeNameChanging(value);
+                ReportPropertyChanging("TypeName");
+                _TypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TypeName");
+                OnTypeNameChanged();
+            }
+        }
+        private global::System.String _TypeName;
+        partial void OnTypeNameChanging(global::System.String value);
+        partial void OnTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TypeKey
+        {
+            get
+            {
+                return _TypeKey;
+            }
+            set
+            {
+                OnTypeKeyChanging(value);
+                ReportPropertyChanging("TypeKey");
+                _TypeKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TypeKey");
+                OnTypeKeyChanged();
+            }
+        }
+        private global::System.String _TypeKey;
+        partial void OnTypeKeyChanging(global::System.String value);
+        partial void OnTypeKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_FuelType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_FuelType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_FuelType", "Advert", value);
                 }
             }
         }

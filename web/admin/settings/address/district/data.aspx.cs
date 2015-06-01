@@ -57,6 +57,7 @@ public partial class settings_address_district_data : BasePage
         }
         else
         {
+            pnlAddPart.Visible = true;
             ddlTownList.Items.Insert(0, new ListItem("Önce İl Seçiniz", ""));
         }
     }
@@ -70,7 +71,19 @@ public partial class settings_address_district_data : BasePage
         }
         else
         {
-            DBProvider.AddDistrict(tbDistrictName.Text.Trim(), Convert.ToInt32(ddlTownList.SelectedValue));
+            if (cbAddMultiple.Checked)
+            {
+                string districts = tbDistricts.Text.Trim();
+                string[] districtArr = districts.Split(',');
+                foreach (string district in districtArr)
+                {
+                    DBProvider.AddDistrict(district.Trim(), Convert.ToInt32(ddlTownList.SelectedValue));
+                }                
+            }
+            else
+            {
+                DBProvider.AddDistrict(tbDistrictName.Text.Trim(), Convert.ToInt32(ddlTownList.SelectedValue));
+            }            
         }
         DBProvider.SaveChanges();
         Response.Redirect("default.aspx?status=0");
