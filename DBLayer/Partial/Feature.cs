@@ -44,5 +44,10 @@ namespace DBLayer
         {
             return Feature.FirstOrDefault(i => i.ObjectId == objectId && i.Deleted == false);
         }
+
+        public List<Feature> GetFeatureListByFeatureTypeObjectId(int featureTypeId)
+        {
+            return Feature.Where(i => i.FeatureTypeObjectId == featureTypeId && i.Deleted == false).ToList();
+        }
     }
 }

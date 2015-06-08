@@ -11,6 +11,12 @@ namespace DBLayer
         {
             this.Deleted = true;
         }
+
+        public const int Konut = 2;
+        public const int Isyeri = 3;
+        public const int Arsa = 4;
+        public const int Devremulk = 5;
+        public const int Turistik = 6;
     }
 
     public partial class RealEstateEntities

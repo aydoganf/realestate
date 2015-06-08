@@ -74,6 +74,7 @@
     <Compile Include="Partial\MarketingType.cs" />
     <Compile Include="Partial\Person.cs" />
     <Compile Include="Partial\RoomHall.cs" />
+    <Compile Include="Partial\StarCount.cs" />
     <Compile Include="Partial\Town.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

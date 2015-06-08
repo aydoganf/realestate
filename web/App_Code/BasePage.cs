@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -93,5 +94,62 @@ public class BasePage : System.Web.UI.Page
 
     public BasePage()
     {
+    }
+
+    private string CyrptoKey = "Faruk";
+    private TripleDESCryptoServiceProvider _cryptDES3;
+    public TripleDESCryptoServiceProvider cryptDES3
+    {
+        get 
+        {
+            if (_cryptDES3 == default(TripleDESCryptoServiceProvider))
+            {
+                _cryptDES3 = new TripleDESCryptoServiceProvider();
+            }
+            return _cryptDES3; 
+        }
+    }
+
+    private MD5CryptoServiceProvider _cryptMD5Hash;
+    public MD5CryptoServiceProvider cryptMD5Hash
+    {
+        get 
+        {
+            if (_cryptMD5Hash == default(MD5CryptoServiceProvider))
+            {
+                _cryptMD5Hash = new MD5CryptoServiceProvider();
+            }
+            return _cryptMD5Hash; 
+        }
+    }
+
+    public string Encrypt(string text)
+    {
+        cryptDES3.Key = cryptMD5Hash.ComputeHash(ASCIIEncoding.ASCII.GetBytes(CyrptoKey));
+        cryptDES3.Mode = CipherMode.ECB;
+        ICryptoTransform desdencrypt = cryptDES3.CreateEncryptor();
+        byte[] buff = ASCIIEncoding.ASCII.GetBytes(text);
+        string Encrypt = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
+        Encrypt = Encrypt.Replace("+", "!");
+        Encrypt = Encrypt.Replace("/", "__");
+        return Encrypt;
+    }
+
+    public string Decypt(string text)
+    {
+        text = text.Replace("!", "+");
+        text = text.Replace("__", "/");
+        byte[] buf = new byte[text.Length];
+        cryptDES3.Key = cryptMD5Hash.ComputeHash(ASCIIEncoding.ASCII.GetBytes(CyrptoKey));
+        cryptDES3.Mode = CipherMode.ECB;
+        ICryptoTransform desdencrypt = cryptDES3.CreateDecryptor();
+        buf = Convert.FromBase64String(text);
+        string Decrypt = ASCIIEncoding.ASCII.GetString(desdencrypt.TransformFinalBlock(buf, 0, buf.Length));
+        return Decrypt;
+    }
+
+    public string FormatPrice(object input)
+    {
+        return Regex.Replace(String.Format("{0:#,#}", input), "\\.00$", "");
     }
 }

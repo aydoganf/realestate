@@ -12,14 +12,16 @@
         RouteTable.Routes.RouteExistingFiles = false;
 
         RouteTable.Routes.Add("anasayfa", new Route("anasayfa", new PageRouteHandler("~/Default.aspx")));
-        RouteTable.Routes.Add("ilan-detay", new Route("ilan-detay/{districtName}/{townName}/{cityName}/{advertNumber}/{title}", new PageRouteHandler("~/AdvertDetail.aspx")));
+        RouteTable.Routes.Add("emlak-detay", new Route("emlak-detay/{districtName}/{townName}/{cityName}/{advertNumber}/{title}", new PageRouteHandler("~/AdvertDetail.aspx")));
         RouteTable.Routes.Add("giris", new Route("giris", new PageRouteHandler("~/LoginUser.aspx")));
         RouteTable.Routes.Add("uyelik", new Route("uyelik", new PageRouteHandler("~/Register.aspx")));
         RouteTable.Routes.Add("iletisim", new Route("iletisim", new PageRouteHandler("~/Contact.aspx")));
         RouteTable.Routes.Add("detayli-arama", new Route("detayli-arama", new PageRouteHandler("~/AdvencedSearch.aspx")));
         RouteTable.Routes.Add("arama-sonuclari", 
-            new Route("arama-sonuclari/{cityId}/{townId}/{districtId}/{estateTypeId}/{marketingTypeId}/{area}/{price}/{priceCurrencyId}", 
+            new Route("arama-sonuclari/{mode}/{cityId}/{townId}/{districtId}/{estateTypeId}/{marketingTypeId}/{area}/{price}/{priceCurrencyId}", 
                 new PageRouteHandler("~/SearchResult.aspx")));
+        RouteTable.Routes.Add("arama-sonuclari2", new Route("arama-sonuclari/{mode}", new PageRouteHandler("~/SearchResult.aspx")));
+        
     }
     
     void Application_End(object sender, EventArgs e) 

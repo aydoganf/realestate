@@ -103,6 +103,7 @@ public partial class _Default : BasePage
         string priceTo = !string.IsNullOrEmpty(tbPriceTo.Text.Trim()) ? tbPriceTo.Text.Trim() : "-1";
         string priceCurrency = ddlCurrencyList.SelectedValue;
 
+        redirect += "/q";
         redirect += "/" + city;
         redirect += "/" + town;
         redirect += "/" + district;

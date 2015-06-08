@@ -30,7 +30,7 @@ namespace DBLayer
 
         public List<MarketingType> GetMarketingTypeList()
         {
-            return MarketingType.Where(i => i.Deleted == false).OrderBy(i => i.TypeName).ToList();
+            return MarketingType.Where(i => i.Deleted == false).ToList();
         }
 
         public MarketingType GetMarketingTypeByObjectId(int objectId)

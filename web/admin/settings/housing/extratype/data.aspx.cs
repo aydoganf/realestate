@@ -39,9 +39,14 @@ public partial class settings_housing_extratype_data : BasePage
 
     protected void BindData()
     {
+        ddlEstateType.DataSource = DBProvider.GetBaseEstateTypeList();
+        ddlEstateType.DataBind();
+        
+
         if (CurrentFeatureType != null)
         {
             tbFeatureTypeName.Text = CurrentFeatureType.TypeName;
+            ddlEstateType.SelectedValue = CurrentFeatureType.EstateTypeObjectId.ToString();
         }
     }
 
@@ -50,10 +55,11 @@ public partial class settings_housing_extratype_data : BasePage
         if (CurrentFeatureType != null)
         {
             CurrentFeatureType.TypeName= tbFeatureTypeName.Text.Trim();
+            CurrentFeatureType.EstateTypeObjectId = Convert.ToInt32(ddlEstateType.SelectedValue);
         }
         else
         {
-            DBProvider.AddFeatureType(tbFeatureTypeName.Text.Trim());
+            DBProvider.AddFeatureType(tbFeatureTypeName.Text.Trim(), Convert.ToInt32(ddlEstateType.SelectedValue));
         }
         DBProvider.SaveChanges();
         Response.Redirect("default.aspx?status=0");

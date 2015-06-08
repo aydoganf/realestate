@@ -22,11 +22,12 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="text" Nullable="false" />
           <Property Name="Area" Type="int" Nullable="false" />
-          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Age" Type="int" />
           <Property Name="HeatingTypeObjectId" Type="int" />
           <Property Name="RoomHallObjectId" Type="int" />
           <Property Name="MarketingTypeObjectId" Type="int" Nullable="false" />
           <Property Name="EstateTypeObjectId" Type="int" Nullable="false" />
+          <Property Name="ParentEstateTypeId" Type="int" />
           <Property Name="FloorObjectId" Type="int" />
           <Property Name="AdvertTypeObjectId" Type="int" />
           <Property Name="BathCount" Type="int" />
@@ -58,6 +59,10 @@
           <Property Name="IsSublease" Type="bit" />
           <Property Name="AdvertStatusObjectId" Type="int" />
           <Property Name="AdvertUsingTypeObjectId" Type="int" />
+          <Property Name="StarCountObjectId" Type="int" />
+          <Property Name="IsSettlement" Type="bit" />
+          <Property Name="BedCount" Type="int" />
+          <Property Name="RoomCount" Type="int" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AdvertFeatureRelation">
@@ -185,6 +190,7 @@
           </Key>
           <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EstateTypeObjectId" Type="int" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Floor">
@@ -247,6 +253,15 @@
           <Property Name="RoomHallKey" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="StarCount">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Town">
           <Key>
             <PropertyRef Name="ObjectId" />
@@ -256,6 +271,18 @@
           <Property Name="CityObjectId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Advert_Advert">
+          <End Role="Advert" Type="Self.Advert" Multiplicity="1" />
+          <End Role="Advert1" Type="Self.Advert" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Advert">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert1">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Advert_AdvertOwnerType">
           <End Role="AdvertOwnerType" Type="Self.AdvertOwnerType" Multiplicity="0..1" />
           <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
@@ -448,6 +475,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Advert_StarCount">
+          <End Role="StarCount" Type="Self.StarCount" Multiplicity="0..1" />
+          <End Role="Advert" Type="Self.Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StarCount">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="StarCountObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AdvertFeatureRelation_Advert">
           <End Role="Advert" Type="Self.Advert" Multiplicity="1" />
           <End Role="AdvertFeatureRelation" Type="Self.AdvertFeatureRelation" Multiplicity="*" />
@@ -520,6 +559,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FeatureType_EstateType">
+          <End Role="EstateType" Type="Self.EstateType" Multiplicity="0..1" />
+          <End Role="FeatureType" Type="Self.FeatureType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="FeatureType">
+              <PropertyRef Name="EstateTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Person_AccountType">
           <End Role="AccountType" Type="Self.AccountType" Multiplicity="1" />
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
@@ -567,7 +618,12 @@
           <EntitySet Name="MarketingType" EntityType="Self.MarketingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomHall" EntityType="Self.RoomHall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StarCount" EntityType="Self.StarCount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Advert_Advert" Association="Self.FK_Advert_Advert">
+            <End Role="Advert" EntitySet="Advert" />
+            <End Role="Advert1" EntitySet="Advert" />
+          </AssociationSet>
           <AssociationSet Name="FK_Advert_AdvertOwnerType" Association="Self.FK_Advert_AdvertOwnerType">
             <End Role="AdvertOwnerType" EntitySet="AdvertOwnerType" />
             <End Role="Advert" EntitySet="Advert" />
@@ -632,6 +688,10 @@
             <End Role="RoomHall" EntitySet="RoomHall" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
+          <AssociationSet Name="FK_Advert_StarCount" Association="Self.FK_Advert_StarCount">
+            <End Role="StarCount" EntitySet="StarCount" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
           <AssociationSet Name="FK_AdvertFeatureRelation_Advert" Association="Self.FK_AdvertFeatureRelation_Advert">
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertFeatureRelation" EntitySet="AdvertFeatureRelation" />
@@ -655,6 +715,10 @@
           <AssociationSet Name="FK_Feature_FeatureType" Association="Self.FK_Feature_FeatureType">
             <End Role="FeatureType" EntitySet="FeatureType" />
             <End Role="Feature" EntitySet="Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeatureType_EstateType" Association="Self.FK_FeatureType_EstateType">
+            <End Role="EstateType" EntitySet="EstateType" />
+            <End Role="FeatureType" EntitySet="FeatureType" />
           </AssociationSet>
           <AssociationSet Name="FK_Person_AccountType" Association="Self.FK_Person_AccountType">
             <End Role="AccountType" EntitySet="AccountType" />
@@ -742,6 +806,7 @@
           <NavigationProperty Name="ChildEstateTypeList" Relationship="RealEstateModel.FK_EstateType_EstateType" FromRole="EstateType" ToRole="EstateType1" />
           <NavigationProperty Name="ParentEstateType" Relationship="RealEstateModel.FK_EstateType_EstateType" FromRole="EstateType1" ToRole="EstateType" />
           <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_EstateType" FromRole="EstateType" ToRole="Advert" />
+          <NavigationProperty Name="FeatureType" Relationship="RealEstateModel.FK_FeatureType_EstateType" FromRole="EstateType" ToRole="FeatureType" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -763,6 +828,8 @@
           <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Feature" Relationship="Self.FK_Feature_FeatureType" FromRole="FeatureType" ToRole="Feature" />
+          <Property Name="EstateTypeObjectId" Type="Int32" />
+          <NavigationProperty Name="EstateType" Relationship="RealEstateModel.FK_FeatureType_EstateType" FromRole="FeatureType" ToRole="EstateType" />
         </EntityType>
         <EntityType Name="Floor">
           <Key>
@@ -992,6 +1059,19 @@
             <End Role="AdvertUsingType" EntitySet="AdvertUsingType" />
             <End Role="Advert" EntitySet="Advert" />
           </AssociationSet>
+          <EntitySet Name="StarCount" EntityType="RealEstateModel.StarCount" />
+          <AssociationSet Name="FK_Advert_Advert" Association="RealEstateModel.FK_Advert_Advert">
+            <End Role="Advert" EntitySet="Advert" />
+            <End Role="Advert1" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advert_StarCount" Association="RealEstateModel.FK_Advert_StarCount">
+            <End Role="StarCount" EntitySet="StarCount" />
+            <End Role="Advert" EntitySet="Advert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeatureType_EstateType" Association="RealEstateModel.FK_FeatureType_EstateType">
+            <End Role="EstateType" EntitySet="EstateType" />
+            <End Role="FeatureType" EntitySet="FeatureType" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdvertPhoto">
           <Key>
@@ -1045,7 +1125,7 @@
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Area" Type="Int32" Nullable="false" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Age" Type="Int32" />
           <Property Name="HeatingTypeObjectId" Type="Int32" />
           <Property Name="RoomHallObjectId" Type="Int32" />
           <Property Name="MarketingTypeObjectId" Type="Int32" Nullable="false" />
@@ -1100,6 +1180,14 @@
           <NavigationProperty Name="AdvertStatus" Relationship="RealEstateModel.FK_Advert_AdvertStatus" FromRole="Advert" ToRole="AdvertStatus" />
           <Property Name="AdvertUsingTypeObjectId" Type="Int32" />
           <NavigationProperty Name="AdvertUsingType" Relationship="RealEstateModel.FK_Advert_AdvertUsingType" FromRole="Advert" ToRole="AdvertUsingType" />
+          <Property Name="StarCountObjectId" Type="Int32" />
+          <Property Name="IsSettlement" Type="Boolean" />
+          <NavigationProperty Name="Advert1" Relationship="RealEstateModel.FK_Advert_Advert" FromRole="Advert" ToRole="Advert1" />
+          <NavigationProperty Name="Advert2" Relationship="RealEstateModel.FK_Advert_Advert" FromRole="Advert1" ToRole="Advert" />
+          <NavigationProperty Name="StarCount" Relationship="RealEstateModel.FK_Advert_StarCount" FromRole="Advert" ToRole="StarCount" />
+          <Property Name="BedCount" Type="Int32" />
+          <Property Name="RoomCount" Type="Int32" />
+          <Property Name="ParentEstateTypeId" Type="Int32" />
         </EntityType>
         <Association Name="FK_Advert_AdvertType">
           <End Type="RealEstateModel.AdvertType" Role="AdvertType" Multiplicity="0..1" />
@@ -1377,6 +1465,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StarCount">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_StarCount" FromRole="StarCount" ToRole="Advert" />
+        </EntityType>
+        <Association Name="FK_Advert_Advert">
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="1" />
+          <End Type="RealEstateModel.Advert" Role="Advert1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Advert">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert1">
+              <PropertyRef Name="ObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advert_StarCount">
+          <End Type="RealEstateModel.StarCount" Role="StarCount" Multiplicity="0..1" />
+          <End Type="RealEstateModel.Advert" Role="Advert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StarCount">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="Advert">
+              <PropertyRef Name="StarCountObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeatureType_EstateType">
+          <End Type="RealEstateModel.EstateType" Role="EstateType" Multiplicity="0..1" />
+          <End Type="RealEstateModel.FeatureType" Role="FeatureType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateType">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="FeatureType">
+              <PropertyRef Name="EstateTypeObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1466,6 +1600,7 @@
           <EntitySetMapping Name="FeatureType">
             <EntityTypeMapping TypeName="RealEstateModel.FeatureType">
               <MappingFragment StoreEntitySet="FeatureType">
+                <ScalarProperty Name="EstateTypeObjectId" ColumnName="EstateTypeObjectId" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
@@ -1553,6 +1688,11 @@
           <EntitySetMapping Name="Advert">
             <EntityTypeMapping TypeName="RealEstateModel.Advert">
               <MappingFragment StoreEntitySet="Advert">
+                <ScalarProperty Name="ParentEstateTypeId" ColumnName="ParentEstateTypeId" />
+                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
+                <ScalarProperty Name="BedCount" ColumnName="BedCount" />
+                <ScalarProperty Name="IsSettlement" ColumnName="IsSettlement" />
+                <ScalarProperty Name="StarCountObjectId" ColumnName="StarCountObjectId" />
                 <ScalarProperty Name="AdvertUsingTypeObjectId" ColumnName="AdvertUsingTypeObjectId" />
                 <ScalarProperty Name="AdvertStatusObjectId" ColumnName="AdvertStatusObjectId" />
                 <ScalarProperty Name="IsSublease" ColumnName="IsSublease" />
@@ -1650,6 +1790,16 @@
           <EntitySetMapping Name="AdvertUsingType">
             <EntityTypeMapping TypeName="RealEstateModel.AdvertUsingType">
               <MappingFragment StoreEntitySet="AdvertUsingType">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StarCount">
+            <EntityTypeMapping TypeName="RealEstateModel.StarCount">
+              <MappingFragment StoreEntitySet="StarCount">
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="TypeKey" ColumnName="TypeKey" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />

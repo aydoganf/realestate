@@ -30,3 +30,28 @@
 .mb-20 {
     margin-bottom:20px !important;
 }
+
+.left-fifty {
+  display: inline-block;  
+  width: 50%;
+  float:left;
+}
+
+.left-fifty input[type="text"] {
+    width:100% !important;
+}
+
+.right-fifty {
+  display: inline-block;  
+  width: 50%;
+  float:right;
+}
+
+.right-fifty input[type="text"] {
+    width:95% !important;
+    margin-left:5px;
+}
+
+.width100 {
+    width:100% !important;
+}

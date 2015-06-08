@@ -35,6 +35,7 @@
                 <thead>
                     <tr>
                         <td>İşlem</td>
+                        <td>Emlak Tipi Adı</td>
                         <td>Özellik Tipi</td>                     
                         <td>Özellik Adı</td>
                         <td>Özellik Anahtarı</td>
@@ -53,6 +54,7 @@
                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                             </asp:LinkButton>
                         </td>
+                        <td><%#Eval("FeatureType.EstateType.TypeName") %></td>
                         <td><%#Eval("FeatureType.TypeName") %></td>
                         <td><%#Eval("FeatureName") %></td>
                         <td><%#Eval("FeatureKey") %></td>

@@ -356,6 +356,9 @@
 
                         <div class="properties-rows">
                             <div class="row">
+
+                                <asp:GridView ID="gv" runat="server"></asp:GridView>
+
                                 <div class="property span9">
                                     <div class="row">
                                         <div class="span3">

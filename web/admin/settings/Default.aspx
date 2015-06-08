@@ -180,6 +180,12 @@
                                 <i class="fa fa-outdent"></i>Kullanım Durumu </a>
                         </li>
                     </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="housing/star" class="btn green a-item">
+                                <i class="fa fa-outdent"></i>Turistik İşl. Yıldız Sayısı </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

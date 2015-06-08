@@ -35,7 +35,8 @@
                 <thead>
                     <tr>
                         <td>İşlem</td>
-                        <td>Adı</td>                     
+                        <td>Adı</td>
+                        <td>Emlak Tipi</td>                
                     </tr>
                 </thead>
                 <tbody id="content">
@@ -52,6 +53,7 @@
                             </asp:LinkButton>
                         </td>
                         <td><%#Eval("TypeName") %></td>
+                        <td><%#Eval("EstateType.TypeName") %></td>
                     </tr>
         </ItemTemplate>
         <FooterTemplate>

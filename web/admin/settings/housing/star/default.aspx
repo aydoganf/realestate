@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/MasterPage.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="settings_estatetype_default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/MasterPage.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="admin_settings_housing_star_default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphForCSS" Runat="Server">
     <link rel="stylesheet" type="text/css" href="/admin/design/datatable/media/css/demo_table.css" />
@@ -6,11 +6,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" Runat="Server">
     <li>
         <i class="fa fa-angle-right"></i>
-        <a href="../">Ayarlar</a>
+        <a href="../../">Ayarlar</a>
     </li>
     <li>
         <i class="fa fa-angle-right"></i>
-        <span>Emlak Tipi</span>        
+        <span>Turistik İşletmelerdeki Yıldız Sayıları</span>        
     </li>
     <li class="btn-group">
         <button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -22,22 +22,21 @@
             <li>
                 <a href="data.aspx">
                     <i class="fa fa-plus-square"></i>
-                    <span>Yeni Emlak Tipi Ekle</span>
+                    <span>Yeni Yıldız Sayısı Ekle</span>
                 </a>
             </li>
         </ul>
     </li>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" Runat="Server">
-    <asp:Repeater ID="rptEstateType" runat="server" OnItemCommand="rptEstateType_ItemCommand">
+    <asp:Repeater ID="rptStar" runat="server" OnItemCommand="rptStar_ItemCommand">
         <HeaderTemplate>
-            <table class="table table-striped table-bordered table-advance table-hover dataTable" id="estatetypeTable">
+            <table class="table table-striped table-bordered table-advance table-hover dataTable" id="starTable">
                 <thead>
                     <tr>
                         <td>İşlem</td>
                         <td>Adı</td>
-                        <td>Anahtarı</td> 
-                        <td>Üst Emlak Tipi</td>                    
+                        <td>Anahtarı</td>                        
                     </tr>
                 </thead>
                 <tbody id="content">
@@ -45,7 +44,7 @@
         <ItemTemplate>
                     <tr>
                         <td>
-                            <a href='data.aspx?estatetype=<%#Eval("ObjectId") %>'>
+                            <a href='data.aspx?star=<%#Eval("ObjectId") %>'>
                                 <i class="fa fa-list"></i>&nbsp;Detay
                             </a>
                             <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="delete" 
@@ -55,7 +54,6 @@
                         </td>
                         <td><%#Eval("TypeName") %></td>
                         <td><%#Eval("TypeKey") %></td>
-                        <td><%#Eval("ParentEstateType.TypeName") %></td>
                     </tr>
         </ItemTemplate>
         <FooterTemplate>
@@ -68,7 +66,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#estatetypeTable').dataTable({
+            $('#starTable').dataTable({
                 "bLengthChange": false,
                 "sPaginationType": "full_numbers",
                 "iDisplayLength": 30,

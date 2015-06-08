@@ -405,7 +405,7 @@
                                                 </div>
                                                 <div class="location"><%#Eval("CityName") %>/<%#Eval("TownName") %></div>
                                                 <div class="price">
-                                                    <%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %>
+                                                    <%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %>
                                                 </div>
                                             </div>
                                         </div>
@@ -446,7 +446,7 @@
                                                     <%#Eval("MarketingType.TypeName") %>
                                                 </div>
                                                 <div class="price">
-                                                    <%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %>
+                                                    <%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %>
                                                 </div>
                                             </div>
 

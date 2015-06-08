@@ -13,6 +13,8 @@
 
             <div class="properties-rows">
                 <div class="row">
+                    <asp:Label ID="lbl" runat="server"></asp:Label>
+
                     <asp:Repeater ID="rptAdverts" runat="server">
                         <ItemTemplate>
                             <div class="property span9">
@@ -20,7 +22,7 @@
                                     <div class="span3">
                                         <div class="image">
                                             <div class="content">
-                                                <a href="/ilan-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
                                                     <img width="570" height="425" src="/uploads/<%#Eval("PrimarySmallAdvertPhoto") %>" class="thumbnail-image" alt="19">
                                                 </a>
                                             </div>
@@ -33,7 +35,7 @@
                                         <div class="title-price row">
                                             <div class="title span4">
                                                 <h2>
-                                                    <a href="/ilan-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                    <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
                                                         <%#Eval("Title") %>
                                                     </a>
                                                 </h2>
@@ -41,7 +43,7 @@
                                             <!-- /.title -->
 
                                             <div class="price">
-                                                <%#Eval("Price") %> <%#Eval("PriceCurrency.CurrencyName") %>
+                                                <%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %>
                                             </div>
                                             <!-- /.price -->
                                         </div>
@@ -71,7 +73,7 @@
 
 
                                             <div class="more-info">
-                                                <a href="/ilan-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">Detaylı bilgi <i class="icon icon-normal-right-arrow-circle"></i></a>
+                                                <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">Detaylı bilgi <i class="icon icon-normal-right-arrow-circle"></i></a>
                                             </div>
                                         </div>
                                         <!-- /.info -->

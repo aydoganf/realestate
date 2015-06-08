@@ -29,7 +29,7 @@ namespace DBLayer
 
         public List<Town> GetTownListByCityObjectId(int cityObjectId)
         {
-            return Town.Where(i => i.CityObjectId == cityObjectId && i.Deleted == false).ToList();
+            return Town.Where(i => i.CityObjectId == cityObjectId && i.Deleted == false).OrderBy(i=> i.TownName).ToList();
         }
 
         public Town GetTownByObjectId(int objectId)

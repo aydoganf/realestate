@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using DBLayer;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Summary description for MasterBasePage
@@ -72,5 +73,10 @@ public class MasterBasePage : System.Web.UI.MasterPage
         {
             //Response.Redirect("~/Login.aspx");
         }
+    }
+
+    public string FormatPrice(object input)
+    {
+        return Regex.Replace(String.Format("{0:#,#}", input), "\\.00$", "");
     }
 }

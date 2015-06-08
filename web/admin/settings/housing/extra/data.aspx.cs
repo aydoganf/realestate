@@ -39,8 +39,13 @@ public partial class settings_housing_extra_data : BasePage
 
     protected void BindData()
     {
-        ddlFeatureType.DataSource = DBProvider.GetFeatureTypeList();
-        ddlFeatureType.DataBind();
+        List<FeatureType> featureTypeList = DBProvider.GetFeatureTypeList();
+
+        foreach (FeatureType item in featureTypeList)
+        {
+            ListItem li = new ListItem(item.EstateType.TypeName + " - " + item.TypeName, item.ObjectId.ToString());
+            ddlFeatureType.Items.Add(li);
+        }
 
         if (CurrentFeature != null)
         {
@@ -56,11 +61,11 @@ public partial class settings_housing_extra_data : BasePage
         {
             CurrentFeature.FeatureTypeObjectId = Convert.ToInt32(ddlFeatureType.SelectedValue);
             CurrentFeature.FeatureName = tbFeatureName.Text.Trim();
-            CurrentFeature.FeatureKey = tbFeatureKey.Text.Trim();
+            CurrentFeature.FeatureKey = tbFeatureKey.Text.Trim().ToLower();
         }
         else
         {
-            DBProvider.AddFeature(tbFeatureName.Text.Trim(), tbFeatureKey.Text.Trim(), Convert.ToInt32(ddlFeatureType.SelectedValue));
+            DBProvider.AddFeature(tbFeatureName.Text.Trim(), tbFeatureKey.Text.Trim().ToLower(), Convert.ToInt32(ddlFeatureType.SelectedValue));
         }
         DBProvider.SaveChanges();
         Response.Redirect("default.aspx?status=0");

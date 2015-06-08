@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
+using System.Configuration;
 
-public partial class Site : System.Web.UI.MasterPage
+public partial class Site : MasterBasePage
 {
     #region Props
 
@@ -158,6 +159,9 @@ public partial class Site : System.Web.UI.MasterPage
         string priceTo = !string.IsNullOrEmpty(tbPriceTo.Text.Trim()) ? tbPriceTo.Text.Trim() : "-1";
         string priceCurrency = ddlCurrencyList.SelectedValue;
 
+        string quickSearchModeKey = ConfigurationManager.AppSettings["searchMode_quick"];
+
+        redirect += "/" + quickSearchModeKey; 
         redirect += "/" + city;
         redirect += "/" + town;
         redirect += "/" + district;

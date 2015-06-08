@@ -45,7 +45,7 @@ namespace DBLayer
 
     public partial class RealEstateEntities
     {
-        public Advert AddAdvert(string title, string description, int area, int age, int? heatingTypeObjectId, int? roomHallObjectId, int marketingTypeObjectId, int estateTypeObjectId, int? floorObjectId, int? advertTypeObjectId, int? bathCount, int? floorCount, int? deposit, int? depositCurrencyObjectId, int price, int priceCurrencyObjectId, int createdByPersonObjectId, string latitude, string longitude, string gAddress, int districtObjectId, int townObjectId, int cityObjectId)
+        public Advert AddAdvert(string title, string description, int area, int? age, int? heatingTypeObjectId, int? roomHallObjectId, int marketingTypeObjectId, int estateTypeObjectId, int? floorObjectId, int? advertTypeObjectId, int? bathCount, int? floorCount, int? deposit, int? depositCurrencyObjectId, int price, int priceCurrencyObjectId, int createdByPersonObjectId, string latitude, string longitude, string gAddress, int districtObjectId, int townObjectId, int cityObjectId, string cityName, string townName, string districtName, int? advertOwnerTypeObjectId, bool? isFlatForLandMethod, int? creditTypeObjectId, int? deedTypeObjectId, bool? isExchangable, int? fuelTypeObjectId, bool? isSublease, int? advertStatusObjectId, int? advertUsingTypeObjectId, int? starCountObjectId, bool? isSettlement, int? bedCount, int? roomCount)
         {
             Advert obj = new Advert() 
             {
@@ -75,7 +75,22 @@ namespace DBLayer
                 IsActive = true,
                 Deleted = false,
                 CreateDate = DateTime.Now,
-                UpdateDate = DateTime.Now
+                UpdateDate = DateTime.Now,
+                CityName = cityName,
+                TownName = townName,
+                DistrictName = districtName,
+                AdvertOwnerTypeObjectId = advertOwnerTypeObjectId,
+                IsFlatForLandMethod = isFlatForLandMethod,
+                CreditTypeObjectId = creditTypeObjectId,
+                DeedTypeObjectId = deedTypeObjectId,
+                IsExchangable = isExchangable,
+                FuelTypeObjectId = fuelTypeObjectId,
+                IsSublease = isSublease,
+                AdvertStatusObjectId = advertStatusObjectId,
+                StarCountObjectId = starCountObjectId,
+                IsSettlement = isSettlement,
+                BedCount = bedCount,
+                RoomCount = roomCount
             };
             AddToAdvert(obj);
             Random rnd = new Random();
@@ -124,8 +139,8 @@ namespace DBLayer
             return Advert.Where(
                 i => (obj.CityId != -1 ? i.CityObjectId == obj.CityId : true) &&
                     (obj.TownId != -1 ? i.TownObjectId == obj.TownId : true) &&
-                    (obj.DistrictId != -1 ? i.DistrictObjectId == obj.DistrictId : true) &&
-                    (obj.EstateTypeId != -1 ? obj.EstateTypeChildIdList.Contains(i.EstateTypeObjectId) : true) &&
+                    (obj._DistrictId ? obj.DistrictId.Contains(i.DistrictObjectId) : true) &&
+                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeId == obj.EstateTypeId : true) &&
                     (obj.MarketingTypeId != -1 ? i.MarketingTypeObjectId == obj.MarketingTypeId : true) &&
                     (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
                     (obj.AreaTo != -1 ? i.Area <= obj.AreaTo : true) &&
@@ -134,6 +149,43 @@ namespace DBLayer
                     (obj.PriceCurrencyId != -1 ? i.PriceCurrencyObjectId == obj.PriceCurrencyId : true) &&
                     i.Deleted == false && i.IsActive
                 ).Distinct().OrderByDescending(i=> i.UpdateDate).ThenByDescending(i=> i.CreateDate).ToList();
+        }
+
+        public List<Advert> AdvancedSearchAdvert(SearchQuery obj)
+        {
+            return Advert.Where(
+                i => (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
+                    (obj.AreaTo != -1 ? i.Area <= obj.AreaTo : true) &&
+                    (obj.AgeFrom != -1 ? i.Age >= obj.AgeFrom : true) &&
+                    (obj.AgeTo != -1 ? i.Age >= obj.AgeTo : true) &&
+                    (obj._HeatingTypeId ? obj.HeatingTypeId.Contains(i.HeatingTypeObjectId.Value) : true) &&
+                    (obj._RoomHallId ? obj.RoomHallId.Contains(i.RoomHallObjectId.Value) : true) &&
+                    (obj.MarketingTypeId != -1 ? i.MarketingTypeObjectId == obj.MarketingTypeId : true) &&
+                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeId == obj.EstateTypeId : true) &&
+                    (obj._EstateTypeChildIdList ? obj.EstateTypeChildIdList.Contains(i.EstateTypeObjectId) : true) &&
+                    (obj._FloorId ? obj.FloorId.Contains(i.FloorObjectId.Value) : true) &&
+                    (obj.BathCount != -1 ? i.BathCount == obj.BathCount : true) &&
+                    (obj.FloorCount != -1 ? i.FloorCount == obj.FloorCount : true) &&
+                    (obj.PriceFrom != -1 ? i.Price >= obj.PriceFrom : true) &&
+                    (obj.PriceTo != -1 ? i.Price <= obj.PriceTo : true) &&
+                    (obj.PriceCurrencyId != -1 ? i.PriceCurrencyObjectId == obj.PriceCurrencyId : true) &&
+                    (obj.CityId != -1 ? i.CityObjectId == obj.CityId : true) &&
+                    (obj.TownId != -1 ? i.TownObjectId == obj.TownId : true) &&
+                    (obj._DistrictId ? obj.DistrictId.Contains(i.DistrictObjectId) : true) &&
+                    (obj.IsFlatForLandMethod.HasValue ? i.IsFlatForLandMethod == obj.IsFlatForLandMethod : true) &&
+                    (obj.CreditTypeId != -1 ? i.CreditTypeObjectId == obj.CreditTypeId : true) &&
+                    (obj.DeedTypeId != -1 ? i.DeedTypeObjectId == obj.DeedTypeId : true) &&
+                    (obj.IsExchangable.HasValue ? i.IsExchangable == obj.IsExchangable : true) &&
+                    (obj._FuelTypeId ? obj.FuelTypeId.Contains(i.FuelTypeObjectId.Value) : true) &&
+                    (obj.IsSublease.HasValue ? i.IsSublease == obj.IsSublease : true) &&
+                    (obj.AdvertStatusId != -1 ? i.AdvertStatusObjectId == obj.AdvertStatusId : true) &&
+                    (obj.AdvertUsingTypeId != -1 ? i.AdvertUsingTypeObjectId == obj.AdvertUsingTypeId : true) &&
+                    (obj.StarCountId != -1 ? i.StarCountObjectId == obj.StarCountId : true) &&
+                    (obj.BedCountFrom != -1 ? i.BedCount >= obj.BedCountFrom : true) &&
+                    (obj.BedCountTo != -1 ? i.BedCount <= obj.BedCountTo : true) &&
+                    (obj.RoomCountFrom != -1 ? i.RoomCount >= obj.RoomCountFrom : true) &&
+                    (obj.RoomCountTo != -1 ? i.RoomCount <= obj.RoomCountTo : true) && i.Deleted == false && i.IsActive
+                ).Distinct().OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).ToList();
         }
     }
 }
