@@ -32,13 +32,30 @@ public partial class _Default : BasePage
 
     protected void BindData()
     {
+        List<Advert> recentList = DBProvider.GetMostRecentAdvertList(20);
+        double latTotal = 0;
+        double longTotal = 0;
 
+        foreach (Advert item in recentList)
+        {
+            latTotal += Convert.ToDouble(item.Latitude, System.Globalization.CultureInfo.InvariantCulture);
+            longTotal += Convert.ToDouble(item.Longitude, System.Globalization.CultureInfo.InvariantCulture);
+        }
 
-        rptLastProperties.DataSource = DBProvider.GetMostRecentAdvertList(3);
+        double latCenter = latTotal / recentList.Count;
+        double longCenter = longTotal / recentList.Count;
+
+        hfLatCenter.Value = latCenter.ToString().Replace(',', '.');
+        hfLongCenter.Value = longCenter.ToString().Replace(',', '.');
+
+        rptLastProperties.DataSource = recentList.Take(3);
         rptLastProperties.DataBind();
 
-        rptRecentProperties.DataSource = DBProvider.GetMostRecentAdvertList(12);
+        rptRecentProperties.DataSource = recentList.Take(12);
         rptRecentProperties.DataBind();
+
+        rptMapInfo.DataSource = recentList;
+        rptMapInfo.DataBind();
 
         rptBaseEstateTypes.DataSource = BaseEstateTypeList;
         rptBaseEstateTypes.DataBind();

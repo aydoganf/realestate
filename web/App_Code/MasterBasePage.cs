@@ -79,4 +79,18 @@ public class MasterBasePage : System.Web.UI.MasterPage
     {
         return Regex.Replace(String.Format("{0:#,#}", input), "\\.00$", "");
     }
+    
+    public string FormatAdvertLink(Advert obj)
+    {
+        return "/emlak-detay/" + obj.CityName + "/" + obj.TownName + "/" + obj.DistrictName + "/" + obj.AdvertNumber + "/" + FormatAdvertTitle(obj.Title);
+    }
+
+    public string FormatAdvertTitle(string title)
+    {
+        title = title.Replace('+', '_');
+        title = title.Replace(' ', '-');
+        title = title.Replace('.', '-');
+        title = title.Replace("'", "-");
+        return title;
+    }
 }

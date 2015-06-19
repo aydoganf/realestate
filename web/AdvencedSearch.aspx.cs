@@ -25,10 +25,10 @@ public partial class AdvencedSearch : BasePage
 
         ddlEstateType.DataSource = DBProvider.GetBaseEstateTypeList();
         ddlEstateType.DataBind();
-        ddlEstateType.SelectedValue = EstateType.Konut.ToString();
-        lblEstateTypeText.Text = "Konut";
+        ddlEstateType.SelectedValue = KonutEmalgi.ObjectId.ToString();
+        lblEstateTypeText.Text = KonutEmalgi.TypeName;
 
-        lbSubEstateType.DataSource = DBProvider.GetEstateTypeListByParentId(EstateType.Konut);
+        lbSubEstateType.DataSource = DBProvider.GetEstateTypeListByParentId(KonutEmalgi.ObjectId);
         lbSubEstateType.DataBind();
 
         ddlCurrency.DataSource = DBProvider.GetCurrencyList();
@@ -43,7 +43,7 @@ public partial class AdvencedSearch : BasePage
         #endregion
 
         #region SetPanels
-        SetPanels(EstateType.Konut);
+        SetPanels(KonutEmalgi.ObjectId);
         #endregion
     }
 
@@ -56,25 +56,27 @@ public partial class AdvencedSearch : BasePage
         pnlTuristikBilgileri.Visible = false;
 
         BindFeatures(estateType);
-        switch (estateType)
+        EstateType selectedEstateType = DBProvider.GetEstateTypeByObjectId(estateType);
+
+        switch (selectedEstateType.TypeKey)
         {
-            case EstateType.Konut:
+            case "konut":
                 BindKonutBilgileri();
                 pnlKonutBilgileri.Visible = true;
                 break;
-            case EstateType.Isyeri:
+            case "isyeri":
                 BindIsyeriBilgileri();
                 pnlIsyeriBilgileri.Visible = true;
                 break;
-            case EstateType.Arsa:
+            case "arsa":
                 BindArsaBilgileri();
                 pnlArsaBilgileri.Visible = true;
                 break;
-            case EstateType.Devremulk:
+            case "devremulk":
                 BindDevremulkBilgileri();
                 pnlDevremulkBilgileri.Visible = true;
                 break;
-            case EstateType.Turistik:
+            case "turistik-isletme":
                 BindTuristikBilgileri();
                 pnlTuristikBilgileri.Visible = true;
                 break;
@@ -314,9 +316,11 @@ public partial class AdvencedSearch : BasePage
         string _features = "-1";
 
         int baseEstateTypeId = Convert.ToInt32(ddlEstateType.SelectedValue);
-        switch (baseEstateTypeId)
+        EstateType baseEstateType = DBProvider.GetEstateTypeByObjectId(baseEstateTypeId);
+
+        switch (baseEstateType.TypeKey)
         {
-            case EstateType.Konut:
+            case "konut":
                 
                 #region Konut Arama Verileri
                 // floor (bulunduğu kat)
@@ -348,7 +352,7 @@ public partial class AdvencedSearch : BasePage
                     _roomHall = string.Empty;
                     foreach (ListItem item in queryRoomHallKonut)
                     {
-                        if (item != queryFloorKonut.Last())
+                        if (item != queryRoomHallKonut.Last())
                             _roomHall += item.Value + ",";
                         else
                             _roomHall += item.Value;
@@ -400,7 +404,7 @@ public partial class AdvencedSearch : BasePage
                 #endregion
                                                
                 break;
-            case EstateType.Isyeri:
+            case "isyeri":
 
                 #region İşyeri Arama Verileri
                 // floor (bulunduğu kat)
@@ -479,7 +483,7 @@ public partial class AdvencedSearch : BasePage
                 #endregion
 
                 break;
-            case EstateType.Arsa:
+            case "arsa":
 
                 #region Arsa Arama Verileri
 
@@ -495,7 +499,7 @@ public partial class AdvencedSearch : BasePage
                 #endregion
 
                 break;
-            case EstateType.Devremulk:
+            case "devremulk":
 
                 #region Devremülk Arama Verileri
 
@@ -575,7 +579,7 @@ public partial class AdvencedSearch : BasePage
                 #endregion
 
                 break;
-            case EstateType.Turistik:
+            case "turistik-isletme":
 
                 #region Turistik İşletme Arama Verileri
 

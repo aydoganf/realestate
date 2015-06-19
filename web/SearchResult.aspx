@@ -13,16 +13,15 @@
 
             <div class="properties-rows">
                 <div class="row">
-                    <asp:Label ID="lbl" runat="server"></asp:Label>
 
                     <asp:Repeater ID="rptAdverts" runat="server">
                         <ItemTemplate>
                             <div class="property span9">
                                 <div class="row">
-                                    <div class="span3">
+                                    <div class="span2">
                                         <div class="image">
                                             <div class="content">
-                                                <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                     <img width="570" height="425" src="/uploads/<%#Eval("PrimarySmallAdvertPhoto") %>" class="thumbnail-image" alt="19">
                                                 </a>
                                             </div>
@@ -31,11 +30,11 @@
                                         <!-- /.image -->
                                     </div>
 
-                                    <div class="body span6">
+                                    <div class="body span7">
                                         <div class="title-price row">
                                             <div class="title span4">
                                                 <h2>
-                                                    <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                    <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                         <%#Eval("Title") %>
                                                     </a>
                                                 </h2>
@@ -66,14 +65,15 @@
                                             </div>
                                             <!-- /.area -->
 
-                                            <div class="bedrooms">
-                                                <i class="icon icon-normal-bed"></i><%#Eval("BathCount") %>
+                                            <div class="bedrooms">                                                
+                                                <i class="icon icon-normal-four-rectangles"></i><%#Eval("RoomHallObjectId") != null ? Eval("RoomHall.RoomHallName") : ""%>
                                             </div>
                                             <!-- /.bedrooms -->
 
 
+
                                             <div class="more-info">
-                                                <a href="/emlak-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">Detaylı bilgi <i class="icon icon-normal-right-arrow-circle"></i></a>
+                                                <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">Detaylı bilgi <i class="icon icon-normal-right-arrow-circle"></i></a>
                                             </div>
                                         </div>
                                         <!-- /.info -->

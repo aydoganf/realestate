@@ -51,7 +51,7 @@ public partial class SearchResult : BasePage
         List<Advert> searchResult = DBProvider.QuickSearchAdvert(searchQuery);
         rptAdverts.DataSource = searchResult;
         rptAdverts.DataBind();
-        (this.Master as Site).BindSearchedData(searchQuery);
+        //(this.Master as Site).BindSearchedData(searchQuery);
     }
 
     protected void SearchAdvanced()
@@ -105,6 +105,6 @@ public partial class SearchResult : BasePage
         List<Advert> searchResult = DBProvider.AdvancedSearchAdvert(searchQuery);
         rptAdverts.DataSource = searchResult;
         rptAdverts.DataBind();
-        (this.Master as Site).BindSearchedData(searchQuery);
+        //(this.Master as Site).BindSearchedData(searchQuery);
     }
 }

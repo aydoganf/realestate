@@ -8,7 +8,7 @@
         // Code that runs on application startup
         RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
         RouteTable.Routes.Ignore("ilan-detay/{districtName}/{townName}/{cityName}/{advertNumber}/{title}/{resource}.axd/{*pathInfo}");
-        RouteTable.Routes.Ignore("arama-sonuclari/{cityId}/{townId}/{districtId}/{estateTypeId}/{marketingTypeId}/{area}/{price}/{priceCurrencyId}/{resource}.axd/{*pathInfo}");
+        RouteTable.Routes.Ignore("arama-sonuclari/{mode}/{cityId}/{townId}/{districtId}/{estateTypeId}/{marketingTypeId}/{area}/{price}/{priceCurrencyId}/{resource}.axd/{*pathInfo}");
         RouteTable.Routes.RouteExistingFiles = false;
 
         RouteTable.Routes.Add("anasayfa", new Route("anasayfa", new PageRouteHandler("~/Default.aspx")));

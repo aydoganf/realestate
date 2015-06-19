@@ -2905,7 +2905,7 @@ textarea {
 }
 
 .single-property .property-detail #property-map {
-    height: 270px;
+    height: 400px;
 }
 
     .single-property .property-detail #property-map img {
@@ -3030,7 +3030,7 @@ body .property-listing h1.page-header {
     }
 
         .properties-rows .property .body .title h2 {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             margin-top: 0px;
             margin-bottom: 0px;
@@ -3055,7 +3055,7 @@ body .property-listing h1.page-header {
             font-size: 12px;
             font-weight: bold;
             padding: 4px 8px 4px 8px;
-            left: 300px;
+            left: 210px;
             top: 60px;
             position: absolute;
         }
@@ -3231,7 +3231,7 @@ body .property-listing h1.page-header {
         }
 
             .properties-rows .property .body .title h2 {
-                font-size: 24px;
+                font-size: 18px !important;
                 font-weight: bold;
                 margin-top: 5px;
                 margin-bottom: 0px;
@@ -3246,7 +3246,7 @@ body .property-listing h1.page-header {
             }
 
             .properties-rows .property .body .price {
-                font-size: 18px;
+                font-size: 12px;
                 padding: 6px 10px 6px 10px;
             }
 

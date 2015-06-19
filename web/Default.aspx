@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
     <!--[if lt IE 9]>
-    <script src="assets/js/html5.js" type="text/javascript"></script>
+    <script src="/assets/js/html5.js" type="text/javascript"></script>
     <![endif]-->
 
     <meta name='robots' content='noindex,nofollow' />
@@ -19,24 +19,24 @@
         type='text/css' media='all' />
 
 
-    <link rel='stylesheet' id='revolution-fullwidth' href='assets/libraries/rs-plugin/css/fullwidth.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='revolution-settings' href='assets/libraries/rs-plugin/css/settings.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='bootstrap-css' href='assets/libraries/bootstrap/css/bootstrap.min.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='bootstrap-responsive-css' href='assets/libraries/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='revolution-fullwidth' href='/assets/libraries/rs-plugin/css/fullwidth.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='revolution-settings' href='/assets/libraries/rs-plugin/css/settings.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/assets/libraries/bootstrap/css/bootstrap.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-responsive-css' href='/assets/libraries/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='pictopro-normal-css' href='assets/icons/pictopro-normal/style.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='justvector-web-font-css' href='assets/icons/justvector-web-font/stylesheet.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='chosen-css' href='assets/libraries/chosen/chosen.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pictopro-normal-css' href='/assets/icons/pictopro-normal/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='justvector-web-font-css' href='/assets/icons/justvector-web-font/stylesheet.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='chosen-css' href='/assets/libraries/chosen/chosen.css' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='aviators-css' href='assets/css/jquery.bxslider.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='properta-css' href='assets/css/properta.css' type='text/css' media='all' />
-    <link rel="stylesheet" id="custom-css" href="assets/css/custom.css" type="text/css" media="all" />
+    <link rel='stylesheet' id='aviators-css' href='/assets/css/jquery.bxslider.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css' type='text/css' media='all' />
+    <link rel="stylesheet" id="custom-css" href="/assets/css/custom.css" type="text/css" media="all" />
 
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
-    <script type='text/javascript' src='assets/js/aviators-settings.js'></script>
-    <script type='text/javascript' src='assets/libraries/chosen/chosen.jquery.min.js'></script>
-    <script type='text/javascript' src='assets/libraries/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
-    <script type='text/javascript' src='assets/libraries/rs-plugin/js/jquery.themepunch.plugins.min.js'></script>
+    <%--<script type='text/javascript' src='/assets/js/aviators-settings.js'></script>--%>
+    <script type='text/javascript' src='/assets/libraries/chosen/chosen.jquery.min.js'></script>
+    <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
+    <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.plugins.min.js'></script>
 
     <title>RealEstate.com</title>
 </head>
@@ -50,7 +50,7 @@
                         <div class="branding pull-left">
                             <div class="logo">
                                 <a href="default.htm" title="Home">
-                                    <img src="assets/img/logo.png" alt="Home">
+                                    <img src="/assets/img/logo.png" alt="Home">
                                 </a>
                             </div>
                             <!-- /.logo -->
@@ -71,19 +71,10 @@
                             </ul>
                         </div>
 
-                        <div class="user-area pull-right">
-                            <div class="menu-anonymous-container">
-                                <ul id="menu-anonymous" class="nav nav-pills">
-                                    <li class="menu-item"><a href="register.html">Register</a></li>
-                                    <li class="menu-item"><a href="login.html">Login</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.user-area -->
                     </div>
                     <!-- /.header -->
                     <div class="navigation navbar clearfix">
-                        <div class="pull-left">
+                        <%--<div class="pull-left">
                             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -151,7 +142,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>--%>
 
                         <%--<div class="pull-right">
                             <div class="list-property">
@@ -185,7 +176,7 @@
                                         <div class="property-types-custom">
                                             <asp:Repeater ID="rptBaseEstateTypes" runat="server">
                                                 <ItemTemplate>
-                                                    <a href="/<%#Eval("TypeKey") %>">
+                                                    <a href="//<%#Eval("TypeKey") %>">
                                                         <div class="property-type-custom">
                                                             <%#Eval("TypeName") %>
                                                         </div>
@@ -198,39 +189,159 @@
                             </div>
                         </div>
                     </div>
+                    <div style="display:none">
+                        <asp:HiddenField ID="hfLatCenter" runat="server" />
+                        <asp:HiddenField ID="hfLongCenter" runat="server" />
+                        <p class="infoBoxes">
+                            <asp:Repeater ID="rptMapInfo" runat="server">
+                                <ItemTemplate>
+                                    <div class="realEstateMapItem">
+                                        <p class="realEstateMapItem-price"><%# FormatPrice(Eval("Price").ToString()) %></p>
+                                        <p class="realEstateMapItem-priceCurrency"><%# Eval("PriceCurrency.CurrencyName") %></p>
+                                        <p class="realEstateMapItem-title"><%#Eval("Title") %></p>
+                                        <p class="realEstateMapItem-shortTitle"><%#Eval("Title").ToString().Substring(0,25) %></p>
+                                        <p class="realEstateMapItem-picture"><%#Eval("PrimarySmallAdvertPhoto") %></p>
+                                        <p class="realEstateMapItem-area"><%#Eval("Area") %></p>
+                                        <p class="realEstateMapItem-estateType"><%#Eval("EstateType.TypeName") %></p>
+                                        <p class="realEstateMapItem-parentEstateType"><%#Eval("EstateType.ParentEstateType.TypeName") %></p>
+                                        <p class="realEstateMapItem-link"><%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %></p>
+                                        <p class="realEstateMapItem-latitude"><%#Eval("Latitude") %></p>
+                                        <p class="realEstateMapItem-longitude"><%#Eval("Longitude") %></p>
+                                        <p class="realEstateMapItem-marketingType"><%#Eval("MarketingType.TypeName") %></p>
+                                        <p class="realEstateMapItem-townName"><%#Eval("TownName") %></p>
+                                        <p class="realEstateMapItem-districtName"><%#Eval("DistrictName") %></p>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </p>
+
+                    </div>
 
                     <script type="text/javascript">
 
                         var infoBoxes = [];
+                        var coords = [];
+                        var icons = [];
+                        var latCenter = $('#<%=hfLatCenter.ClientID%>').val();
+                        var longCenter = $('#<%=hfLongCenter.ClientID%>').val();
 
-                        var property1 = '<div class="infobox clearfix"><div class="close"><img src="assets/img/close.png" alt=""></div><div class="image"><a href="properties/property-detail" ><img src="assets/img/property/17.jpg" alt="677 Cottage Terrace" width="130px"></a><div class="contract-type">For sale</div></div><div class="info"><div class="title"><a href="properties/property-detail">677 Cottage Terrace</a></div><div class="location">Spring Valley</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>650m<sup>2</sup></div><div class="bedrooms"><i class="icon icon-normal-bed"></i>1</div><div class="bathrooms"><i class="icon icon-normal-shower"></i>1</div></div><div class="price">59,600 €</div><div class="link"><a href="properties/property-detail">View more</a></div></div></div>';
-                        var property2 = '<div class="infobox clearfix"><div class="close"><img src="assets/img/close.png" alt=""></div><div class="image"><a href="properties/property-detail"><img src="assets/img/property/19.jpg" alt="643 37th Ave" width="130px"></a><div class="contract-type">For sale</div></div><div class="info"><div class="title"><a href="properties/property-detail">643 37th Ave</a></div><div class="location">Burrville</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>800m<sup>2</sup></div><div class="bedrooms"><i class="icon icon-normal-bed"></i>2</div><div class="bathrooms"><i class="icon icon-normal-shower"></i>2</div></div><div class="price">Contact us</div><div class="link"><a href="properties/property-detail">View more</a></div></div></div>';
-                        var property3 = '<div class="infobox clearfix"><div class="close"><img src="assets/img/close.png" alt=""></div><div class="image"><a href="properties/property-detail" ><img src="assets/img/property/17.jpg" alt="677 Cottage Terrace" width="130px"></a>                  <div class="contract-type">For sale</div></div><div class="info"><div class="title"><a href="properties/property-detail">677 Cottage Terrace</a></div><div class="location">Spring Valley</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>650m<sup>2</sup></div><div class="bedrooms"><i class="icon icon-normal-bed"></i>1</div><div class="bathrooms"><i class="icon icon-normal-shower"></i>1</div></div><div class="price">59,600 €</div><div class="link"><a href="properties/property-detail">View more</a></div></div></div>';
+                        $(document).ready(function () {
+                            $('.realEstateMapItem').each(function () {
+                                debugger;
+                                var rPrice = $(this).find('.realEstateMapItem-price').text();
+                                var rPriceCurrency = $(this).find('.realEstateMapItem-priceCurrency').text();
+                                var rTitle = $(this).find('.realEstateMapItem-title').text();
+                                var rShortTitle = $(this).find('.realEstateMapItem-shortTitle').text();
+                                var rPicture = $(this).find('.realEstateMapItem-picture').text();
+                                var rArea = $(this).find('.realEstateMapItem-area').text();
+                                var rEstateType = $(this).find('.realEstateMapItem-estateType').text();
+                                var rParentEstateType = $(this).find('.realEstateMapItem-parentEstateType').text();
+                                var rLink = $(this).find('.realEstateMapItem-link').text();
+                                var rLatitude = $(this).find('.realEstateMapItem-latitude').text();
+                                var rLongitude = $(this).find('.realEstateMapItem-longitude').text();
+                                var rMarketingType = $(this).find('.realEstateMapItem-marketingType').text();
+                                var rTownName = $(this).find('.realEstateMapItem-townName').text();
+                                var rDistrictName = $(this).find('.realEstateMapItem-districtName').text();
 
-                        for (var i = 0; i < 15 ; i++) {
-                            infoBoxes.push(property1);
-                            infoBoxes.push(property2);
-                            infoBoxes.push(property3);
-                        }
+                                var marker = '';
+                                switch (rParentEstateType) {
+                                    case 'Konut':
+                                        marker = 'single-home';
+                                        break;
+                                    case 'İşyeri':
+                                        marker = 'condo';
+                                        break;
+                                    case 'Arsa':
+                                        marker = 'building-area';
+                                        break;
+                                    case 'Devremülk':
+                                        marker = 'cottage';
+                                        break;
+                                    case 'Turistik İşletme':
+                                        marker = 'villa';
+                                        break;
+                                    default:
+                                        break;
+                                }
 
-                        jQuery(document).ready(function ($) {
+                                var info = '<div class="infobox clearfix"><div class="close"><img src="/assets/img/close.png" alt=""></div><div class="image"><a href="' + rLink + '" ><img src="/uploads/' + rPicture + '" alt="" width="130px"></a><div class="contract-type">' + rMarketingType + '</div></div><div class="info"><div class="title"><a href="' + rLink + '">' + rShortTitle + '</a></div><div class="location">' + rDistrictName + '/' + rTownName + '</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>' + rArea + ' m<sup>2</sup></div></div><div class="price">' + rPrice + ' ' + rPriceCurrency + '</div><div class="link"><a href="' + rLink+ '">Detaylı bilgi</a></div></div></div>';
+                                infoBoxes.push(info);
+                                var coord = [];
+                                coord = [rLatitude, rLongitude];
+                                coords.push(coord);
+                                icons.push(marker);
+                                
+                            });
+
                             var map = $('#map').aviators_map({
-                                locations: new Array([38.951399, -76.958463], [38.942855, -76.959149], [38.935945, -76.954085], [38.924194, -76.962497], [38.929335, -76.966402], [38.950131, -76.975286], [38.941386, -76.976745], [38.912975, -76.973269], [38.927266, -76.985156], [38.936813, -76.987173], [38.941653, -76.995885], [38.929235, -76.995627], [38.922024, -77.001378], [38.920788, -77.020304], [38.926531, -77.007558], [38.939384, -77.018115], [38.939217, -77.070257], [38.931539, -77.103517], [38.942454, -77.05352], [38.930571, -77.086007], [38.947194, -77.109696], [38.949864, -77.094762], [38.940685, -77.095964], [38.932474, -77.026441], [38.932941, -77.034165], [38.932641, -77.044079], [38.932908, -77.061674], [38.931372, -77.07781], [38.926665, -77.101457], [38.929135, -77.101671], [38.919086, -77.108538], [38.910103, -77.104504], [38.920221, -77.084033], [38.915513, -77.089741], [38.918752, -77.095105], [38.912073, -77.00597], [38.90486, -77.024724], [38.918418, -77.010605], [38.928868, -77.021377], [38.920154, -77.010562], [38.915847, -77.069699], [38.926164, -77.056739], [38.925045, -77.040063], [38.922591, -77.034291]),
-                                types: new Array('family-house', 'villa', 'cottage', 'single-home', 'family-house', 'cottage', 'apartment', 'building-area', 'apartment', 'family-house', 'villa', 'family-house', 'villa', 'single-home', 'cottage', 'villa', 'condo', 'apartment', 'single-home', 'cottage', 'family-house', 'villa', 'apartment', 'apartment', 'villa', 'villa', 'apartment', 'cottage', 'villa', 'family-house', 'building-area', 'family-house', 'family-house', 'cottage', 'apartment', 'cottage', 'family-house', 'villa', 'cottage', 'condo', 'building-area', 'family-house', 'single-home', 'apartment'),
+                                locations: coords,
+                                types: icons,
                                 contents: infoBoxes,
-                                transparentMarkerImage: 'assets/img/marker-transparent.png',
-                                transparentClusterImage: 'assets/img/markers/cluster-transparent.png',
+                                transparentMarkerImage: '/assets/img/marker-transparent.png',
+                                transparentClusterImage: '/assets/img/markers/cluster-transparent.png',
                                 zoom: 14,
                                 center: {
-                                    latitude: 38.932307,
-                                    longitude: -77.034258
+                                    latitude: latCenter,
+                                    longitude: longCenter
                                 },
                                 filterForm: '.map-filtering',
                                 enableGeolocation: '',
                                 pixelOffsetX: -75,
                                 pixelOffsetY: -200
                             });
+
                         });
+
+                        function getMapData() {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/service/service.aspx/GetMapAdverts',
+                                data: '',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (result) {
+
+                                    if (result.d.StatusCode == 0) {
+                                        for (var i = 0; i < result.d.EstateList.length; i++) {
+                                            var info = '<div class="infobox clearfix"><div class="close"><img src="/assets/img/close.png" alt=""></div><div class="image"><a href="' + result.d.EstateList[i].Link + '" ><img src="/uploads/' + result.d.EstateList[i].Picture + '" alt="" width="130px"></a><div class="contract-type">' + result.d.EstateList[i].MarketingType + '</div></div><div class="info"><div class="title"><a href="' + result.d.EstateList[i].Link + '">' + result.d.EstateList[i].ShortTitle + '</a></div><div class="location">Spring Valley</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>' + result.d.EstateList[i].Area + '<sup>2</sup></div><div class="bedrooms"><i class="icon icon-normal-bed"></i>1</div><div class="bathrooms"><i class="icon icon-normal-shower"></i>1</div></div><div class="price">59,600 €</div><div class="link"><a href="properties/property-detail">View more</a></div></div></div>';
+                                            infoBoxes.push(info);
+
+                                            var coord = [];
+                                            coord = [result.d.EstateList[i].Latitude, result.d.EstateList[i].Longitude];
+                                            coords[i] = coord;
+
+                                        }
+                                        longCenter = result.d.LongCenter.replace(',', '.');
+                                        latCenter = result.d.LatCenter.replace(',', '.');
+                                    }
+
+                                    console.log(infoBoxes);
+
+                                },
+                                error: function (result) {
+                                    alert(result.get_messages());
+                                },
+                                complete: function () {
+                                    var map = $('#map').aviators_map({
+                                        locations: coords,
+                                        types: new Array('family-house', 'villa', 'cottage', 'single-home', 'family-house', 'cottage', 'apartment', 'building-area', 'apartment', 'family-house', 'villa', 'family-house', 'villa', 'single-home', 'cottage', 'villa', 'condo', 'apartment', 'single-home', 'cottage', 'family-house', 'villa', 'apartment', 'apartment', 'villa', 'villa', 'apartment', 'cottage', 'villa', 'family-house', 'building-area', 'family-house', 'family-house', 'cottage', 'apartment', 'cottage', 'family-house', 'villa', 'cottage', 'condo', 'building-area', 'family-house', 'single-home', 'apartment'),
+                                        contents: infoBoxes,
+                                        transparentMarkerImage: '/assets/img/marker-transparent.png',
+                                        transparentClusterImage: '/assets/img/markers/cluster-transparent.png',
+                                        zoom: 14,
+                                        center: {
+                                            latitude: latCenter,
+                                            longitude: longCenter
+                                        },
+                                        filterForm: '.map-filtering',
+                                        enableGeolocation: '',
+                                        pixelOffsetX: -75,
+                                        pixelOffsetY: -200
+                                    });
+                                }
+                            });
+
+                        }                        
                     </script>
                     <div id="map" class="map-inner" style="height: 750px"></div>
                 </div>
@@ -390,7 +501,7 @@
                                     <ItemTemplate>
                                         <div class="property clearfix">
                                             <div class="image">
-                                                <a href="/ilan-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                     <img width="570" height="425" src="/uploads/<%#Eval("PrimarySmallAdvertPhoto") %>"
                                                         class="thumbnail-image " alt="19" />
                                                 </a>
@@ -398,7 +509,7 @@
                                             <div class="wrapper">
                                                 <div class="title">
                                                     <h3>
-                                                        <a href="/ilan-detay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                        <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                             <%#Eval("Title") %>
                                                         </a>
                                                     </h3>
@@ -438,7 +549,7 @@
                                         <div class="property">
                                             <div class="image">
                                                 <div class="content">
-                                                    <a href="/IlanDetay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                    <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                         <img src="/uploads/<%#Eval("PrimarySmallAdvertPhoto") %>" alt="<%#Eval("Title") %>">
                                                     </a>
                                                 </div>
@@ -453,7 +564,7 @@
                                             <div class="info">
                                                 <div class="title clearfix">
                                                     <h2>
-                                                        <a href="/IlanDetay/<%#Eval("CityName") %>/<%#Eval("TownName") %>/<%#Eval("DistrictName") %>/<%#Eval("AdvertNumber") %>/<%#Eval("Title") %>">
+                                                        <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
                                                             <%#Eval("Title") %>
                                                         </a>
                                                     </h2>
@@ -484,15 +595,15 @@
         </div>
     </form>
     <script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?v=3&#038;sensor=true&#038;ver=3.6'></script>
-    <script type='text/javascript' src='assets/js/aviators-map.js'></script>
-    <script type='text/javascript' src='assets/js/gmap3.infobox.min.js'></script>
-    <script type='text/javascript' src='assets/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='assets/js/retina.js'></script>
-    <script type='text/javascript' src='assets/js/gmap3.clusterer.js'></script>
-    <script type='text/javascript' src='assets/js/jquery.ezmark.js'></script>
-    <script type='text/javascript' src='assets/js/carousel.js'></script>
-    <script type='text/javascript' src='assets/js/jquery.bxslider.js'></script>
-    <script type='text/javascript' src='assets/js/properta.js'></script>
-    <script type='text/javascript' src='assets/js/jquery.bxslider.min.js'></script>
+    <script type='text/javascript' src='/assets/js/aviators-map.js'></script>
+    <script type='text/javascript' src='/assets/js/gmap3.infobox.min.js'></script>
+    <script type='text/javascript' src='/assets/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/assets/js/retina.js'></script>
+    <script type='text/javascript' src='/assets/js/gmap3.clusterer.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.ezmark.js'></script>
+    <script type='text/javascript' src='/assets/js/carousel.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.bxslider.js'></script>
+    <script type='text/javascript' src='/assets/js/properta.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.bxslider.min.js'></script>
 </body>
 </html>

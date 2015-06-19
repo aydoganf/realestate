@@ -152,4 +152,84 @@ public class BasePage : System.Web.UI.Page
     {
         return Regex.Replace(String.Format("{0:#,#}", input), "\\.00$", "");
     }
+
+    public string FormatAdvertLink(Advert obj)
+    {
+        return "/emlak-detay/" + obj.CityName + "/" + obj.TownName + "/" + obj.DistrictName + "/" + obj.AdvertNumber + "/" + FormatAdvertTitle(obj.Title);
+    }
+
+    public string FormatAdvertTitle(string title)
+    {
+        title = title.Replace('+', '_');
+        title = title.Replace(' ', '-');
+        title = title.Replace('.', '-');
+        title = title.Replace("'", "-");
+        return title;
+    }
+
+    private EstateType FieldKonutEmalgi;
+    public EstateType KonutEmalgi
+    {
+        get 
+        {
+            if (FieldKonutEmalgi == default(EstateType))
+            {
+                FieldKonutEmalgi = DBProvider.GetEstateTypeByKey("konut");
+            }
+            return FieldKonutEmalgi; 
+        }
+    }
+
+
+    private EstateType FieldİsyeriEmalgi;
+    public EstateType İsyeriEmalgi
+    {
+        get
+        {
+            if (FieldİsyeriEmalgi == default(EstateType))
+            {
+                FieldİsyeriEmalgi = DBProvider.GetEstateTypeByKey("isyeri");
+            }
+            return FieldİsyeriEmalgi;
+        }
+    }
+
+    private EstateType FieldArsaEmalgi;
+    public EstateType ArsaEmalgi
+    {
+        get
+        {
+            if (FieldArsaEmalgi == default(EstateType))
+            {
+                FieldArsaEmalgi = DBProvider.GetEstateTypeByKey("arsa");
+            }
+            return FieldArsaEmalgi;
+        }
+    }
+
+    private EstateType FieldDevremulkEmalgi;
+    public EstateType DevremulkEmalgi
+    {
+        get
+        {
+            if (FieldDevremulkEmalgi == default(EstateType))
+            {
+                FieldDevremulkEmalgi = DBProvider.GetEstateTypeByKey("devremulk");
+            }
+            return FieldDevremulkEmalgi;
+        }
+    }
+
+    private EstateType FieldTuristikİsletmeEmalgi;
+    public EstateType TuristikİsletmeEmalgi
+    {
+        get
+        {
+            if (FieldTuristikİsletmeEmalgi == default(EstateType))
+            {
+                FieldTuristikİsletmeEmalgi = DBProvider.GetEstateTypeByKey("turistik-isletme");
+            }
+            return FieldTuristikİsletmeEmalgi;
+        }
+    }
 }

@@ -1989,24 +1989,24 @@ namespace DBLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ParentEstateTypeId
+        public Nullable<global::System.Int32> ParentEstateTypeObjectId
         {
             get
             {
-                return _ParentEstateTypeId;
+                return _ParentEstateTypeObjectId;
             }
             set
             {
-                OnParentEstateTypeIdChanging(value);
-                ReportPropertyChanging("ParentEstateTypeId");
-                _ParentEstateTypeId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ParentEstateTypeId");
-                OnParentEstateTypeIdChanged();
+                OnParentEstateTypeObjectIdChanging(value);
+                ReportPropertyChanging("ParentEstateTypeObjectId");
+                _ParentEstateTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentEstateTypeObjectId");
+                OnParentEstateTypeObjectIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _ParentEstateTypeId;
-        partial void OnParentEstateTypeIdChanging(Nullable<global::System.Int32> value);
-        partial void OnParentEstateTypeIdChanged();
+        private Nullable<global::System.Int32> _ParentEstateTypeObjectId;
+        partial void OnParentEstateTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnParentEstateTypeObjectIdChanged();
 
         #endregion
 

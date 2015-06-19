@@ -472,9 +472,9 @@ public partial class advert_data : BasePage
             if (!string.IsNullOrEmpty(_depositCurreny))
                 depositCurrency = Convert.ToInt32(_depositCurreny);
 
-            switch (estateTypeObj.ParentEstateTypeObjectId)
+            switch (estateTypeObj.ParentEstateType.TypeKey)
             {
-                case EstateType.Konut:
+                case "konut":
                     #region Konut Case
                     _floor = ddlFloorKonut.SelectedValue;
                     _floorCount = tbFloorCountKonut.Text.Trim();
@@ -528,7 +528,7 @@ public partial class advert_data : BasePage
                     isExchangable = _isExchangable == "1" ? true : false;
                     #endregion                    
                     break;
-                case EstateType.Isyeri:
+                case "isyeri":
                     #region İşyeri Case
                     _floor = ddlFloorIsyeri.SelectedValue;
                     _age = tbAgeIsyeri.Text.Trim();
@@ -568,7 +568,7 @@ public partial class advert_data : BasePage
                         isSublease = _isSublease == "1" ? true : false;
                     #endregion                    
                     break;
-                case EstateType.Arsa:
+                case "arsa":
                     #region Arsa Case
                     _isFlatForLandMethod = rdbtnIsFlatForLandMethod.SelectedValue;
                     _deedType = ddlDeedTypeArsa.SelectedValue;
@@ -584,7 +584,7 @@ public partial class advert_data : BasePage
                         creditType = Convert.ToInt32(_creditType);
                     #endregion
                     break;
-                case EstateType.Devremulk:
+                case "devremulk":
                     #region Devremülk Case
                     
                     _floor = ddlFloorDevremulk.SelectedValue;
@@ -618,7 +618,7 @@ public partial class advert_data : BasePage
 
                     #endregion
                     break;
-                case EstateType.Turistik:
+                case "turistik-isletme":
                     #region Turistik İşletme Case
 
                     _roomCount = tbRoomCountTuristik.Text.Trim();
@@ -655,6 +655,7 @@ public partial class advert_data : BasePage
                 
                 Advert advert = DBProvider.AddAdvert(_title, _description, area, age, heatingType, roomHall, marketingType, estateType, floor, advertType, bathCount, floorCount, deposit, depositCurrency, price, priceCurrency, CurrentPerson.ObjectId, _lat, _lng, _gAddress, district, town, city, selectedDistrict.Town.City.CityName, selectedDistrict.Town.TownName, selectedDistrict.DistrictName, advertOwner, isFlatForLandMethod, creditType, deedType, isExchangable, fuelType, isSublease, advertStatus, advertUsing, starCount, isSettlement, bedCount, roomCount);
 
+                advert.ParentEstateTypeObjectId = estateTypeObj.ParentEstateTypeObjectId;
                 if (advert != null)
                 {
                     advert.AdvertNumber = advert.ObjectId.ToString() + "-" + advert.AdvertNumber;
@@ -667,6 +668,7 @@ public partial class advert_data : BasePage
                                 DBProvider.AddAdvertFeatureRelation(advert.ObjectId, Convert.ToInt32(lItem.Value));
                         }
                     }
+                    DBProvider.SaveChanges();
                     Response.Redirect("data.aspx?advert=" + advert.ObjectId.ToString() + "&advert_status=0&tab=tab2");
                 }
 
@@ -713,6 +715,7 @@ public partial class advert_data : BasePage
                 CurrentAdvert.IsSettlement = isSettlement;
                 CurrentAdvert.BedCount = bedCount;
                 CurrentAdvert.RoomCount = roomCount;
+                CurrentAdvert.ParentEstateTypeObjectId = estateTypeObj.ParentEstateTypeObjectId;
 
                 foreach (RepeaterItem rItem in rptFeatureTypeTabs.Items)
                 {
@@ -738,125 +741,6 @@ public partial class advert_data : BasePage
                 #endregion
             }
         }
-        //    int price = Convert.ToInt32(_price);
-        //    int priceCurrency = Convert.ToInt32(_priceCurreny);
-        //    int estateType = Convert.ToInt32(_estateType);
-        //    int marketingType = Convert.ToInt32(_marketingType);
-        //    int city = Convert.ToInt32(_city);
-        //    int town = Convert.ToInt32(_town);
-        //    int district = Convert.ToInt32(_district);
-        //    City selectedCity = DBProvider.GetCityByObjectId(city);
-        //    Town selectedTown = DBProvider.GetTownByObjectId(town);
-        //    District selectedDistrict = DBProvider.GetDistrictByObjectId(district);
-
-        //    if (CurrentAdvert == null)
-        //    {
-        //        #region CreateAdvert
-        //        Advert advert = DBProvider.AddAdvert(_title, _description, area, age, heatingType, roomHall, marketingType, estateType, floor, advertType, bathCount, floorCount, deposit, depositCurrency, price, priceCurrency, CurrentPerson.ObjectId, _lat, _lng, _gAddress, district, town, city);
-        //        DBProvider.SaveChanges();
-
-        //        if (advert != null)
-        //        {
-        //            foreach (ListItem item in cblIcOzellikler.Items)
-        //            {
-        //                if (item.Selected)
-        //                    DBProvider.AddAdvertFeatureRelation(advert.ObjectId, Convert.ToInt32(item.Value));
-        //            }
-        //            foreach (ListItem item in cblDisOzellikler.Items)
-        //            {
-        //                if (item.Selected)
-        //                    DBProvider.AddAdvertFeatureRelation(advert.ObjectId, Convert.ToInt32(item.Value));
-        //            }
-        //            foreach (ListItem item in cblKonumOzellikleri.Items)
-        //            {
-        //                if (item.Selected)
-        //                    DBProvider.AddAdvertFeatureRelation(advert.ObjectId, Convert.ToInt32(item.Value));
-        //            }
-        //            advert.AdvertNumber = advert.ObjectId.ToString() + "-" + advert.AdvertNumber;
-        //            advert.CityName = selectedCity.CityName;
-        //            advert.TownName = selectedTown.TownName;
-        //            advert.DistrictName = selectedDistrict.DistrictName;
-        //            DBProvider.SaveChanges();
-        //            Response.Redirect("data.aspx?advert=" + advert.ObjectId.ToString() + "&advert_status=0&tab=tab2");
-        //        }
-        //        #endregion
-        //    }
-        //    else
-        //    {
-        //        #region EditAdvert
-
-        //        CurrentAdvert.Title = _title;
-        //        CurrentAdvert.Description = _description;
-        //        CurrentAdvert.Area = area;
-        //        CurrentAdvert.Age = age;
-        //        CurrentAdvert.BathCount = bathCount;
-        //        CurrentAdvert.FloorCount = floorCount;
-        //        CurrentAdvert.FloorObjectId = floor;
-        //        CurrentAdvert.HeatingTypeObjectId = heatingType;
-        //        CurrentAdvert.RoomHallObjectId = roomHall;
-        //        CurrentAdvert.EstateTypeObjectId = estateType;
-        //        CurrentAdvert.MarketingTypeObjectId = marketingType;
-        //        CurrentAdvert.Deposit = deposit;
-        //        CurrentAdvert.DepositCurrencyObjectId = depositCurrency;
-        //        CurrentAdvert.Price = price;
-        //        CurrentAdvert.PriceCurrencyObjectId = priceCurrency;
-        //        CurrentAdvert.CityObjectId = city;
-        //        CurrentAdvert.TownObjectId = town;
-        //        CurrentAdvert.DistrictObjectId = district;
-        //        CurrentAdvert.Latitude = _lat;
-        //        CurrentAdvert.Longitude = _lng;
-        //        CurrentAdvert.GAddress = _gAddress;
-        //        CurrentAdvert.UpdateDate = DateTime.Now;
-        //        CurrentAdvert.CityName = selectedCity.CityName;
-        //        CurrentAdvert.TownName = selectedTown.TownName;
-        //        CurrentAdvert.DistrictName = selectedDistrict.DistrictName;
-
-        //        foreach (ListItem item in cblIcOzellikler.Items)
-        //        {
-        //            int val = Convert.ToInt32(item.Value);
-        //            if (item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) == null)
-        //            {
-        //                DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
-        //            }
-        //            else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
-        //            {
-        //                CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
-        //            }
-        //        }
-        //        foreach (ListItem item in cblDisOzellikler.Items)
-        //        {
-        //            int val = Convert.ToInt32(item.Value);
-        //            if (item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) == null)
-        //            {
-        //                DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
-        //            }
-        //            else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
-        //            {
-        //                CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
-        //            }
-        //        }
-        //        foreach (ListItem item in cblKonumOzellikleri.Items)
-        //        {
-        //            int val = Convert.ToInt32(item.Value);
-        //            if (item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) == null)
-        //            {
-        //                DBProvider.AddAdvertFeatureRelation(CurrentAdvert.ObjectId, val);
-        //            }
-        //            else if (!item.Selected && CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
-        //            {
-        //                CurrentAdvert.AdvertFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
-        //            }
-        //        }
-        //        DBProvider.SaveChanges();
-        //        BindData();
-        //        SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.OperationStatus.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
-        //        #endregion
-        //    }
-        //}
-        //else
-        //{
-
-        //}
     }
 
     protected void btnSavePicture_Click(object sender, EventArgs e)

@@ -53,5 +53,10 @@ namespace DBLayer
         {
             return EstateType.Where(i => i.ParentEstateTypeObjectId == null && i.Deleted == false).ToList();
         }
+
+        public EstateType GetEstateTypeByKey(string key)
+        {
+            return EstateType.FirstOrDefault(i => i.TypeKey.ToLower() == key.ToLower() && i.Deleted == false);
+        }
     }
 }

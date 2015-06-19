@@ -140,7 +140,7 @@ namespace DBLayer
                 i => (obj.CityId != -1 ? i.CityObjectId == obj.CityId : true) &&
                     (obj.TownId != -1 ? i.TownObjectId == obj.TownId : true) &&
                     (obj._DistrictId ? obj.DistrictId.Contains(i.DistrictObjectId) : true) &&
-                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeId == obj.EstateTypeId : true) &&
+                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeObjectId == obj.EstateTypeId : true) &&
                     (obj.MarketingTypeId != -1 ? i.MarketingTypeObjectId == obj.MarketingTypeId : true) &&
                     (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
                     (obj.AreaTo != -1 ? i.Area <= obj.AreaTo : true) &&
@@ -161,7 +161,7 @@ namespace DBLayer
                     (obj._HeatingTypeId ? obj.HeatingTypeId.Contains(i.HeatingTypeObjectId.Value) : true) &&
                     (obj._RoomHallId ? obj.RoomHallId.Contains(i.RoomHallObjectId.Value) : true) &&
                     (obj.MarketingTypeId != -1 ? i.MarketingTypeObjectId == obj.MarketingTypeId : true) &&
-                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeId == obj.EstateTypeId : true) &&
+                    (obj.EstateTypeId != -1 ? i.ParentEstateTypeObjectId == obj.EstateTypeId : true) &&
                     (obj._EstateTypeChildIdList ? obj.EstateTypeChildIdList.Contains(i.EstateTypeObjectId) : true) &&
                     (obj._FloorId ? obj.FloorId.Contains(i.FloorObjectId.Value) : true) &&
                     (obj.BathCount != -1 ? i.BathCount == obj.BathCount : true) &&
@@ -186,6 +186,11 @@ namespace DBLayer
                     (obj.RoomCountFrom != -1 ? i.RoomCount >= obj.RoomCountFrom : true) &&
                     (obj.RoomCountTo != -1 ? i.RoomCount <= obj.RoomCountTo : true) && i.Deleted == false && i.IsActive
                 ).Distinct().OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).ToList();
+        }
+
+        public Advert GetAdvertByAdvertNumber(string advertNumber)
+        {
+            return Advert.FirstOrDefault(i => i.AdvertNumber == advertNumber && !i.Deleted && i.IsActive);
         }
     }
 }
