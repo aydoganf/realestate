@@ -52,6 +52,8 @@ public partial class settings_housing_extra_data : BasePage
             ddlFeatureType.SelectedValue = CurrentFeature.FeatureTypeObjectId.ToString();
             tbFeatureName.Text = CurrentFeature.FeatureName;
             tbFeatureKey.Text = CurrentFeature.FeatureKey;
+            cbMulti.Visible = false;
+            tbFeatureNameMulti.Visible = false;
         }
     }
 
@@ -65,7 +67,17 @@ public partial class settings_housing_extra_data : BasePage
         }
         else
         {
-            DBProvider.AddFeature(tbFeatureName.Text.Trim(), tbFeatureKey.Text.Trim().ToLower(), Convert.ToInt32(ddlFeatureType.SelectedValue));
+            if (cbMulti.Checked)
+            {
+                string featureListStr = tbFeatureNameMulti.Text.Trim();
+                string[] featureList = featureListStr.Split(',');
+                foreach (string item in featureList)
+                {
+                    DBProvider.AddFeature(item.Trim(), item.ToLower().ToLower(), Convert.ToInt32(ddlFeatureType.SelectedValue));
+                }
+            }
+            else
+                DBProvider.AddFeature(tbFeatureName.Text.Trim(), tbFeatureKey.Text.Trim().ToLower(), Convert.ToInt32(ddlFeatureType.SelectedValue));
         }
         DBProvider.SaveChanges();
         Response.Redirect("default.aspx?status=0");

@@ -1249,7 +1249,7 @@ textarea {
 .widget.property-filter .control-label {
     background-color: transparent;
     color: #464646;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
 }
 
@@ -1276,7 +1276,7 @@ textarea {
     background-color: transparent;
     color: #464646;
     font-size: 14px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .widget.property-filter .form-actions {

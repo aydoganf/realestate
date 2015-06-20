@@ -37,10 +37,17 @@
                         <label class="control-label col-md-3">Özellik Adı</label>
                         <div class="col-md-6">
                             <asp:TextBox ID="tbFeatureName" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:CheckBox ID="cbMulti" runat="server" Text="Çoklu ekle" />
+                            <div id="multi" style="display:none">
+                                <asp:TextBox ID="tbFeatureNameMulti" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-control" ></asp:TextBox>
+                                <div>
+                                    <i class="fa fa-info-circle"></i> Özellik isimlerinin arasına virgül koyunuz
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-body">
+                <div class="form-body" id="singleKey">
                     <div class="form-group">
                         <label class="control-label col-md-3">Özellik Anahtarı</label>
                         <div class="col-md-6">
@@ -58,5 +65,26 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#<%=cbMulti.ClientID%>').change(function () {
+
+                if ($(this).is(':checked')) {
+                    $('#<%=tbFeatureName.ClientID%>').hide();
+                    $('#singleKey').hide();
+                    $('#multi').show();
+                } else {
+                    $('#<%=tbFeatureName.ClientID%>').show();
+                    $('#singleKey').show();
+                    $('#multi').hide();
+                }
+
+            });
+
+        });
+
+    </script>
 </asp:Content>
 

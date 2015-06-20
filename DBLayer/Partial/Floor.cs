@@ -29,7 +29,7 @@ namespace DBLayer
 
         public List<Floor> GetFloorList()
         {
-            return Floor.Where(i => i.Deleted == false).OrderBy(i => i.FloorName).ToList();
+            return Floor.Where(i => i.Deleted == false).ToList();
         }
 
         public Floor GetFloorByObjectId(int objectId)

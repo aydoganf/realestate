@@ -174,9 +174,9 @@
                                 <div class="property-filter widget property-type-list">
                                     <div class="content">
                                         <div class="property-types-custom">
-                                            <asp:Repeater ID="rptBaseEstateTypes" runat="server">
+                                            <asp:Repeater ID="rptBaseEstateTypes" runat="server" OnItemDataBound="rptBaseEstateTypes_ItemDataBound">
                                                 <ItemTemplate>
-                                                    <a href="//<%#Eval("TypeKey") %>">
+                                                    <a id="aQuick" runat="server">
                                                         <div class="property-type-custom">
                                                             <%#Eval("TypeName") %>
                                                         </div>

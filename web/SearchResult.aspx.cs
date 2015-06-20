@@ -33,78 +33,69 @@ public partial class SearchResult : BasePage
 
     protected void BindData()
     {
-        if (searchModeKey == ConfigurationManager.AppSettings["searchMode_quick"])
-        {
-            SearchQuick();
-        }
-        else if (searchModeKey == ConfigurationManager.AppSettings["searchMode_advanced"])
-        {
-            SearchAdvanced();
-        }        
+        //if (searchModeKey == ConfigurationManager.AppSettings["searchMode_quick"])
+        //{
+        //    SearchQuick();
+        //}
+        //else if (searchModeKey == ConfigurationManager.AppSettings["searchMode_advanced"])
+        //{
+            //int page = Convert.ToInt32(RouteData.Values["page"]);
+            //SearchAdvanced(page);
+        //}        
+        int page = Convert.ToInt32(RouteData.Values["page"]);
+        SearchAdvanced(page);
     }
 
     protected void SearchQuick()
     {
-        SearchQuery searchQuery = new SearchQuery(RouteData.Values["cityId"], RouteData.Values["townId"], RouteData.Values["districtId"], RouteData.Values["estateTypeId"],
-            RouteData.Values["marketingTypeId"], RouteData.Values["area"], RouteData.Values["price"], RouteData.Values["priceCurrencyId"]);
+        //SearchQuery searchQuery = new SearchQuery(RouteData.Values["cityId"], RouteData.Values["townId"], RouteData.Values["districtId"], RouteData.Values["estateTypeId"],
+        //    RouteData.Values["marketingTypeId"], RouteData.Values["area"], RouteData.Values["price"], RouteData.Values["priceCurrencyId"]);
 
-        List<Advert> searchResult = DBProvider.QuickSearchAdvert(searchQuery);
-        rptAdverts.DataSource = searchResult;
-        rptAdverts.DataBind();
-        //(this.Master as Site).BindSearchedData(searchQuery);
+        //List<Advert> searchResult = DBProvider.QuickSearchAdvert(searchQuery);
+        //rptAdverts.DataSource = searchResult;
+        //rptAdverts.DataBind();
+        //(this.Master as Site).BindSearchedData(searchQuery, ConfigurationManager.AppSettings["searchMode_quick"]);
     }
 
-    protected void SearchAdvanced()
+    protected void SearchAdvanced(int page)
     {
-        string query = Decypt(Request.QueryString["q"]);
+        SearchQuery searchQuery = GetSearchQueryFromHash(Request.QueryString["q"]);
 
-        Dictionary<string, string> searchParams = new Dictionary<string, string>();
-        foreach (string item in query.Split('&'))
-        {
-            string[] s = item.Split('=');
-            searchParams.Add(s[0], s[1]);
-        }
-
-        string city = searchParams["city"];
-        string town = searchParams["town"];
-        string district = searchParams["district"];
-        string estateType = searchParams["estateType"];
-        string childEstateType = searchParams["childEstateType"];
-        string marketingType = searchParams["marketingType"];
-        string areaFrom = searchParams["areaFrom"];
-        string areaTo = searchParams["areaTo"];
-        string priceFrom = searchParams["priceFrom"];
-        string priceTo = searchParams["priceTo"];
-        string priceCurrency = searchParams["priceCurrency"];
-        string isExchangable = searchParams["isExchangable"];
-        string ageFrom = searchParams["ageFrom"];
-        string ageTo = searchParams["ageTo"];
-        string bathCount = searchParams["bathCount"];
-        string floorCount = searchParams["floorCount"];
-        string floor = searchParams["floor"];
-        string heatingType = searchParams["heatingType"];
-        string roomHallType = searchParams["roomHallType"];
-        string advertOwner = searchParams["advertOwner"];
-        string isFlatForLandMethod = searchParams["isFlatForLandMethod"];
-        string creditType = searchParams["creditType"];
-        string deedType = searchParams["deedType"];
-        string fuelType = searchParams["fuelType"];
-        string isSublease = searchParams["isSublease"];
-        string advertStatusType = searchParams["advertStatusType"];
-        string advertUsingType = searchParams["advertUsingType"];
-        string starCount = searchParams["starCount"];
-        string isSettlement = searchParams["isSettlement"];
-        string bedCountFrom = searchParams["bedCountFrom"];
-        string bedCountTo = searchParams["bedCountTo"];
-        string roomCountFrom = searchParams["roomCountFrom"];
-        string roomCountTo = searchParams["roomCountTo"];
-        string features = searchParams["features"];
-
-        SearchQuery searchQuery = new SearchQuery(marketingType, estateType, childEstateType, city, town, district, priceFrom, priceTo, priceCurrency, areaFrom, areaTo, isExchangable, ageFrom, ageTo, heatingType, roomHallType, floor, floorCount, advertOwner, bathCount, isFlatForLandMethod, creditType, deedType, fuelType, isSublease, advertStatusType, advertUsingType, starCount, isSettlement, bedCountFrom, bedCountTo, roomCountFrom, roomCountTo, features);
-
-        List<Advert> searchResult = DBProvider.AdvancedSearchAdvert(searchQuery);
+        List<Advert> searchResult = DBProvider.AdvancedSearchAdvert(searchQuery, page, 20);
         rptAdverts.DataSource = searchResult;
         rptAdverts.DataBind();
-        //(this.Master as Site).BindSearchedData(searchQuery);
+
+        EstateType _estateType = DBProvider.GetEstateTypeByObjectId(searchQuery.EstateTypeId);
+
+        Site master = Page.Master as Site;
+        master.BindSearchedData(searchQuery, ConfigurationManager.AppSettings["searchMode_advanced"]);
+        master.h2QuickSearchHead.InnerText = "Arama Kriterleri";
+        HiddenField hfSearchMode = (HiddenField)Page.Master.FindControl("hfSearchMode");
+        hfSearchMode.Value = ConfigurationManager.AppSettings["searchMode_advanced"];
+
+        
+
+        switch (_estateType.TypeKey)
+        {
+            case "konut":
+                master._pnlKonutSearch.Visible = true;
+                break;
+            case "isyeri":
+                master._pnlIsyeriSearch.Visible = true;
+                break;
+            case "arsa":
+                master._pnlArsaSearch.Visible = true;
+                break;
+            case "devremulk":
+                master._pnlDevremulkSearch.Visible = true;
+                break;
+            case "turistik-isletme":
+                master._pnlTuristikSearch.Visible = true;                
+                break;
+            default:
+                break;
+        }
+
+        
     }
 }

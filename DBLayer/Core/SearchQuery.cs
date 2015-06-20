@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace DBLayer
@@ -424,5 +425,115 @@ namespace DBLayer
                     this._FeaturesId = false;                
             }
         }
+
+        public string GetHash()
+        {
+            string query = "marketingType=" + MarketingTypeId;
+            query += "&estateType=" + EstateTypeId;
+            query += "&childEstateType=" + GetArrayStringFormat(EstateTypeChildIdList, _EstateTypeChildIdList);
+            query += "&city=" + CityId;
+            query += "&town=" + TownId;
+            query += "&district=" + GetArrayStringFormat(DistrictId, _DistrictId);
+            query += "&priceFrom=" + PriceFrom;
+            query += "&priceTo=" + PriceTo;
+            query += "&priceCurrency=" + PriceCurrencyId;
+            query += "&areaFrom=" + AreaFrom;
+            query += "&areaTo=" + AreaTo;
+            query += "&isExchangable=" + GetBooleanStringFormat(IsExchangable);
+            query += "&ageFrom=" + AgeFrom;
+            query += "&ageTo=" + AgeTo;
+            query += "&heatingType=" + GetArrayStringFormat(HeatingTypeId, _HeatingTypeId);
+            query += "&roomHallType=" + GetArrayStringFormat(RoomHallId, _RoomHallId);
+            query += "&floor=" + GetArrayStringFormat(FloorId, _FloorId);
+            query += "&floorCount=-1";
+            query += "&advertOwner=-1";
+            query += "&bathCount=" + BathCount;
+            query += "&isFlatForLandMethod=" + GetBooleanStringFormat(IsFlatForLandMethod);
+            query += "&creditType=" + CreditTypeId;
+            query += "&deedType=" + DeedTypeId;
+            query += "&fuelType=" + GetArrayStringFormat(FuelTypeId, _FuelTypeId);
+            query += "&isSublease=" + GetBooleanStringFormat(IsSublease);
+            query += "&advertStatusType=" + AdvertStatusId;
+            query += "&advertUsingType=" + AdvertUsingTypeId;
+            query += "&starCount=" + StarCountId;
+            query += "&isSettlement=" + GetBooleanStringFormat(IsSettlement);
+            query += "&bedCountFrom=" + BedCountFrom;
+            query += "&bedCountTo=" + BedCountTo;
+            query += "&roomCountFrom=" + RoomCountFrom;
+            query += "&roomCountTo=" + RoomCountTo;
+            query += "&features=" + GetArrayStringFormat(FeaturesId, _FeaturesId);
+
+            return Encrypt(query);            
+        }
+
+        private string GetArrayStringFormat(int[] input, bool inputControl)
+        {
+            if (inputControl)
+            {
+                string result = "";
+                foreach (int item in input)
+                {
+                    if (item != input.Last())
+                        result += item.ToString() + ",";
+                    else
+                        result += item.ToString();
+                }
+                return result;
+            }
+            else
+            {
+                return "-1";
+            }
+        }
+
+        private string GetBooleanStringFormat(bool? input)
+        {
+            if (input.HasValue)
+                return (bool)input ? "1" : "0";
+            else
+                return "-1";
+        }
+
+        #region Encryption
+        private string CyrptoKey = "Faruk";
+        private TripleDESCryptoServiceProvider _cryptDES3;
+        private TripleDESCryptoServiceProvider cryptDES3
+        {
+            get
+            {
+                if (_cryptDES3 == default(TripleDESCryptoServiceProvider))
+                {
+                    _cryptDES3 = new TripleDESCryptoServiceProvider();
+                }
+                return _cryptDES3;
+            }
+        }
+
+        private MD5CryptoServiceProvider _cryptMD5Hash;
+        private MD5CryptoServiceProvider cryptMD5Hash
+        {
+            get
+            {
+                if (_cryptMD5Hash == default(MD5CryptoServiceProvider))
+                {
+                    _cryptMD5Hash = new MD5CryptoServiceProvider();
+                }
+                return _cryptMD5Hash;
+            }
+        }
+
+        private string Encrypt(string text)
+        {
+            cryptDES3.Key = cryptMD5Hash.ComputeHash(ASCIIEncoding.ASCII.GetBytes(CyrptoKey));
+            cryptDES3.Mode = CipherMode.ECB;
+            ICryptoTransform desdencrypt = cryptDES3.CreateEncryptor();
+            byte[] buff = ASCIIEncoding.ASCII.GetBytes(text);
+            string Encrypt = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
+            Encrypt = Encrypt.Replace("+", "!");
+            Encrypt = Encrypt.Replace("/", "__");
+            return Encrypt;
+        }
+        #endregion
+        
     }
 }

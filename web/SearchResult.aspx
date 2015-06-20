@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphCSS" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server"> Arama Sonuçları
+<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server"> 
+    <asp:Label ID="lblNavigation" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphRightSide" runat="Server">
     <div id="main" class="span9 property-listing">

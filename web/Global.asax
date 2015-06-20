@@ -16,11 +16,8 @@
         RouteTable.Routes.Add("giris", new Route("giris", new PageRouteHandler("~/LoginUser.aspx")));
         RouteTable.Routes.Add("uyelik", new Route("uyelik", new PageRouteHandler("~/Register.aspx")));
         RouteTable.Routes.Add("iletisim", new Route("iletisim", new PageRouteHandler("~/Contact.aspx")));
-        RouteTable.Routes.Add("detayli-arama", new Route("detayli-arama", new PageRouteHandler("~/AdvencedSearch.aspx")));
-        RouteTable.Routes.Add("arama-sonuclari", 
-            new Route("arama-sonuclari/{mode}/{cityId}/{townId}/{districtId}/{estateTypeId}/{marketingTypeId}/{area}/{price}/{priceCurrencyId}", 
-                new PageRouteHandler("~/SearchResult.aspx")));
-        RouteTable.Routes.Add("arama-sonuclari2", new Route("arama-sonuclari/{mode}", new PageRouteHandler("~/SearchResult.aspx")));
+        RouteTable.Routes.Add("detayli-arama", new Route("detayli-arama", new PageRouteHandler("~/AdvencedSearch.aspx")));        
+        RouteTable.Routes.Add("arama-sonuclari1", new Route("arama-sonuclari/{page}", new PageRouteHandler("~/SearchResult.aspx")));
         
     }
     

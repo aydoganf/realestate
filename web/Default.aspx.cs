@@ -5,22 +5,24 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
+using System.Configuration;
+using System.Web.UI.HtmlControls;
 
 public partial class _Default : BasePage
 {
     private List<EstateType> baseEstateTypeList;
     public List<EstateType> BaseEstateTypeList
     {
-        get 
+        get
         {
             if (baseEstateTypeList == default(List<EstateType>))
             {
                 baseEstateTypeList = DBProvider.GetBaseEstateTypeList();
             }
-            return baseEstateTypeList; 
+            return baseEstateTypeList;
         }
     }
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -73,6 +75,7 @@ public partial class _Default : BasePage
         ddlCity.DataBind();
         ddlCity.Items.Insert(0, new ListItem("Tüm şehirler", "-1"));
     }
+
     protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
     {
         int cityId = Convert.ToInt32(ddlCity.SelectedValue);
@@ -90,6 +93,7 @@ public partial class _Default : BasePage
             pnlDistrictLocationSearch.Visible = false;
         }
     }
+
     protected void ddlTown_SelectedIndexChanged(object sender, EventArgs e)
     {
         int townId = Convert.ToInt32(ddlTown.SelectedValue);
@@ -106,29 +110,111 @@ public partial class _Default : BasePage
             pnlDistrictLocationSearch.Visible = false;
         }
     }
+
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         string redirect = "~/arama-sonuclari";
-        string city = ddlCity.SelectedValue;
-        string town = !string.IsNullOrEmpty(ddlTown.SelectedValue) ? ddlTown.SelectedValue : "-1";
-        string district = !string.IsNullOrEmpty(ddlDistrict.SelectedValue) ? ddlDistrict.SelectedValue : "-1";
-        string estateType = ddlEstateType.SelectedValue;
-        string marketingType = ddlMarketingType.SelectedValue;
-        string areaFrom = !string.IsNullOrEmpty(tbAreaFrom.Text.Trim()) ? tbAreaFrom.Text.Trim() : "-1";
-        string areaTo = !string.IsNullOrEmpty(tbAreaTo.Text.Trim()) ? tbAreaTo.Text.Trim() : "-1";
-        string priceFrom = !string.IsNullOrEmpty(tbPriceFrom.Text.Trim()) ? tbPriceFrom.Text.Trim() : "-1";
-        string priceTo = !string.IsNullOrEmpty(tbPriceTo.Text.Trim()) ? tbPriceTo.Text.Trim() : "-1";
-        string priceCurrency = ddlCurrencyList.SelectedValue;
 
-        redirect += "/q";
-        redirect += "/" + city;
-        redirect += "/" + town;
-        redirect += "/" + district;
-        redirect += "/" + estateType;
-        redirect += "/" + marketingType;
-        redirect += "/" + areaFrom + "," + areaTo;        
-        redirect += "/" + priceFrom + "," + priceTo;        
-        redirect += "/" + priceCurrency;
-        Response.Redirect(redirect);        
+        string city = "-1";
+        string town = "-1";
+        string district = "-1";
+        string estateType = "-1";
+        string childEstateType = "-1";
+        string marketingType = "-1";
+        string areaFrom = "-1";
+        string areaTo = "-1";
+        string priceFrom = "-1";
+        string priceTo = "-1";
+        string priceCurrency = "-1";
+        string isExchangable = "-1";
+        string _ageFrom = "-1";
+        string _ageTo = "-1";
+        string _bathCount = "-1";
+        string _floorCount = "-1";
+        string _floor = "-1";
+        string _heatingType = "-1";
+        string _roomHall = "-1";
+        string _advertOwner = "-1";
+        string _isFlatForLandMethod = "-1";
+        string _creditType = "-1";
+        string _deedType = "-1";
+        string _fuelType = "-1";
+        string _isSublease = "-1";
+        string _advertStatus = "-1";
+        string _advertUsing = "-1";
+        string _starCount = "-1";
+        string _isSettlement = "-1";
+        string _bedCountFrom = "-1";
+        string _bedCountTo = "-1";
+        string _roomCountFrom = "-1";
+        string _roomCountTo = "-1";
+        string _features = "-1";
+
+        city = ddlCity.SelectedValue;
+        town = !string.IsNullOrEmpty(ddlTown.SelectedValue) ? ddlTown.SelectedValue : "-1";
+        district = !string.IsNullOrEmpty(ddlDistrict.SelectedValue) ? ddlDistrict.SelectedValue : "-1";
+        estateType = ddlEstateType.SelectedValue;
+        marketingType = ddlMarketingType.SelectedValue;
+        areaFrom = !string.IsNullOrEmpty(tbAreaFrom.Text.Trim()) ? tbAreaFrom.Text.Trim() : "-1";
+        areaTo = !string.IsNullOrEmpty(tbAreaTo.Text.Trim()) ? tbAreaTo.Text.Trim() : "-1";
+        priceFrom = !string.IsNullOrEmpty(tbPriceFrom.Text.Trim()) ? tbPriceFrom.Text.Trim() : "-1";
+        priceTo = !string.IsNullOrEmpty(tbPriceTo.Text.Trim()) ? tbPriceTo.Text.Trim() : "-1";
+        priceCurrency = ddlCurrencyList.SelectedValue;
+
+        string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect += "/1/?q=" + hash;
+        Response.Redirect(redirect);
+    }
+
+    protected void rptBaseEstateTypes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            EstateType parentEstateType = e.Item.DataItem as EstateType;
+            HtmlAnchor aQuick = e.Item.FindControl("aQuick") as HtmlAnchor;
+
+            string redirect = "~/arama-sonuclari";
+
+            string city = "-1";
+            string town = "-1";
+            string district = "-1";
+            string estateType = parentEstateType.ObjectId.ToString();
+            string childEstateType = "-1";
+            string marketingType = DBProvider.GetMarketingTypeList().FirstOrDefault(i => i.TypeKey == "kiralık").ObjectId.ToString();
+            string areaFrom = "-1";
+            string areaTo = "-1";
+            string priceFrom = "-1";
+            string priceTo = "-1";
+            string priceCurrency = "-1";
+            string isExchangable = "-1";
+            string _ageFrom = "-1";
+            string _ageTo = "-1";
+            string _bathCount = "-1";
+            string _floorCount = "-1";
+            string _floor = "-1";
+            string _heatingType = "-1";
+            string _roomHall = "-1";
+            string _advertOwner = "-1";
+            string _isFlatForLandMethod = "-1";
+            string _creditType = "-1";
+            string _deedType = "-1";
+            string _fuelType = "-1";
+            string _isSublease = "-1";
+            string _advertStatus = "-1";
+            string _advertUsing = "-1";
+            string _starCount = "-1";
+            string _isSettlement = "-1";
+            string _bedCountFrom = "-1";
+            string _bedCountTo = "-1";
+            string _roomCountFrom = "-1";
+            string _roomCountTo = "-1";
+            string _features = "-1";
+
+            string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+            redirect += "/1/?q=" + hash;
+            aQuick.HRef = redirect;
+        }
     }
 }

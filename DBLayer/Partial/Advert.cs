@@ -151,7 +151,7 @@ namespace DBLayer
                 ).Distinct().OrderByDescending(i=> i.UpdateDate).ThenByDescending(i=> i.CreateDate).ToList();
         }
 
-        public List<Advert> AdvancedSearchAdvert(SearchQuery obj)
+        public List<Advert> AdvancedSearchAdvert(SearchQuery obj, int pageNo, int pageItemCount)
         {
             return Advert.Where(
                 i => (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
@@ -185,7 +185,7 @@ namespace DBLayer
                     (obj.BedCountTo != -1 ? i.BedCount <= obj.BedCountTo : true) &&
                     (obj.RoomCountFrom != -1 ? i.RoomCount >= obj.RoomCountFrom : true) &&
                     (obj.RoomCountTo != -1 ? i.RoomCount <= obj.RoomCountTo : true) && i.Deleted == false && i.IsActive
-                ).Distinct().OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).ToList();
+                ).Distinct().OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip((pageNo - 1) * pageItemCount).Take(pageItemCount).ToList();
         }
 
         public Advert GetAdvertByAdvertNumber(string advertNumber)

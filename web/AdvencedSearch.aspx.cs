@@ -635,47 +635,9 @@ public partial class AdvencedSearch : BasePage
             _features = _features.Remove(_features.Length - 1);
 
 
-        string query = "marketingType=" + marketingType;
-        query += "&estateType=" + estateType;
-        query += "&childEstateType=" + childEstateType;
-        query += "&city=" + city;
-        query += "&town=" + town;
-        query += "&district=" + district;
-        query += "&priceFrom=" + priceFrom;
-        query += "&priceTo=" + priceTo;
-        query += "&priceCurrency=" + priceCurrency;
-        query += "&areaFrom=" + areaFrom;
-        query += "&areaTo=" + areaTo;
-        query += "&isExchangable=" + isExchangable;
-        query += "&ageFrom=" + _ageFrom;
-        query += "&ageTo=" + _ageTo;
-        query += "&heatingType=" + _heatingType;
-        query += "&roomHallType=" + _roomHall;
-        query += "&floor=" + _floor;
-        query += "&floorCount=-1";
-        query += "&advertOwner=-1";
-        query += "&bathCount=" + _bathCount;
-        query += "&isFlatForLandMethod=" + _isFlatForLandMethod;
-        query += "&creditType=" + _creditType;
-        query += "&deedType=" + _deedType;
-        query += "&fuelType=" + _fuelType;
-        query += "&isSublease=" + _isSublease;
-        query += "&advertStatusType=" + _advertStatus;
-        query += "&advertUsingType=" + _advertUsing;
-        query += "&starCount=" + _starCount;
-        query += "&isSettlement=" + _isSettlement;
-        query += "&bedCountFrom=" + _bedCountFrom;
-        query += "&bedCountTo=" + _bedCountTo;
-        query += "&roomCountFrom=" + _roomCountFrom;
-        query += "&roomCountTo=" + _roomCountTo;
-        query += "&features=" + _features;
+        string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
 
-        string hash = Encrypt(query);
-
-        // start search query
-        string advancedSearchModeKey = ConfigurationManager.AppSettings["searchMode_advanced"];
-        redirect += "/" + advancedSearchModeKey;
-        redirect += "/?q=" + hash;
+        redirect += "/1/?q=" + hash;
         Response.Redirect(redirect);
     }
     #endregion
