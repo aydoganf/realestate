@@ -189,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="display:none">
+                    <div style="display: none">
                         <asp:HiddenField ID="hfLatCenter" runat="server" />
                         <asp:HiddenField ID="hfLongCenter" runat="server" />
                         <p class="infoBoxes">
@@ -264,13 +264,13 @@
                                         break;
                                 }
 
-                                var info = '<div class="infobox clearfix"><div class="close"><img src="/assets/img/close.png" alt=""></div><div class="image"><a href="' + rLink + '" ><img src="/uploads/' + rPicture + '" alt="" width="130px"></a><div class="contract-type">' + rMarketingType + '</div></div><div class="info"><div class="title"><a href="' + rLink + '">' + rShortTitle + '</a></div><div class="location">' + rDistrictName + '/' + rTownName + '</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>' + rArea + ' m<sup>2</sup></div></div><div class="price">' + rPrice + ' ' + rPriceCurrency + '</div><div class="link"><a href="' + rLink+ '">Detaylı bilgi</a></div></div></div>';
+                                var info = '<div class="infobox clearfix"><div class="close"><img src="/assets/img/close.png" alt=""></div><div class="image"><a href="' + rLink + '" ><img src="/uploads/' + rPicture + '" alt="" width="130px"></a><div class="contract-type">' + rMarketingType + '</div></div><div class="info"><div class="title"><a href="' + rLink + '">' + rShortTitle + '</a></div><div class="location">' + rDistrictName + '/' + rTownName + '</div><div class="property-info clearfix"><div class="area"><i class="icon icon-normal-cursor-scale-up"></i>' + rArea + ' m<sup>2</sup></div></div><div class="price">' + rPrice + ' ' + rPriceCurrency + '</div><div class="link"><a href="' + rLink + '">Detaylı bilgi</a></div></div></div>';
                                 infoBoxes.push(info);
                                 var coord = [];
                                 coord = [rLatitude, rLongitude];
                                 coords.push(coord);
                                 icons.push(marker);
-                                
+
                             });
 
                             var map = $('#map').aviators_map({
@@ -341,7 +341,7 @@
                                 }
                             });
 
-                        }                        
+                        }
                     </script>
                     <div id="map" class="map-inner" style="height: 750px"></div>
                 </div>
@@ -354,7 +354,7 @@
                     <div class="sidebar span3">
                         <h2>Hızlı Arama</h2>
                         <div class="property-filter widget">
-                            <div class="content">                                
+                            <div class="content">
                                 <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
                                 <asp:UpdatePanel ID="upSearchLeft" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
@@ -434,22 +434,22 @@
                                         Emlak Tipi
                                     </label>
                                     <div class="controls">
-                                        <asp:DropDownList ID="ddlMarketingType" runat="server" DataTextField="TypeName" DataValueField="ObjectId" CssClass="make-chosen"></asp:DropDownList>                                        
+                                        <asp:DropDownList ID="ddlMarketingType" runat="server" DataTextField="TypeName" DataValueField="ObjectId" CssClass="make-chosen"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="type control-group">
-                                    <label class="control-label">                                        
+                                    <label class="control-label">
                                     </label>
                                     <div class="controls">
                                         <asp:DropDownList ID="ddlEstateType" runat="server" DataTextField="TypeName" DataValueField="ObjectId" CssClass="make-chosen"></asp:DropDownList>
                                     </div>
                                 </div>
-                                                                
+
                                 <div class="rent control-group">
                                     <label class="control-label">
                                         Metrekare
                                     </label>
-                                    <div class="controls" style="padding-right:5px;">
+                                    <div class="controls" style="padding-right: 5px;">
                                         <asp:TextBox ID="tbAreaFrom" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
@@ -466,7 +466,7 @@
                                     <label class="control-label">
                                         Fiyat Aralığı
                                     </label>
-                                    <div class="controls" style="padding-right:5px;">
+                                    <div class="controls" style="padding-right: 5px;">
                                         <asp:TextBox ID="tbPriceFrom" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
@@ -479,7 +479,7 @@
                                     </div>
                                 </div>
                                 <div class="type control-group">
-                                    <label class="control-label">                                        
+                                    <label class="control-label">
                                     </label>
                                     <div class="controls">
                                         <asp:DropDownList ID="ddlCurrencyList" runat="server" DataTextField="CurrencyName" DataValueField="ObjectId" CssClass="make-chosen"></asp:DropDownList>
@@ -588,6 +588,27 @@
                                 </FooterTemplate>
                             </asp:Repeater>
                         </div>
+
+                        <div class="clearfix"></div>
+                        <div class="pagination pagination-centered" id="divPagination" runat="server">
+                            <ul class="unstyled">
+                                <asp:HiddenField ID="hfLastPageNumber" runat="server" />
+                                <asp:HiddenField ID="hfCurrentAdvertPageNumber" runat="server" />
+                                <asp:Repeater ID="rptPagination" runat="server" OnItemDataBound="rptPagination_ItemDataBound">
+                                    <HeaderTemplate>
+                                        <li><a id="aPageItemFirst">İlk</a></li>
+                                        <li><a id="aPageItemPrev">Önceki</a></li>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <li id="liPaginationItem" runat="server"><a href="/anasayfa?p=<%# Container.ItemIndex + 1 %>"><%# Container.ItemIndex + 1 %></a></li>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <li><a id="aPageItemNext">Sonraki</a></li>
+                                        <li><a id="aPageItemLast">Son</a></li>
+                                    </FooterTemplate>
+                                </asp:Repeater>                                
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -605,5 +626,24 @@
     <script type='text/javascript' src='/assets/js/jquery.bxslider.js'></script>
     <script type='text/javascript' src='/assets/js/properta.js'></script>
     <script type='text/javascript' src='/assets/js/jquery.bxslider.min.js'></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var currentPage = parseInt($('#<%=hfCurrentAdvertPageNumber.ClientID%>').val());
+            var totalPage = parseInt($('#<%=hfLastPageNumber.ClientID%>').val());
+
+            if (currentPage != 1) {
+                $('#aPageItemFirst').attr('href', '/anasayfa');
+                $('#aPageItemPrev').attr('href', '/anasayfa?p=' + (currentPage - 1));
+            }
+
+            if (currentPage != totalPage) {
+                $('#aPageItemNext').attr('href', '/anasayfa?p=' + (currentPage + 1));
+                $('#aPageItemLast').attr('href', '/anasayfa?p=' + totalPage);
+            }
+        });
+
+    </script>
 </body>
 </html>

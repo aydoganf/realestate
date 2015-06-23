@@ -23,6 +23,28 @@ public partial class _Default : BasePage
         }
     }
 
+    private int advertPageNumber;
+    public int AdvertPageNumber
+    {
+        get 
+        {
+            if (advertPageNumber == default(int))
+            {
+                int o;
+                if (Request.QueryString["p"] != null && int.TryParse(Request.QueryString["p"], out o))
+                {
+                    advertPageNumber = o;
+                }
+                else
+                {
+                    advertPageNumber = 1;
+                }
+            }
+            return advertPageNumber; 
+        }
+    }
+    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,7 +56,9 @@ public partial class _Default : BasePage
 
     protected void BindData()
     {
-        List<Advert> recentList = DBProvider.GetMostRecentAdvertList(20);
+        List<Advert> recentList = DBProvider.GetMostRecentAdvertList(100);
+
+        #region Map Databinding
         double latTotal = 0;
         double longTotal = 0;
 
@@ -50,15 +74,36 @@ public partial class _Default : BasePage
         hfLatCenter.Value = latCenter.ToString().Replace(',', '.');
         hfLongCenter.Value = longCenter.ToString().Replace(',', '.');
 
+        rptMapInfo.DataSource = recentList.Take(30);
+        rptMapInfo.DataBind();
+        #endregion
+
+        #region Advert Databinding
         rptLastProperties.DataSource = recentList.Take(3);
         rptLastProperties.DataBind();
 
-        rptRecentProperties.DataSource = recentList.Take(12);
+        rptRecentProperties.DataSource = DBProvider.GetMostRecentAdvertListWithPage(AdvertPageNumber, AdvertPageItemCount);
         rptRecentProperties.DataBind();
 
-        rptMapInfo.DataSource = recentList;
-        rptMapInfo.DataBind();
+        if (recentList.Count > AdvertPageItemCount)
+        {
+            int totalPages = (int)Math.Ceiling((double)recentList.Count / AdvertPageItemCount);
+            hfLastPageNumber.Value = totalPages.ToString();
+            int[] pagination = new int[totalPages];
+            for (int i = 0; i < totalPages; i++)
+            {
+                pagination[i] = i + 1;
+            }
 
+            rptPagination.DataSource = pagination;
+            rptPagination.DataBind();
+            hfCurrentAdvertPageNumber.Value = AdvertPageNumber.ToString();
+        }
+        else
+            divPagination.Visible = false;
+        #endregion                
+
+        #region Search Databinding
         rptBaseEstateTypes.DataSource = BaseEstateTypeList;
         rptBaseEstateTypes.DataBind();
 
@@ -74,6 +119,8 @@ public partial class _Default : BasePage
         ddlCity.DataSource = DBProvider.GetCityList();
         ddlCity.DataBind();
         ddlCity.Items.Insert(0, new ListItem("Tüm şehirler", "-1"));
+        #endregion
+        
     }
 
     protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
@@ -215,6 +262,20 @@ public partial class _Default : BasePage
 
             redirect += "/1/?q=" + hash;
             aQuick.HRef = redirect;
+        }
+    }
+    
+    protected void rptPagination_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            int pageItem = Convert.ToInt32(e.Item.DataItem);
+            HtmlGenericControl liPaginationItem = e.Item.FindControl("liPaginationItem") as HtmlGenericControl;
+
+            if (pageItem == AdvertPageNumber)
+            {
+                liPaginationItem.Attributes["class"] = "active";
+            }
         }
     }
 }

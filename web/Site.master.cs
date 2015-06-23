@@ -218,19 +218,19 @@ public partial class Site : MasterBasePage
             switch (parentEstateType.TypeKey)
             {
                 case "konut":
-                    BindKonutBilgileri();
+                    BindKonutBilgileri(obj);
                     break;
                 case "isyeri":
-                    BindIsyeriBilgileri();
+                    BindIsyeriBilgileri(obj);
                     break;
                 case "arsa":
-                    BindArsaBilgileri();
+                    BindArsaBilgileri(obj);
                     break;
                 case "devremulk":
-                    BindDevremulkBilgileri();
+                    BindDevremulkBilgileri(obj);
                     break;
                 case "turistik-isletme":
-                    BindTuristikBilgileri();
+                    BindTuristikBilgileri(obj);
                     break;
                 default:
                     break;
@@ -241,64 +241,214 @@ public partial class Site : MasterBasePage
         rptSubEstateTypeList.DataBind();
     }
 
-    protected void BindKonutBilgileri()
+    protected void BindKonutBilgileri(SearchQuery obj)
     {
         lbFloorKonut.DataSource = DBProvider.GetFloorList();
         lbFloorKonut.DataBind();
+        if (obj._FloorId)
+        {
+            foreach (ListItem item in lbFloorKonut.Items)
+            {
+                if (obj.FloorId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbHeatingTypeKonut.DataSource = DBProvider.GetHeatingTypeList();
         lbHeatingTypeKonut.DataBind();
+        if (obj._HeatingTypeId)
+        {
+            foreach (ListItem item in lbHeatingTypeKonut.Items)
+            {
+                if (obj.HeatingTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbRoomHallKonut.DataSource = DBProvider.GetRoomHallList();
         lbRoomHallKonut.DataBind();
+        if (obj._RoomHallId)
+        {
+            foreach (ListItem item in lbRoomHallKonut.Items)
+            {
+                if (obj.RoomHallId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbFuelTypeKonut.DataSource = DBProvider.GetFuelTypeList();
-        lbFuelTypeKonut.DataBind();     
+        lbFuelTypeKonut.DataBind();
+        if (obj._FuelTypeId)
+        {
+            foreach (ListItem item in lbFuelTypeKonut.Items)
+            {
+                if (obj.FuelTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
+        if (obj.AgeFrom != -1)
+            tbAgeFromKonut.Text = obj.AgeFrom.ToString();
+
+        if (obj.AgeTo != -1)
+            tbAgeToKonut.Text = obj.AgeTo.ToString();
+
+
     }
 
-    protected void BindIsyeriBilgileri()
+    protected void BindIsyeriBilgileri(SearchQuery obj)
     {
         lbFloorIsyeri.DataSource = DBProvider.GetFloorList();
         lbFloorIsyeri.DataBind();
+        if (obj._FloorId)
+        {
+            foreach (ListItem item in lbFloorIsyeri.Items)
+            {
+                if (obj.FloorId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbHeatingTypeIsyeri.DataSource = DBProvider.GetHeatingTypeList();
         lbHeatingTypeIsyeri.DataBind();
+        if (obj._HeatingTypeId)
+        {
+            foreach (ListItem item in lbHeatingTypeIsyeri.Items)
+            {
+                if (obj.HeatingTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbFuelTypeIsyeri.DataSource = DBProvider.GetFuelTypeList();
         lbFuelTypeIsyeri.DataBind();
+        if (obj._FuelTypeId)
+        {
+            foreach (ListItem item in lbFuelTypeIsyeri.Items)
+            {
+                if (obj.FuelTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
 
+        if (obj.AgeFrom != -1)
+            tbAgeFromIsyeri.Text = obj.AgeFrom.ToString();
+
+        if (obj.AgeTo != -1)
+            tbAgeToIsyeri.Text = obj.AgeTo.ToString();
+
+        if (obj.RoomCountFrom != -1)
+            tbRoomCountFromIsyeri.Text = obj.RoomCountFrom.ToString();
+
+        if (obj.RoomCountTo != -1)
+            tbRoomCountToIsyeri.Text = obj.RoomCountTo.ToString();
+        
     }
 
-    protected void BindArsaBilgileri()
+    protected void BindArsaBilgileri(SearchQuery obj)
     {
         ddlDeedTypeArsa.DataSource = DBProvider.GetDeedTypeList();
         ddlDeedTypeArsa.DataBind();
         ddlDeedTypeArsa.Items.Insert(0, new ListItem("Seçiniz", ""));
+        if (obj.DeedTypeId != -1)
+        {
+            ddlDeedTypeArsa.SelectedValue = obj.DeedTypeId.ToString();
+        }        
     }
 
-    protected void BindDevremulkBilgileri()
+    protected void BindDevremulkBilgileri(SearchQuery obj)
     {
         lbFloorDevremulk.DataSource = DBProvider.GetFloorList();
         lbFloorDevremulk.DataBind();
+        if (obj._FloorId)
+        {
+            foreach (ListItem item in lbFloorDevremulk.Items)
+            {
+                if (obj.FloorId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbRoomHallDevremulk.DataSource = DBProvider.GetRoomHallList();
         lbRoomHallDevremulk.DataBind();
+        if (obj._RoomHallId)
+        {
+            foreach (ListItem item in lbRoomHallDevremulk.Items)
+            {
+                if (obj.RoomHallId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbHeatingTypeDevremulk.DataSource = DBProvider.GetHeatingTypeList();
         lbHeatingTypeDevremulk.DataBind();
+        if (obj._HeatingTypeId)
+        {
+            foreach (ListItem item in lbHeatingTypeDevremulk.Items)
+            {
+                if (obj.HeatingTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
 
         lbFuelTypeDevremulk.DataSource = DBProvider.GetFuelTypeList();
         lbFuelTypeDevremulk.DataBind();
+        if (obj._FuelTypeId)
+        {
+            foreach (ListItem item in lbFuelTypeDevremulk.Items)
+            {
+                if (obj.FuelTypeId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
+
+        if (obj.AgeFrom != -1)
+            tbAgeFromDevremulk.Text = obj.AgeFrom.ToString();
+
+        if (obj.AgeTo != -1)
+            tbAgeToDevremulk.Text = obj.AgeTo.ToString();
     }
 
-    protected void BindTuristikBilgileri()
+    protected void BindTuristikBilgileri(SearchQuery obj)
     {
         lbStarCountTuristik.DataSource = DBProvider.GetStarCountList();
         lbStarCountTuristik.DataBind();
+        if (obj._StarCountId)
+        {
+            foreach (ListItem item in lbStarCountTuristik.Items)
+            {
+                if (obj.StarCountId.Contains(Convert.ToInt32(item.Value)))
+                    item.Selected = true;
+            }
+        }
 
         ddlDeedTypeTuristik.DataSource = DBProvider.GetDeedTypeList();
         ddlDeedTypeTuristik.DataBind();
         ddlDeedTypeTuristik.Items.Insert(0, new ListItem("Seçebilirsiniz", ""));
+        if (obj.DeedTypeId != -1)
+        {
+            ddlDeedTypeTuristik.SelectedValue = obj.DeedTypeId.ToString();
+        }
+
+        if (obj.RoomCountFrom != -1)
+            tbRoomCountFromTuristik.Text = obj.RoomCountFrom.ToString();
+
+        if (obj.RoomCountTo != -1)
+            tbRoomCountToTuristik.Text = obj.RoomCountTo.ToString();
+
+        if (obj.BedCountFrom != -1)
+            tbBedCountFromTuristik.Text = obj.BedCountFrom.ToString();
+
+        if (obj.BedCountTo != -1)
+            tbBedCountToTuristik.Text = obj.BedCountTo.ToString();
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)

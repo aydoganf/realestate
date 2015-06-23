@@ -322,4 +322,12 @@ public class BasePage : System.Web.UI.Page
         string hash = Encrypt(query);
         return hash;
     }
+
+    public int AdvertPageItemCount
+    {
+        get
+        {
+            return Convert.ToInt32(ConfigurationManager.AppSettings["advertPageItemCount"]);
+        }
+    }
 }

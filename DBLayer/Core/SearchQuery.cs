@@ -52,7 +52,10 @@ namespace DBLayer
         public bool? IsSublease { get; set; }
         public int AdvertStatusId { get; set; }
         public int AdvertUsingTypeId { get; set; }
-        public int StarCountId { get; set; }
+
+        public bool _StarCountId { get; set; }
+        public int[] StarCountId { get; set; }
+        
         public bool? IsSettlement { get; set; }
         public int BedCountFrom { get; set; }
         public int BedCountTo { get; set; }
@@ -374,8 +377,27 @@ namespace DBLayer
             this.AdvertUsingTypeId = _advertUsingType;
 
             int _starCount = -1;
-            int.TryParse(starCount.ToString(), out _starCount);
-            this.StarCountId = _starCount;
+            if (starCount.ToString().Contains(','))
+            {
+                string[] s = starCount.ToString().Split(',');
+                this.StarCountId = new int[s.Length];
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (int.TryParse(s[i], out _starCount))
+                        this.StarCountId[i] = Convert.ToInt32(s[i]);
+                }
+                this._StarCountId = true;
+            }
+            else
+            {
+                this.StarCountId = new int[1];
+                this.StarCountId[0] = Convert.ToInt32(starCount);
+
+                if (starCount.ToString() != "-1")
+                    this._StarCountId = true;
+                else
+                    this._StarCountId = false;
+            }
 
 
             bool? _isSettlement = null;

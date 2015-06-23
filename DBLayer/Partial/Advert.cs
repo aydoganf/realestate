@@ -117,10 +117,15 @@ namespace DBLayer
         {
             return Advert.Where(i => i.Deleted == false).Count();
         }
+        
+        public int GetAdvertListCount()
+        {
+            return Advert.Where(i => i.Deleted == false && i.IsActive).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Count();
+        }
 
         public List<Advert> GetMostRecentAdvertList(int count)
         {
-            return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Take(count).ToList();
+            return Advert.Where(i => i.Deleted == false && i.IsActive).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Take(count).ToList();
         }
 
         public List<Advert> GetMostRecentAdvertList(int count, int skip)
@@ -132,6 +137,11 @@ namespace DBLayer
                 return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip(skip).Take(total - skip).ToList();
             else
                 return Advert.Where(i => i.Deleted == false).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).ToList();
+        }
+
+        public List<Advert> GetMostRecentAdvertListWithPage(int pageNo, int pageItemCount)
+        {
+            return Advert.Where(i => i.Deleted == false && i.IsActive).OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip((pageNo - 1) * pageItemCount).Take(pageItemCount).ToList();
         }
 
         public List<Advert> QuickSearchAdvert(SearchQuery obj)
@@ -151,9 +161,9 @@ namespace DBLayer
                 ).Distinct().OrderByDescending(i=> i.UpdateDate).ThenByDescending(i=> i.CreateDate).ToList();
         }
 
-        public List<Advert> AdvancedSearchAdvert(SearchQuery obj, int pageNo, int pageItemCount)
+        public List<Advert> AdvancedSearchAdvert(SearchQuery obj, int pageNo, int pageItemCount, out int count)
         {
-            return Advert.Where(
+            List<Advert> result = Advert.Where(
                 i => (obj.AreaFrom != -1 ? i.Area >= obj.AreaFrom : true) &&
                     (obj.AreaTo != -1 ? i.Area <= obj.AreaTo : true) &&
                     (obj.AgeFrom != -1 ? i.Age >= obj.AgeFrom : true) &&
@@ -180,12 +190,16 @@ namespace DBLayer
                     (obj.IsSublease.HasValue ? i.IsSublease == obj.IsSublease : true) &&
                     (obj.AdvertStatusId != -1 ? i.AdvertStatusObjectId == obj.AdvertStatusId : true) &&
                     (obj.AdvertUsingTypeId != -1 ? i.AdvertUsingTypeObjectId == obj.AdvertUsingTypeId : true) &&
-                    (obj.StarCountId != -1 ? i.StarCountObjectId == obj.StarCountId : true) &&
+                    (obj._StarCountId ? obj.StarCountId.Contains(i.StarCountObjectId.Value) : true) &&
                     (obj.BedCountFrom != -1 ? i.BedCount >= obj.BedCountFrom : true) &&
                     (obj.BedCountTo != -1 ? i.BedCount <= obj.BedCountTo : true) &&
                     (obj.RoomCountFrom != -1 ? i.RoomCount >= obj.RoomCountFrom : true) &&
                     (obj.RoomCountTo != -1 ? i.RoomCount <= obj.RoomCountTo : true) && i.Deleted == false && i.IsActive
-                ).Distinct().OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip((pageNo - 1) * pageItemCount).Take(pageItemCount).ToList();
+                ).Distinct().ToList();
+
+            count = result.Count;
+
+            return result.OrderByDescending(i => i.UpdateDate).ThenByDescending(i => i.CreateDate).Skip((pageNo - 1) * pageItemCount).Take(pageItemCount).ToList();
         }
 
         public Advert GetAdvertByAdvertNumber(string advertNumber)

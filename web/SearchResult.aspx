@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphCSS" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server"> 
+<asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
     <asp:Label ID="lblNavigation" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphRightSide" runat="Server">
@@ -66,7 +66,7 @@
                                             </div>
                                             <!-- /.area -->
 
-                                            <div class="bedrooms">                                                
+                                            <div class="bedrooms">
                                                 <i class="icon icon-normal-four-rectangles"></i><%#Eval("RoomHallObjectId") != null ? Eval("RoomHall.RoomHallName") : ""%>
                                             </div>
                                             <!-- /.bedrooms -->
@@ -89,9 +89,52 @@
                 </div>
             </div>
 
+            <div class="clearfix"></div>
+            <div class="pagination pagination-centered" id="divPagination" runat="server">
+                <ul class="unstyled">
+                    <asp:HiddenField ID="hfLastPageNumber" runat="server" />
+                    <asp:HiddenField ID="hfCurrentAdvertPageNumber" runat="server" />
+                    <asp:HiddenField ID="hfSearchQuery" runat="server" />
+
+                    <asp:Repeater ID="rptPagination" runat="server" OnItemDataBound="rptPagination_ItemDataBound">
+                        <HeaderTemplate>
+                            <li><a id="aPageItemFirst">İlk</a></li>
+                            <li><a id="aPageItemPrev">Önceki</a></li>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li id="liPaginationItem" runat="server"><a href="/arama-sonuclari/<%# Container.ItemIndex + 1 %>/?q=<%#Request.QueryString["q"] %>"><%# Container.ItemIndex + 1 %></a></li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <li><a id="aPageItemNext">Sonraki</a></li>
+                            <li><a id="aPageItemLast">Son</a></li>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </ul>
+            </div>
+
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphJS" runat="Server">
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var currentPage = parseInt($('#<%=hfCurrentAdvertPageNumber.ClientID%>').val());
+            var totalPage = parseInt($('#<%=hfLastPageNumber.ClientID%>').val());
+            var searchQuery = $('#<%=hfSearchQuery.ClientID%>').val();
+
+            if (currentPage != 1) {
+                $('#aPageItemFirst').attr('href', '/arama-sonuclari/1/?q=' + searchQuery);
+                $('#aPageItemPrev').attr('href', '/arama-sonuclari/' + (currentPage - 1) + '/?q=' + searchQuery);
+            }
+
+            if (currentPage != totalPage) {
+                $('#aPageItemNext').attr('href', '/arama-sonuclari/' + (currentPage + 1) + '/?q=' + searchQuery);
+                $('#aPageItemLast').attr('href', '/arama-sonuclari/' + totalPage + '/?q=' + searchQuery);
+            }
+        });
+
+    </script>
 </asp:Content>
 

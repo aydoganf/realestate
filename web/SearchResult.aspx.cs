@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 using System.Configuration;
+using System.Web.UI.HtmlControls;
 
 public partial class SearchResult : BasePage
 {
@@ -21,6 +22,46 @@ public partial class SearchResult : BasePage
             return _searchModeKey; 
         }
     }
+
+    private int advertPageNumber;
+    public int AdvertPageNumber
+    {
+        get
+        {
+            if (advertPageNumber == default(int))
+            {
+                int o;
+                if (RouteData.Values["page"] != null && int.TryParse(RouteData.Values["page"].ToString(), out o))
+                {
+                    advertPageNumber = o;
+                }
+                else
+                {
+                    advertPageNumber = 1;
+                }
+            }
+            return advertPageNumber;
+        }
+    }
+
+    private string pageSearchQuery;
+
+    public string PageSearchQuery
+    {
+        get 
+        {
+            if (string.IsNullOrEmpty(pageSearchQuery))
+            {
+                if (!string.IsNullOrEmpty(Request.QueryString["q"]))
+                {
+                    pageSearchQuery = Request.QueryString["q"];
+                }
+                else
+                    Response.Redirect("~/hata?sq=empty");
+            }
+            return pageSearchQuery; 
+        }
+    }
     
 
     protected void Page_Load(object sender, EventArgs e)
@@ -33,46 +74,50 @@ public partial class SearchResult : BasePage
 
     protected void BindData()
     {
-        //if (searchModeKey == ConfigurationManager.AppSettings["searchMode_quick"])
-        //{
-        //    SearchQuick();
-        //}
-        //else if (searchModeKey == ConfigurationManager.AppSettings["searchMode_advanced"])
-        //{
-            //int page = Convert.ToInt32(RouteData.Values["page"]);
-            //SearchAdvanced(page);
-        //}        
-        int page = Convert.ToInt32(RouteData.Values["page"]);
-        SearchAdvanced(page);
+        SearchAdvanced(AdvertPageNumber);
     }
 
-    protected void SearchQuick()
-    {
-        //SearchQuery searchQuery = new SearchQuery(RouteData.Values["cityId"], RouteData.Values["townId"], RouteData.Values["districtId"], RouteData.Values["estateTypeId"],
-        //    RouteData.Values["marketingTypeId"], RouteData.Values["area"], RouteData.Values["price"], RouteData.Values["priceCurrencyId"]);
-
-        //List<Advert> searchResult = DBProvider.QuickSearchAdvert(searchQuery);
-        //rptAdverts.DataSource = searchResult;
-        //rptAdverts.DataBind();
-        //(this.Master as Site).BindSearchedData(searchQuery, ConfigurationManager.AppSettings["searchMode_quick"]);
-    }
 
     protected void SearchAdvanced(int page)
     {
-        SearchQuery searchQuery = GetSearchQueryFromHash(Request.QueryString["q"]);
+        SearchQuery searchQuery = GetSearchQueryFromHash(PageSearchQuery);
 
-        List<Advert> searchResult = DBProvider.AdvancedSearchAdvert(searchQuery, page, 20);
+        int resultCount;
+        List<Advert> searchResult = DBProvider.AdvancedSearchAdvert(searchQuery, page, AdvertPageItemCount, out resultCount);
         rptAdverts.DataSource = searchResult;
         rptAdverts.DataBind();
 
-        EstateType _estateType = DBProvider.GetEstateTypeByObjectId(searchQuery.EstateTypeId);
+        if (resultCount != 0)
+        {
+            if (resultCount > AdvertPageItemCount)
+            {
+                int totalPages = (int)Math.Ceiling((double)resultCount / AdvertPageItemCount);
+                hfLastPageNumber.Value = totalPages.ToString();
+                int[] pagination = new int[totalPages];
+                for (int i = 0; i < totalPages; i++)
+                {
+                    pagination[i] = i + 1;
+                }
 
+                rptPagination.DataSource = pagination;
+                rptPagination.DataBind();
+                hfCurrentAdvertPageNumber.Value = AdvertPageNumber.ToString();
+                hfSearchQuery.Value = PageSearchQuery;
+            }
+            else
+                divPagination.Visible = false;
+        }
+        else
+        {
+            divPagination.Visible = false;
+        }
+
+        EstateType _estateType = DBProvider.GetEstateTypeByObjectId(searchQuery.EstateTypeId);
         Site master = Page.Master as Site;
         master.BindSearchedData(searchQuery, ConfigurationManager.AppSettings["searchMode_advanced"]);
         master.h2QuickSearchHead.InnerText = "Arama Kriterleri";
         HiddenField hfSearchMode = (HiddenField)Page.Master.FindControl("hfSearchMode");
         hfSearchMode.Value = ConfigurationManager.AppSettings["searchMode_advanced"];
-
         
 
         switch (_estateType.TypeKey)
@@ -97,5 +142,18 @@ public partial class SearchResult : BasePage
         }
 
         
+    }
+    protected void rptPagination_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            int pageItem = Convert.ToInt32(e.Item.DataItem);
+            HtmlGenericControl liPaginationItem = e.Item.FindControl("liPaginationItem") as HtmlGenericControl;
+
+            if (pageItem == AdvertPageNumber)
+            {
+                liPaginationItem.Attributes["class"] = "active";
+            }
+        }
     }
 }
