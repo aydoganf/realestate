@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="SearchResult.aspx.cs" Inherits="SearchResult" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphCSS" runat="Server">
+    <style type="text/css">
+        .emptyPanel {
+            background:#f2f2f2;
+            padding:10px 20px;
+            border-radius:3px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
     <asp:Label ID="lblNavigation" runat="server"></asp:Label>
@@ -14,6 +21,10 @@
 
             <div class="properties-rows">
                 <div class="row">
+
+                    <asp:Panel ID="pnlEmpty" runat="server" Visible="false" CssClass="span8 clearfix emptyPanel">
+                        Aradığınız kriterlerde bir emlak ilanı bulunamamıştır. Detaylı arama yapmak için <a href="/detayli-arama">buraya</a> tıklayınız.
+                    </asp:Panel>
 
                     <asp:Repeater ID="rptAdverts" runat="server">
                         <ItemTemplate>

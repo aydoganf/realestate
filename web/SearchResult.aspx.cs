@@ -109,6 +109,7 @@ public partial class SearchResult : BasePage
         }
         else
         {
+            pnlEmpty.Visible = true;
             divPagination.Visible = false;
         }
 

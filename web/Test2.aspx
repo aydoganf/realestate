@@ -3,6 +3,27 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphRightSide" Runat="Server">
+    <a href="#modal" data-toggle="modal"><span class="spn-agreement-title">Mobil Onay Sözleşmesi</span></a>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="basic" aria-hidden="true" style="">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body" style="max-height: 480px !important; overflow-y: scroll">modal
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey-cascade" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn blue-steel btn-agreement" data-operation="accept"></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    
     <asp:GridView ID="gv" runat="server"></asp:GridView>
     i0Js1i4cZTOG53ib3hXl__Uq0FHwKlXgTuKImDtEoP9qSmT0C9ykoZanZgRk5jlT__UrhDXelevhGiw50tU2c5JXcC42f9tlY9PqMHjXLtU5oqHAZiUvaSIBE9dmllSB9SPqMHjXLtU5oyI6pUUfroO!tK__kPqexVhyzn7vU4uEJI7ngfUuGES5ejbx8lQKUWnFAqHICXLqB8a3O8ISUBA__3BIm0Bh9ixntjIc99giCOu3fveZj5B6!XZGWtd1G18Ja3SEbUW7XFuOk9DoAV!1QTCxpAX2x0ZIbr4c9xyc0__DmQWkIw4J!9fpUAiwhEQZzZptXdN6Rth!PurQb5OXLrNDQOaYT8UcW7M0B2HT9002pAIqtoVn!spE__FvC7R2daLfLVkPfMyNnDXXNbli!Ib9aRRYuupFID__WYRhQ47TdCZeSh7WTk6htbt7xFpUB4!c7qauts6DimrNo4dUXgMGgRXcmPFGXlriO5QkEsILVDUf3lqjEYkOHOIsILqnGp3OfQ9uFloTGNoEw8jQ__E9TZL9IyQorhXmvz7kNX3ZaeaS__SMkKK4V5gEcHfC3mBXsJ1fe5hdtm9W55FfLwIxAI05916RlmjZqlrB8ACPm3no4uw8a0B0lM08VkPuQrQKf
     <div class="marker family-house">

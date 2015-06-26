@@ -17,7 +17,7 @@ namespace DBLayer
     {
         public Town AddTown(string townName, int cityObectId)
         {
-            Town obj = new Town() 
+            Town obj = new Town()
             {
                 TownName = townName,
                 CityObjectId = cityObectId,
@@ -29,7 +29,7 @@ namespace DBLayer
 
         public List<Town> GetTownListByCityObjectId(int cityObjectId)
         {
-            return Town.Where(i => i.CityObjectId == cityObjectId && i.Deleted == false).OrderBy(i=> i.TownName).ToList();
+            return Town.Where(i => i.CityObjectId == cityObjectId && i.Deleted == false).OrderBy(i => i.TownName).ToList();
         }
 
         public Town GetTownByObjectId(int objectId)
