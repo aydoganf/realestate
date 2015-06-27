@@ -236,4 +236,36 @@ public class MasterBasePage : System.Web.UI.MasterPage
         string hash = Encrypt(query);
         return hash;
     }
+
+    public string GetSearchArrayStringFormat(int[] input)
+    {
+        string result = string.Empty;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (i != input.Length - 1)
+                result += input[i].ToString() + ",";
+            else
+                result += input[i].ToString();
+        }
+
+        return result;
+    }
+
+    public string GetSearchBooleanStringFormat(bool? input)
+    {
+        string result = string.Empty;
+
+        if (input.HasValue)
+        {
+            if ((bool)input)
+                result = "1";
+            else
+                result = "0";
+        }
+        else
+            result = "-1";
+
+        return result;
+    }
 }

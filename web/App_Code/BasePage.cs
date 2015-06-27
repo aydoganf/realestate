@@ -330,4 +330,19 @@ public class BasePage : System.Web.UI.Page
             return Convert.ToInt32(ConfigurationManager.AppSettings["advertPageItemCount"]);
         }
     }
+
+    public string GetSearchArrayStringFormat(int[] input)
+    {
+        string result = string.Empty;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (i != input.Length - 1)
+                result += input[i].ToString() + ",";
+            else
+                result += input[i].ToString();
+        }
+
+        return result;
+    }
 }

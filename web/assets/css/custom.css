@@ -78,3 +78,13 @@
 .widget.properties {
     margin-top:30px !important;
 }
+
+.mail-send.error {
+    background-color: #DFAAAA;
+    padding: 10px 15px;
+}
+
+.mail-send.success {
+    background-color: #CADFAA;
+    padding: 10px 15px;
+}

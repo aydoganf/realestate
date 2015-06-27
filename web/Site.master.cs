@@ -786,58 +786,64 @@ public partial class Site : MasterBasePage
             HtmlAnchor aSubEstateLink = e.Item.FindControl("aSubEstateLink") as HtmlAnchor;
             HtmlGenericControl iconUnselected = e.Item.FindControl("iconUnselected") as HtmlGenericControl;
             HtmlGenericControl iconSelected = e.Item.FindControl("iconSelected") as HtmlGenericControl;
+            SearchQuery searchQuery = GetSearchQueryFromHash(Request.QueryString["q"]);
 
             string redirect = "~/arama-sonuclari";
 
-            string city = "-1";
-            string town = "-1";
-            string district = "-1";
+            string city = searchQuery.CityId.ToString();
+            string town = searchQuery.TownId.ToString();
+            string district = searchQuery._DistrictId ? GetSearchArrayStringFormat(searchQuery.DistrictId) : "-1";
             string estateType = _childEstateType.ParentEstateTypeObjectId.ToString();
             string childEstateType = _childEstateType.ObjectId.ToString();
             string marketingType = ddlMarketingType.SelectedValue;
-            string areaFrom = "-1";
-            string areaTo = "-1";
-            string priceFrom = "-1";
-            string priceTo = "-1";
-            string priceCurrency = "-1";
-            string isExchangable = "-1";
-            string _ageFrom = "-1";
-            string _ageTo = "-1";
-            string _bathCount = "-1";
-            string _floorCount = "-1";
-            string _floor = "-1";
-            string _heatingType = "-1";
-            string _roomHall = "-1";
+            string areaFrom = searchQuery.AreaFrom.ToString();
+            string areaTo = searchQuery.AreaTo.ToString();
+            string priceFrom = searchQuery.PriceFrom.ToString();
+            string priceTo = searchQuery.PriceTo.ToString();
+            string priceCurrency = searchQuery.PriceCurrencyId.ToString();
+            string isExchangable = GetSearchBooleanStringFormat(searchQuery.IsExchangable);
+            string _ageFrom = searchQuery.AgeFrom.ToString();
+            string _ageTo = searchQuery.AgeTo.ToString();
+            string _bathCount = searchQuery.BathCount.ToString();
+            string _floorCount = searchQuery.FloorCount.ToString();
+            string _floor = searchQuery._FloorId ? GetSearchArrayStringFormat(searchQuery.FloorId) : "-1";
+            string _heatingType = searchQuery._HeatingTypeId ? GetSearchArrayStringFormat(searchQuery.HeatingTypeId) : "-1";
+            string _roomHall = searchQuery._RoomHallId ? GetSearchArrayStringFormat(searchQuery.RoomHallId) : "-1";
             string _advertOwner = "-1";
-            string _isFlatForLandMethod = "-1";
-            string _creditType = "-1";
-            string _deedType = "-1";
-            string _fuelType = "-1";
-            string _isSublease = "-1";
-            string _advertStatus = "-1";
-            string _advertUsing = "-1";
-            string _starCount = "-1";
-            string _isSettlement = "-1";
-            string _bedCountFrom = "-1";
-            string _bedCountTo = "-1";
-            string _roomCountFrom = "-1";
-            string _roomCountTo = "-1";
-            string _features = "-1";
+            string _isFlatForLandMethod = GetSearchBooleanStringFormat(searchQuery.IsFlatForLandMethod);
+            string _creditType = searchQuery.CreditTypeId.ToString();
+            string _deedType = searchQuery.DeedTypeId.ToString();
+            string _fuelType = searchQuery._FuelTypeId ? GetSearchArrayStringFormat(searchQuery.FuelTypeId) : "-1";
+            string _isSublease = GetSearchBooleanStringFormat(searchQuery.IsSublease);
+            string _advertStatus = searchQuery.AdvertStatusId.ToString();
+            string _advertUsing = searchQuery.AdvertUsingTypeId.ToString();
+            string _starCount = searchQuery._StarCountId ? GetSearchArrayStringFormat(searchQuery.StarCountId) : "-1";
+            string _isSettlement = GetSearchBooleanStringFormat(searchQuery.IsSettlement);
+            string _bedCountFrom = searchQuery.BedCountFrom.ToString();
+            string _bedCountTo = searchQuery.BedCountTo.ToString();
+            string _roomCountFrom = searchQuery.RoomCountFrom.ToString();
+            string _roomCountTo = searchQuery.RoomCountTo.ToString();
+            string _features = searchQuery._FeaturesId ? GetSearchArrayStringFormat(searchQuery.FeaturesId) : "-1";
             string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
 
             redirect += "/1/?q=" + hash;
-
             aSubEstateLink.HRef = redirect;
 
-            SearchQuery searchQuery = GetSearchQueryFromHash(Request.QueryString["q"]);
-            if (searchQuery.EstateTypeChildIdList.Contains(_childEstateType.ObjectId))
+            if (searchQuery._EstateTypeChildIdList)
             {
-                iconSelected.Visible = true;
+                if (searchQuery.EstateTypeChildIdList.Contains(_childEstateType.ObjectId))
+                {
+                    iconSelected.Visible = true;
+                }
+                else
+                {
+                    iconUnselected.Visible = true;
+                }
             }
             else
             {
-                iconUnselected.Visible = true;
-            }
+                iconSelected.Visible = true;
+            }            
         }
     }
 }
