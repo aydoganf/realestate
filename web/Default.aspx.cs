@@ -112,6 +112,10 @@ public partial class _Default : BasePage
 
         ddlMarketingType.DataSource = DBProvider.GetMarketingTypeList();
         ddlMarketingType.DataBind();
+        ddlMarketingType.Items.Insert(0, new ListItem("Hepsi", "-1"));
+
+        MarketingType marketingType = DBProvider.GetMarketingTypeByKey("kiralık");
+        ddlMarketingType.SelectedValue = marketingType.ObjectId.ToString();
 
         ddlCurrencyList.DataSource = DBProvider.GetCurrencyList();
         ddlCurrencyList.DataBind();
@@ -228,7 +232,7 @@ public partial class _Default : BasePage
             string district = "-1";
             string estateType = parentEstateType.ObjectId.ToString();
             string childEstateType = "-1";
-            string marketingType = DBProvider.GetMarketingTypeList().FirstOrDefault(i => i.TypeKey == "kiralık").ObjectId.ToString();
+            string marketingType = "-1";
             string areaFrom = "-1";
             string areaTo = "-1";
             string priceFrom = "-1";

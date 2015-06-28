@@ -133,6 +133,10 @@ public partial class Site : MasterBasePage
 
         ddlMarketingType.DataSource = DBProvider.GetMarketingTypeList();
         ddlMarketingType.DataBind();
+        ddlMarketingType.Items.Insert(0, new ListItem("Hepsi", "-1"));
+
+        MarketingType marketingType = DBProvider.GetMarketingTypeByKey("kiralık");
+        ddlMarketingType.SelectedValue = marketingType.ObjectId.ToString();
 
         ddlCurrencyList.DataSource = DBProvider.GetCurrencyList();
         ddlCurrencyList.DataBind();
@@ -789,7 +793,6 @@ public partial class Site : MasterBasePage
             SearchQuery searchQuery = GetSearchQueryFromHash(Request.QueryString["q"]);
 
             string redirect = "~/arama-sonuclari";
-
             string city = searchQuery.CityId.ToString();
             string town = searchQuery.TownId.ToString();
             string district = searchQuery._DistrictId ? GetSearchArrayStringFormat(searchQuery.DistrictId) : "-1";

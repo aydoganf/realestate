@@ -51,8 +51,102 @@ public partial class AdvertDetail : BasePage
         SetPanels();
         lblParentEstateTypeName.Text = CurrentAdvert.EstateType.ParentEstateType.TypeName;
         #endregion
+
+        SetNavigation();
     }
 
+    protected void SetNavigation()
+    {
+        string redirect = "/arama-sonuclari";
+
+        string city = "-1";
+        string town = "-1";
+        string district = "-1";
+        string estateType = "-1";
+        string childEstateType = "-1";
+        string marketingType = "-1";
+        string areaFrom = "-1";
+        string areaTo = "-1";
+        string priceFrom = "-1";
+        string priceTo = "-1";
+        string priceCurrency = "-1";
+        string isExchangable = "-1";
+        string _ageFrom = "-1";
+        string _ageTo = "-1";
+        string _bathCount = "-1";
+        string _floorCount = "-1";
+        string _floor = "-1";
+        string _heatingType = "-1";
+        string _roomHall = "-1";
+        string _advertOwner = "-1";
+        string _isFlatForLandMethod = "-1";
+        string _creditType = "-1";
+        string _deedType = "-1";
+        string _fuelType = "-1";
+        string _isSublease = "-1";
+        string _advertStatus = "-1";
+        string _advertUsing = "-1";
+        string _starCount = "-1";
+        string _isSettlement = "-1";
+        string _bedCountFrom = "-1";
+        string _bedCountTo = "-1";
+        string _roomCountFrom = "-1";
+        string _roomCountTo = "-1";
+        string _features = "-1";
+
+        string arrow = "&gt;";
+        string navEstateType = "";
+        string navSubEstateType = "";
+        string navCity = "";
+        string navTown = "";
+        string navDistrict = "";
+
+        estateType = CurrentAdvert.ParentEstateTypeObjectId.ToString();
+        string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect += "/1/?q=" + hash;        
+        navEstateType = " <a href='" + redirect + "'>" + CurrentAdvert.EstateType.ParentEstateType.TypeName + " Anasayfa</a> " + arrow;
+
+        // **
+
+        city = CurrentAdvert.CityObjectId.ToString();
+        hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect = "/arama-sonuclari";
+        redirect += "/1/?q=" + hash;
+        navCity = " <a href='" + redirect + "'>" + CurrentAdvert.CityName + "</a> " + arrow;
+
+        // **
+
+        town = CurrentAdvert.TownObjectId.ToString();
+        hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect = "/arama-sonuclari";
+        redirect += "/1/?q=" + hash;
+        navTown = " <a href='" + redirect + "'>" + CurrentAdvert.TownName + "</a> " + arrow;
+
+        // **
+
+        district = CurrentAdvert.DistrictObjectId.ToString();
+        hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect = "/arama-sonuclari";
+        redirect += "/1/?q=" + hash;
+        navDistrict = " <a href='" + redirect + "'>" + CurrentAdvert.DistrictName + "</a> " + arrow;
+
+        // **
+
+        childEstateType = CurrentAdvert.EstateTypeObjectId.ToString();
+        hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect = "/arama-sonuclari";
+        redirect += "/1/?q=" + hash;
+        navSubEstateType = " <a href='" + redirect + "'>" + CurrentAdvert.EstateType.TypeName + "</a> " + arrow;
+
+        // **
+
+        lblNavigation.Text = navEstateType + navCity + navTown + navDistrict + navSubEstateType + " " + CurrentAdvert.Title;
+    }
 
     protected void SetPanels()
     {

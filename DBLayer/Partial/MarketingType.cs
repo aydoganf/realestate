@@ -37,5 +37,10 @@ namespace DBLayer
         {
             return MarketingType.FirstOrDefault(i => i.ObjectId == objectId && i.Deleted == false);
         }
+
+        public MarketingType GetMarketingTypeByKey(string key)
+        {
+            return MarketingType.FirstOrDefault(i => i.TypeKey == key && i.Deleted == false);
+        }
     }
 }
