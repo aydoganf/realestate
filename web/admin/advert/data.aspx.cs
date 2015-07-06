@@ -148,6 +148,18 @@ public partial class advert_data : BasePage
                 pnlAdvertAdded.Visible = true;
             }
             #endregion
+
+            #region Buttons
+            if (CurrentAdvert.IsActive)
+            {
+                btnActivateAdvert.Visible = false;
+            }
+            else
+            {
+                pnlActiveStatus.Visible = true;
+            }
+            aPreview.HRef = FormatAdvertLink(CurrentAdvert);
+            #endregion
         }
     }
 
@@ -784,6 +796,13 @@ public partial class advert_data : BasePage
         SetPanels(estateType.ParentEstateType.TypeKey);
         BindFeatures((int)estateType.ParentEstateTypeObjectId);
     }
+
+    protected void btnActivateAdvert_Click(object sender, EventArgs e)
+    {
+        CurrentAdvert.IsActive = true;
+        DBProvider.SaveChanges();
+        Response.Redirect("~/admin/advert/data.aspx?advert=" + CurrentAdvert.ObjectId.ToString());
+    }
     #endregion
 
     #region Repeater Events
@@ -815,5 +834,5 @@ public partial class advert_data : BasePage
         }
     }
     #endregion
-    
+
 }

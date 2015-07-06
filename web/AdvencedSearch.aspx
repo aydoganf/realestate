@@ -455,7 +455,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphJS" runat="Server">
-    <script src="/assets/libraries/sumoselect/jquery.sumoselect.js"></script>
+    <%--<script src="/assets/libraries/sumoselect/jquery.sumoselect.js"></script>
     <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -467,6 +467,6 @@
                 "greedy": false
             });
         });
-    </script>
+    </script>--%>
 </asp:Content>
 

@@ -449,7 +449,7 @@
                                         Metrekare
                                     </label>
                                     <div class="controls" style="padding-right: 5px;">
-                                        <asp:TextBox ID="tbAreaFrom" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbAreaFrom" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="sale control-group">
@@ -457,7 +457,7 @@
                                         &nbsp;
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="tbAreaTo" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbAreaTo" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -466,7 +466,7 @@
                                         Fiyat Aralığı
                                     </label>
                                     <div class="controls" style="padding-right: 5px;">
-                                        <asp:TextBox ID="tbPriceFrom" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbPriceFrom" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="sale control-group">
@@ -474,7 +474,7 @@
                                         &nbsp;
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="tbPriceTo" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbPriceTo" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="type control-group">
@@ -625,6 +625,7 @@
     <script type='text/javascript' src='/assets/js/jquery.bxslider.js'></script>
     <script type='text/javascript' src='/assets/js/properta.js'></script>
     <script type='text/javascript' src='/assets/js/jquery.bxslider.min.js'></script>
+    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -641,6 +642,12 @@
                 $('#aPageItemNext').attr('href', '/anasayfa?p=' + (currentPage + 1));
                 $('#aPageItemLast').attr('href', '/anasayfa?p=' + totalPage);
             }
+
+            $(".mask-number").inputmask({
+                "mask": "9",
+                "repeat": 10,
+                "greedy": false
+            });
         });
 
     </script>

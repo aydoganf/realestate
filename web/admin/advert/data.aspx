@@ -22,6 +22,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
     <div class="row">
         <div class="col-md-12">
+
+            <asp:Panel ID="pnlActiveStatus" runat="server" CssClass="text-center" 
+                style="background-color:red; color:white; margin-bottom:10px; font-size:18px; padding:15px;" Visible="false">
+                İlan henüz yayına alınmamış. Yayına almak için İlan Fotoğrafları sekmesinden aktive ediniz.
+            </asp:Panel>
+
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">İlan Ekle/Düzenle</div>
@@ -679,7 +685,9 @@
                                     </div>
                                     <div class="form-actions">
                                         <div class="col-md-offset-3 col-md-9">
-                                            <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSavePicture_Click" />
+                                            <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Fotoğrafı Kaydet" OnClick="btnSavePicture_Click" />
+                                            <a class="btn yellow" target="_blank" id="aPreview" runat="server">Önizleme</a>                                            
+                                            <asp:Button ID="btnActivateAdvert" Text="Aktive Et" CssClass="btn blue" runat="server" OnClick="btnActivateAdvert_Click" />
                                         </div>
                                     </div>
                                 </asp:Panel>

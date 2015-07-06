@@ -72,7 +72,7 @@ namespace DBLayer
                 DistrictObjectId = districtObjectId,
                 TownObjectId = townObjectId,
                 CityObjectId = cityObjectId,
-                IsActive = true,
+                IsActive = false,
                 Deleted = false,
                 CreateDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
@@ -105,7 +105,7 @@ namespace DBLayer
 
         public List<Advert> GetAdvertList()
         {
-            return Advert.Where(i => i.Deleted == false).ToList();
+            return Advert.Where(i => i.Deleted == false).OrderByDescending(i=> i.ObjectId).ToList();
         }
 
         public Advert GetAdvertByObjectId(int objectId)
@@ -204,7 +204,7 @@ namespace DBLayer
 
         public Advert GetAdvertByAdvertNumber(string advertNumber)
         {
-            return Advert.FirstOrDefault(i => i.AdvertNumber == advertNumber && !i.Deleted && i.IsActive);
+            return Advert.FirstOrDefault(i => i.AdvertNumber == advertNumber && !i.Deleted);
         }
     }
 }

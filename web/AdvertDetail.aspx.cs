@@ -33,6 +33,11 @@ public partial class AdvertDetail : BasePage
 
     protected void BindData()
     {
+        if (!Page.User.Identity.IsAuthenticated && !CurrentAdvert.IsActive)
+        {
+            Response.Redirect("~/error");
+        }
+        
         rptPhotos.DataSource = CurrentAdvert.AdvertPhoto.Where(i => !i.Deleted);
         rptPhotos.DataBind();
 

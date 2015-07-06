@@ -38,6 +38,7 @@
     <script type='text/javascript' src='/assets/libraries/chosen/chosen.jquery.min.js'></script>
     <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
     <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.plugins.min.js'></script>
+    
 
     <asp:ContentPlaceHolder ID="cphCSS" runat="server"></asp:ContentPlaceHolder>
 
@@ -288,7 +289,7 @@
                                         Metrekare
                                     </label>
                                     <div class="controls" style="padding-right: 5px;">
-                                        <asp:TextBox ID="tbAreaFrom" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbAreaFrom" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="sale control-group">
@@ -296,7 +297,7 @@
                                         &nbsp;
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="tbAreaTo" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbAreaTo" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -305,7 +306,7 @@
                                         Fiyat Aralığı
                                     </label>
                                     <div class="controls" style="padding-right: 5px;">
-                                        <asp:TextBox ID="tbPriceFrom" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbPriceFrom" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="sale control-group">
@@ -313,7 +314,7 @@
                                         &nbsp;
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="tbPriceTo" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="tbPriceTo" runat="server" CssClass="mask-number"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="type control-group">
@@ -343,7 +344,7 @@
                                             Bina Yaşı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbAgeFromKonut" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeFromKonut" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -351,7 +352,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbAgeToKonut" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeToKonut" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -430,7 +431,7 @@
                                             Bina Yaşı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbAgeFromIsyeri" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeFromIsyeri" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -438,7 +439,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbAgeToIsyeri" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeToIsyeri" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -448,7 +449,7 @@
                                             Oda / Bölüm Sayısı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbRoomCountFromIsyeri" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbRoomCountFromIsyeri" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -456,7 +457,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbRoomCountToIsyeri" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbRoomCountToIsyeri" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -519,7 +520,7 @@
                                             Bina Yaşı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbAgeFromDevremulk" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeFromDevremulk" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -527,7 +528,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbAgeToDevremulk" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbAgeToDevremulk" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -595,7 +596,7 @@
                                             Oda / Bölüm Sayısı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbRoomCountFromTuristik" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbRoomCountFromTuristik" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -603,7 +604,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbRoomCountToTuristik" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbRoomCountToTuristik" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -625,7 +626,7 @@
                                             Yatak Sayısı
                                         </label>
                                         <div class="controls" style="padding-right: 5px;">
-                                            <asp:TextBox ID="tbBedCountFromTuristik" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbBedCountFromTuristik" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="sale control-group">
@@ -633,7 +634,7 @@
                                             &nbsp;
                                         </label>
                                         <div class="controls">
-                                            <asp:TextBox ID="tbBedCountToTuristik" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tbBedCountToTuristik" runat="server" CssClass="mask-number"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -734,7 +735,7 @@
     <script type='text/javascript' src='/assets/js/properta.js'></script>
     <script type='text/javascript' src='/assets/js/jquery.bxslider.min.js'></script>
     <script src="/assets/libraries/sumoselect/jquery.sumoselect.js"></script>
-    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
+    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>    
     <script type="text/javascript">
         $(document).ready(function () {
             $('.make-sumo').SumoSelect();
