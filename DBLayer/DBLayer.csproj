@@ -73,6 +73,8 @@
     <Compile Include="Partial\HeatingType.cs" />
     <Compile Include="Partial\MarketingType.cs" />
     <Compile Include="Partial\Person.cs" />
+    <Compile Include="Partial\Project.cs" />
+    <Compile Include="Partial\ProjectAdvertRelation.cs" />
     <Compile Include="Partial\RoomHall.cs" />
     <Compile Include="Partial\StarCount.cs" />
     <Compile Include="Partial\Town.cs" />

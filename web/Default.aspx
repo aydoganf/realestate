@@ -182,6 +182,11 @@
                                                     </a>
                                                 </ItemTemplate>
                                             </asp:Repeater>
+                                            <a href="/projeler">
+                                                <div class="property-type-custom">
+                                                    Projeler
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

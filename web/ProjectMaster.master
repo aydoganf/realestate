@@ -1,0 +1,242 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ProjectMaster.master.cs" Inherits="ProjectMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
+
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <meta name='robots' content='noindex,nofollow' />
+
+    <link rel='stylesheet' id='font-css'
+        href='http://fonts.googleapis.com/css?family=Open+Sans%3A400%2C700%2C300&#038;subset=latin%2Clatin-ext&#038;ver=3.6'
+        type='text/css' media='all' />
+
+
+    <link rel='stylesheet' id='revolution-fullwidth' href='/assets/libraries/rs-plugin/css/fullwidth.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='revolution-settings' href='/assets/libraries/rs-plugin/css/settings.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/assets/libraries/bootstrap/css/bootstrap.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-responsive-css' href='/assets/libraries/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='pictopro-normal-css' href='/assets/icons/pictopro-normal/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='justvector-web-font-css' href='/assets/icons/justvector-web-font/stylesheet.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='chosen-css' href='/assets/libraries/chosen/chosen.css' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='aviators-css' href='/assets/css/jquery.bxslider.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css?v=26.6.2015' type='text/css' media='all' />
+    <link rel="stylesheet" id="custom-css" href="/assets/css/custom.css?v=26.6.2015" type="text/css" media="all" />
+    <link href="/assets/libraries/sumoselect/sumoselect.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
+    <%--<script type='text/javascript' src='/assets/js/aviators-settings.js'></script>--%>
+    <script type='text/javascript' src='/assets/libraries/chosen/chosen.jquery.min.js'></script>
+    <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
+    <script type='text/javascript' src='/assets/libraries/rs-plugin/js/jquery.themepunch.plugins.min.js'></script>
+    
+
+    <asp:ContentPlaceHolder ID="cphCSS" runat="server"></asp:ContentPlaceHolder>
+
+    <title>Habeşoğlu Gayrimenkul</title>
+</head>
+<body class="home page page-template">
+    <form id="form1" runat="server">
+        <div class="top">
+            <div class="container">
+                <div class="top-inner inverted">
+                    <div class="header clearfix">
+                        <%-- // LOGO ve Site Adı --%>
+                        <div class="branding pull-left">
+                            <div class="logo">
+                                <a href="/anasayfa" title="Anasayfa">
+                                    <img src="/assets/img/logo.jpg" alt="Home" style="height:58px !important">
+                                </a>
+                            </div>
+                            <!-- /.logo -->
+
+                            <%--<div class="site-name">
+                                <a href="default.htm" title="Home" class="brand">Properta
+                                </a>
+                            </div>--%>
+                            <!-- /.site-name -->
+                        </div>
+                        <%-- LOGO ve Site Adı // --%>
+
+                        <div class="contact-top">
+                            <ul class="menu nav">
+                                <li class="first leaf"><a href="/detayli-arama">Detaylı Arama</a></li>
+                                <li class="leaf"><a href="/iletisim">İletişim</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="user-area pull-right">
+                            <div class="menu-anonymous-container">
+                                <ul id="menu-anonymous" class="nav nav-pills">
+                                    <li class="menu-item" id="liRegister" runat="server" visible="false"><a href="~/Uyelik">Üyelik</a></li>
+                                    <li class="menu-item" id="liLogin" runat="server" visible="false"><a href="~/Giris">Giriş</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.user-area -->
+                    </div>
+                    <!-- /.header -->
+                    <div class="navigation navbar clearfix">
+                        
+                    </div>
+
+                    <div class="breadcrumb pull-left">
+                        <!-- Breadcrumb NavXT 4.4.0 -->
+                        <a title="/anasayfa" href="/anasayfa" class="home">Anasayfa</a> &gt;
+                        <asp:ContentPlaceHolder ID="cphNavigation" runat="server"></asp:ContentPlaceHolder>
+                    </div>
+
+                    <!-- /.breadcrumb -->
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="sidebar span3">
+                        <h2 id="quickSearchHead" runat="server">Hızlı Arama</h2>
+                        <div class="property-filter widget" id="quickSearch" runat="server">
+                            <div class="content">
+                                <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+                                <asp:UpdatePanel ID="upSearchLeft" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <div class="location control-group">
+                                            <label class="control-label">
+                                                Konum
+                                            </label>
+
+                                            <div class="controls">
+                                                <asp:DropDownList ID="ddlCity" runat="server" CssClass="make-chosen"
+                                                    DataTextField="CityName" DataValueField="ObjectId" AutoPostBack="true" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <asp:Panel ID="pnlTownLocationSearch" runat="server" Visible="false" CssClass="location control-group">
+                                            <label class="control-label">
+                                                İlçeler
+                                            </label>
+                                            <div class="controls">
+                                                <asp:ListBox ID="lbTown" runat="server" placeholder="Seçiniz"
+                                                SelectionMode="Multiple" CssClass="make-multi-sumo" DataTextField="TownName" DataValueField="ObjectId"></asp:ListBox>
+                                            </div>
+                                        </asp:Panel>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlCity" EventName="SelectedIndexChanged" />
+                                        <asp:AsyncPostBackTrigger ControlID="lbTown" EventName="SelectedIndexChanged" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                                <script type="text/javascript">
+                                    var prm = Sys.WebForms.PageRequestManager.getInstance();
+                                    var postBackElement;
+
+                                    prm.add_initializeRequest(InitializeRequest);
+                                    prm.add_endRequest(EndRequest);
+
+                                    function InitializeRequest(sender, args) {
+                                        postBackElement = args.get_postBackElement();
+                                    }
+
+                                    function EndRequest(sender, args) {
+                                        if (postBackElement.id == '<%=ddlCity.ClientID%>') {
+                                            $('#<%=ddlCity.ClientID%>').chosen({
+                                                disable_search_threshold: 20
+                                            });
+                                            $('#<%=lbTown.ClientID%>').SumoSelect({ selectAll: true });
+                                        }
+                                    }
+                                </script>
+                                <div class="form-actions">
+                                    <asp:HiddenField ID="hfSearchMode" runat="server" />
+                                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary btn-large" Text="Proje Ara" OnClick="btnSearch_Click" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="mostrecentproperties_widget-2" class="widget properties">
+                            <h2>Son Eklenen İlanlar</h2>
+                            <div class="content">
+                                <!-- Son ilanlar -->
+                                <asp:Repeater ID="rptLastProperties" runat="server">
+                                    <HeaderTemplate></HeaderTemplate>
+                                    <ItemTemplate>
+                                        <div class="property clearfix">
+                                            <div class="image">
+                                                <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
+                                                    <img width="570" height="425" src="/uploads/<%#Eval("PrimarySmallAdvertPhoto") %>"
+                                                        class="thumbnail-image " alt="19" />
+                                                </a>
+                                            </div>
+                                            <div class="wrapper">
+                                                <div class="title">
+                                                    <h3>
+                                                        <a href="<%# FormatAdvertLink(Container.DataItem as DBLayer.Advert) %>">
+                                                            <%#Eval("Title") %>
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                                <div class="location"><%#Eval("CityName") %>/<%#Eval("TownName") %></div>
+                                                <div class="price">
+                                                    <%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="property-info clearfix">
+                                            <div class="area">
+                                                <i class="icon icon-normal-cursor-scale-up"></i>
+                                                <%#Eval("Area") %> m<sup>2</sup>
+                                            </div>
+                                            <div class="bedrooms">
+                                                <i class="icon icon-normal-bed"></i><%#Eval("BathCount") %>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                    <FooterTemplate></FooterTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
+                    </div>
+
+                    <asp:ContentPlaceHolder ID="cphRightSide" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?v=3&#038;sensor=true&#038;ver=3.6'></script>
+    <script type='text/javascript' src='/assets/js/aviators-map.js'></script>
+    <script type='text/javascript' src='/assets/js/gmap3.infobox.min.js'></script>
+    <script type='text/javascript' src='/assets/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/assets/js/retina.js'></script>
+    <script type='text/javascript' src='/assets/js/gmap3.clusterer.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.ezmark.js'></script>
+    <script type='text/javascript' src='/assets/js/carousel.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.bxslider.js'></script>
+    <script type='text/javascript' src='/assets/js/properta.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.bxslider.min.js'></script>
+    <script src="/assets/libraries/sumoselect/jquery.sumoselect.js"></script>
+    <script type="text/javascript" src="/admin/design/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.make-sumo').SumoSelect();
+            $('.make-multi-sumo').SumoSelect({ selectAll: true });
+            $(".mask-number").inputmask({
+                "mask": "9",
+                "repeat": 10,
+                "greedy": false
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="cphJS" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

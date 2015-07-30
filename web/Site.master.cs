@@ -13,19 +13,6 @@ public partial class Site : MasterBasePage
     #region Props
 
     #region DBPorps
-    private RealEstateEntities dbProvider;
-    public RealEstateEntities DBProvider
-    {
-        get
-        {
-            if (dbProvider == default(RealEstateEntities))
-            {
-                dbProvider = new RealEstateEntities();
-            }
-            return dbProvider;
-        }
-    }
-
     private List<EstateType> baseEstateTypeList;
     public List<EstateType> BaseEstateTypeList
     {

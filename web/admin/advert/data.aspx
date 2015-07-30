@@ -17,7 +17,7 @@
     <li>
         <i class="fa fa-angle-right"></i>
         <span>İlan Ekle/Düzenle</span>
-    </li>
+    </li>    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphMain" runat="Server">
     <div class="row">

@@ -65,6 +65,28 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-tasks"></i>Projeler
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <h5 class="block">Sistemde tanımlı projeleri buradan yönetebilirsiniz.</h5>
+                    <ul class="list-inline">
+
+                        <li class="li-first">
+                            <a href="project/" class="btn blue a-item">
+                                <i class="fa fa-briefcase"></i>Projeler </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphPageScripts" Runat="Server">
 </asp:Content>

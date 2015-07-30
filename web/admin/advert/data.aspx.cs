@@ -766,7 +766,7 @@ public partial class advert_data : BasePage
 
             if (!string.IsNullOrEmpty(pic))
             {
-                AdvertPhoto photo = DBProvider.AddAdvertPhoto(pic, picSmall, CurrentAdvert.ObjectId, 0);
+                AdvertPhoto photo = DBProvider.AddAdvertPhoto(pic, picSmall, CurrentAdvert.ObjectId, null, 0);
                 DBProvider.SaveChanges();
                 if (photo != null)
                 {

@@ -33,9 +33,16 @@ public class ApplicationGenericControls
 
         public static class AdvertPhoto 
         {
-            public static string StatusOKDescription = "İlan fotoğrafı başarıyla kaydedilmiştir.";
+            public static string StatusOKDescription = "Fotoğraf başarıyla kaydedilmiştir.";
             public static string StatusERRORDescription = "Lütfen geçerli formatta bir resim seçiniz.";
-            public static string StatusDELETEDescription = "İlan fotoğrafı başarıyla silinmiştir.";
+            public static string StatusDELETEDescription = "Fotoğraf başarıyla silinmiştir.";
+        }
+
+        public static class ProjectAdvert
+        {
+            public static string StatusOKDescription = "İlan başarıyla projeye eklenmiştir.";
+            public static string StatusERRORDescription = "Lütfen geçerli bir ilan numarası giriniz.";
+            public static string StatusDELETEDescription = "İlan başarıyla projeden çıkarılmıştır.";
         }
 
         public static class Person

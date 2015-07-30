@@ -25,27 +25,31 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_District_Town", "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Town), "District", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.District), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Feature_FeatureType", "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.FeatureType), "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Feature), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_EstateType_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.EstateType), "EstateType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.EstateType), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_FeatureType_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.EstateType), "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.FeatureType), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Project), "ProjectAdvertRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.ProjectAdvertRelation), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Project), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "Advert1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertOwnerType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertStatus), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertType", "AdvertType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertUsingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.CreditType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Currency", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Currency), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Currency1", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Currency), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.DeedType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_District", "District", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.District), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.EstateType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Floor", "Floor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Floor), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.FuelType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_HeatingType", "HeatingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.HeatingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_MarketingType", "MarketingType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.MarketingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Person), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Project), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.RoomHall), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertOwnerType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.CreditType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.DeedType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.FuelType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertStatus), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.AdvertUsingType), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "Advert1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Advert), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_Advert_StarCount", "StarCount", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.StarCount), "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.Advert), true)]
-[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_FeatureType_EstateType", "EstateType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.EstateType), "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.FeatureType), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Advert), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "ProjectAdvertRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.ProjectAdvertRelation), true)]
 
 #endregion
 
@@ -356,22 +360,6 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Advert> Advert
-        {
-            get
-            {
-                if ((_Advert == null))
-                {
-                    _Advert = base.CreateObjectSet<Advert>("Advert");
-                }
-                return _Advert;
-            }
-        }
-        private ObjectSet<Advert> _Advert;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<AdvertOwnerType> AdvertOwnerType
         {
             get
@@ -480,6 +468,54 @@ namespace DBLayer
             }
         }
         private ObjectSet<StarCount> _StarCount;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ProjectAdvertRelation> ProjectAdvertRelation
+        {
+            get
+            {
+                if ((_ProjectAdvertRelation == null))
+                {
+                    _ProjectAdvertRelation = base.CreateObjectSet<ProjectAdvertRelation>("ProjectAdvertRelation");
+                }
+                return _ProjectAdvertRelation;
+            }
+        }
+        private ObjectSet<ProjectAdvertRelation> _ProjectAdvertRelation;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Project> Project
+        {
+            get
+            {
+                if ((_Project == null))
+                {
+                    _Project = base.CreateObjectSet<Project>("Project");
+                }
+                return _Project;
+            }
+        }
+        private ObjectSet<Project> _Project;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Advert> Advert
+        {
+            get
+            {
+                if ((_Advert == null))
+                {
+                    _Advert = base.CreateObjectSet<Advert>("Advert");
+                }
+                return _Advert;
+            }
+        }
+        private ObjectSet<Advert> _Advert;
 
         #endregion
 
@@ -614,14 +650,6 @@ namespace DBLayer
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Advert EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAdvert(Advert advert)
-        {
-            base.AddObject("Advert", advert);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the AdvertOwnerType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToAdvertOwnerType(AdvertOwnerType advertOwnerType)
@@ -675,6 +703,30 @@ namespace DBLayer
         public void AddToStarCount(StarCount starCount)
         {
             base.AddObject("StarCount", starCount);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ProjectAdvertRelation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProjectAdvertRelation(ProjectAdvertRelation projectAdvertRelation)
+        {
+            base.AddObject("ProjectAdvertRelation", projectAdvertRelation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProject(Project project)
+        {
+            base.AddObject("Project", project);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Advert EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdvert(Advert advert)
+        {
+            base.AddObject("Advert", advert);
         }
 
         #endregion
@@ -1125,6 +1177,30 @@ namespace DBLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentEstateTypeObjectId
+        {
+            get
+            {
+                return _ParentEstateTypeObjectId;
+            }
+            set
+            {
+                OnParentEstateTypeObjectIdChanging(value);
+                ReportPropertyChanging("ParentEstateTypeObjectId");
+                _ParentEstateTypeObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentEstateTypeObjectId");
+                OnParentEstateTypeObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentEstateTypeObjectId;
+        partial void OnParentEstateTypeObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnParentEstateTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> FloorObjectId
         {
             get
@@ -1507,102 +1583,6 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 TownObjectId
-        {
-            get
-            {
-                return _TownObjectId;
-            }
-            set
-            {
-                OnTownObjectIdChanging(value);
-                ReportPropertyChanging("TownObjectId");
-                _TownObjectId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TownObjectId");
-                OnTownObjectIdChanged();
-            }
-        }
-        private global::System.Int32 _TownObjectId;
-        partial void OnTownObjectIdChanging(global::System.Int32 value);
-        partial void OnTownObjectIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CityObjectId
-        {
-            get
-            {
-                return _CityObjectId;
-            }
-            set
-            {
-                OnCityObjectIdChanging(value);
-                ReportPropertyChanging("CityObjectId");
-                _CityObjectId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CityObjectId");
-                OnCityObjectIdChanged();
-            }
-        }
-        private global::System.Int32 _CityObjectId;
-        partial void OnCityObjectIdChanging(global::System.Int32 value);
-        partial void OnCityObjectIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean IsActive
-        {
-            get
-            {
-                return _IsActive;
-            }
-            set
-            {
-                OnIsActiveChanging(value);
-                ReportPropertyChanging("IsActive");
-                _IsActive = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsActive");
-                OnIsActiveChanged();
-            }
-        }
-        private global::System.Boolean _IsActive;
-        partial void OnIsActiveChanging(global::System.Boolean value);
-        partial void OnIsActiveChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                OnDeletedChanging(value);
-                ReportPropertyChanging("Deleted");
-                _Deleted = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Deleted");
-                OnDeletedChanged();
-            }
-        }
-        private global::System.Boolean _Deleted;
-        partial void OnDeletedChanging(global::System.Boolean value);
-        partial void OnDeletedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String DistrictName
@@ -1623,6 +1603,30 @@ namespace DBLayer
         private global::System.String _DistrictName;
         partial void OnDistrictNameChanging(global::System.String value);
         partial void OnDistrictNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TownObjectId
+        {
+            get
+            {
+                return _TownObjectId;
+            }
+            set
+            {
+                OnTownObjectIdChanging(value);
+                ReportPropertyChanging("TownObjectId");
+                _TownObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TownObjectId");
+                OnTownObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _TownObjectId;
+        partial void OnTownObjectIdChanging(global::System.Int32 value);
+        partial void OnTownObjectIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1651,6 +1655,30 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CityObjectId
+        {
+            get
+            {
+                return _CityObjectId;
+            }
+            set
+            {
+                OnCityObjectIdChanging(value);
+                ReportPropertyChanging("CityObjectId");
+                _CityObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CityObjectId");
+                OnCityObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _CityObjectId;
+        partial void OnCityObjectIdChanging(global::System.Int32 value);
+        partial void OnCityObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String CityName
@@ -1671,6 +1699,30 @@ namespace DBLayer
         private global::System.String _CityName;
         partial void OnCityNameChanging(global::System.String value);
         partial void OnCityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1989,29 +2041,205 @@ namespace DBLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ParentEstateTypeObjectId
+        public Nullable<global::System.Int32> ProjectObjectId
         {
             get
             {
-                return _ParentEstateTypeObjectId;
+                return _ProjectObjectId;
             }
             set
             {
-                OnParentEstateTypeObjectIdChanging(value);
-                ReportPropertyChanging("ParentEstateTypeObjectId");
-                _ParentEstateTypeObjectId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ParentEstateTypeObjectId");
-                OnParentEstateTypeObjectIdChanged();
+                OnProjectObjectIdChanging(value);
+                ReportPropertyChanging("ProjectObjectId");
+                _ProjectObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectObjectId");
+                OnProjectObjectIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _ParentEstateTypeObjectId;
-        partial void OnParentEstateTypeObjectIdChanging(Nullable<global::System.Int32> value);
-        partial void OnParentEstateTypeObjectIdChanged();
+        private Nullable<global::System.Int32> _ProjectObjectId;
+        partial void OnProjectObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnProjectObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
 
         #endregion
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Advert", "Advert1")]
+        public Advert Advert1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Advert> Advert1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Advert", "Advert")]
+        public Advert Advert2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Advert> Advert2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType")]
+        public AdvertOwnerType AdvertOwnerType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertOwnerType> AdvertOwnerTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus")]
+        public AdvertStatus AdvertStatus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertStatus> AdvertStatusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2057,8 +2285,84 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType")]
+        public AdvertUsingType AdvertUsingType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AdvertUsingType> AdvertUsingTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType")]
+        public CreditType CreditType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CreditType> CreditTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Currency", "Currency")]
-        public Currency DepositCurrency
+        public Currency Currency
         {
             get
             {
@@ -2074,7 +2378,7 @@ namespace DBLayer
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Currency> DepositCurrencyReference
+        public EntityReference<Currency> CurrencyReference
         {
             get
             {
@@ -2123,6 +2427,44 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Currency>("RealEstateModel.FK_Advert_Currency1", "Currency", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType")]
+        public DeedType DeedType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DeedType> DeedTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType", value);
                 }
             }
         }
@@ -2247,6 +2589,44 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType")]
+        public FuelType FuelType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FuelType> FuelTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_HeatingType", "HeatingType")]
         public HeatingType HeatingType
         {
@@ -2361,6 +2741,44 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Project", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_Advert_Project", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_Advert_Project", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_Advert_Project", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("RealEstateModel.FK_Advert_Project", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_RoomHall", "RoomHall")]
         public RoomHall RoomHall
         {
@@ -2389,6 +2807,44 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomHall>("RealEstateModel.FK_Advert_RoomHall", "RoomHall", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_StarCount", "StarCount")]
+        public StarCount StarCount
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<StarCount> StarCountReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount", value);
                 }
             }
         }
@@ -2443,338 +2899,18 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertOwnerType", "AdvertOwnerType")]
-        public AdvertOwnerType AdvertOwnerType
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Advert", "ProjectAdvertRelation")]
+        public EntityCollection<ProjectAdvertRelation> ProjectAdvertRelation
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AdvertOwnerType> AdvertOwnerTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectAdvertRelation>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "ProjectAdvertRelation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertOwnerType>("RealEstateModel.FK_Advert_AdvertOwnerType", "AdvertOwnerType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_CreditType", "CreditType")]
-        public CreditType CreditType
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CreditType> CreditTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CreditType>("RealEstateModel.FK_Advert_CreditType", "CreditType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_DeedType", "DeedType")]
-        public DeedType DeedType
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<DeedType> DeedTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DeedType>("RealEstateModel.FK_Advert_DeedType", "DeedType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_FuelType", "FuelType")]
-        public FuelType FuelType
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<FuelType> FuelTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FuelType>("RealEstateModel.FK_Advert_FuelType", "FuelType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertStatus", "AdvertStatus")]
-        public AdvertStatus AdvertStatus
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AdvertStatus> AdvertStatusReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertStatus>("RealEstateModel.FK_Advert_AdvertStatus", "AdvertStatus", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_AdvertUsingType", "AdvertUsingType")]
-        public AdvertUsingType AdvertUsingType
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AdvertUsingType> AdvertUsingTypeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AdvertUsingType>("RealEstateModel.FK_Advert_AdvertUsingType", "AdvertUsingType", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Advert", "Advert1")]
-        public Advert Advert1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Advert> Advert1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Advert", "Advert")]
-        public Advert Advert2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Advert> Advert2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_Advert_Advert", "Advert", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_StarCount", "StarCount")]
-        public StarCount StarCount
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<StarCount> StarCountReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StarCount>("RealEstateModel.FK_Advert_StarCount", "StarCount", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectAdvertRelation>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "ProjectAdvertRelation", value);
                 }
             }
         }
@@ -3172,15 +3308,13 @@ namespace DBLayer
         /// </summary>
         /// <param name="objectId">Initial value of the ObjectId property.</param>
         /// <param name="photoName">Initial value of the PhotoName property.</param>
-        /// <param name="advertObjectId">Initial value of the AdvertObjectId property.</param>
         /// <param name="sortOrder">Initial value of the SortOrder property.</param>
         /// <param name="deleted">Initial value of the Deleted property.</param>
-        public static AdvertPhoto CreateAdvertPhoto(global::System.Int32 objectId, global::System.String photoName, global::System.Int32 advertObjectId, global::System.Int32 sortOrder, global::System.Boolean deleted)
+        public static AdvertPhoto CreateAdvertPhoto(global::System.Int32 objectId, global::System.String photoName, global::System.Int32 sortOrder, global::System.Boolean deleted)
         {
             AdvertPhoto advertPhoto = new AdvertPhoto();
             advertPhoto.ObjectId = objectId;
             advertPhoto.PhotoName = photoName;
-            advertPhoto.AdvertObjectId = advertObjectId;
             advertPhoto.SortOrder = sortOrder;
             advertPhoto.Deleted = deleted;
             return advertPhoto;
@@ -3244,9 +3378,9 @@ namespace DBLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 AdvertObjectId
+        public Nullable<global::System.Int32> AdvertObjectId
         {
             get
             {
@@ -3261,8 +3395,8 @@ namespace DBLayer
                 OnAdvertObjectIdChanged();
             }
         }
-        private global::System.Int32 _AdvertObjectId;
-        partial void OnAdvertObjectIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _AdvertObjectId;
+        partial void OnAdvertObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnAdvertObjectIdChanged();
     
         /// <summary>
@@ -3336,11 +3470,73 @@ namespace DBLayer
         private global::System.String _SmallPhotoName;
         partial void OnSmallPhotoNameChanging(global::System.String value);
         partial void OnSmallPhotoNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ProjectObjectId
+        {
+            get
+            {
+                return _ProjectObjectId;
+            }
+            set
+            {
+                OnProjectObjectIdChanging(value);
+                ReportPropertyChanging("ProjectObjectId");
+                _ProjectObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectObjectId");
+                OnProjectObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ProjectObjectId;
+        partial void OnProjectObjectIdChanging(Nullable<global::System.Int32> value);
+        partial void OnProjectObjectIdChanged();
 
         #endregion
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_AdvertPhoto_Project", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_AdvertPhoto_Project", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_AdvertPhoto_Project", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_AdvertPhoto_Project", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("RealEstateModel.FK_AdvertPhoto_Project", "Project", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4897,28 +5093,6 @@ namespace DBLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_EstateType", "Advert")]
-        public EntityCollection<Advert> Advert
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_FeatureType_EstateType", "FeatureType")]
         public EntityCollection<FeatureType> FeatureType
         {
@@ -4931,6 +5105,28 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FeatureType>("RealEstateModel.FK_FeatureType_EstateType", "FeatureType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_EstateType", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_EstateType", "Advert", value);
                 }
             }
         }
@@ -6348,6 +6544,820 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_Person", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="Project")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Project : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Project object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="projectName">Initial value of the ProjectName property.</param>
+        /// <param name="projectDescription">Initial value of the ProjectDescription property.</param>
+        /// <param name="cityObjectId">Initial value of the CityObjectId property.</param>
+        /// <param name="townObjectId">Initial value of the TownObjectId property.</param>
+        /// <param name="districtObjectId">Initial value of the DistrictObjectId property.</param>
+        /// <param name="isActive">Initial value of the IsActive property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static Project CreateProject(global::System.Int32 objectId, global::System.String projectName, global::System.String projectDescription, global::System.Int32 cityObjectId, global::System.Int32 townObjectId, global::System.Int32 districtObjectId, global::System.Boolean isActive, global::System.Boolean deleted)
+        {
+            Project project = new Project();
+            project.ObjectId = objectId;
+            project.ProjectName = projectName;
+            project.ProjectDescription = projectDescription;
+            project.CityObjectId = cityObjectId;
+            project.TownObjectId = townObjectId;
+            project.DistrictObjectId = districtObjectId;
+            project.IsActive = isActive;
+            project.Deleted = deleted;
+            return project;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectName
+        {
+            get
+            {
+                return _ProjectName;
+            }
+            set
+            {
+                OnProjectNameChanging(value);
+                ReportPropertyChanging("ProjectName");
+                _ProjectName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ProjectName");
+                OnProjectNameChanged();
+            }
+        }
+        private global::System.String _ProjectName;
+        partial void OnProjectNameChanging(global::System.String value);
+        partial void OnProjectNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectDescription
+        {
+            get
+            {
+                return _ProjectDescription;
+            }
+            set
+            {
+                OnProjectDescriptionChanging(value);
+                ReportPropertyChanging("ProjectDescription");
+                _ProjectDescription = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ProjectDescription");
+                OnProjectDescriptionChanged();
+            }
+        }
+        private global::System.String _ProjectDescription;
+        partial void OnProjectDescriptionChanging(global::System.String value);
+        partial void OnProjectDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ProjectHousingCount
+        {
+            get
+            {
+                return _ProjectHousingCount;
+            }
+            set
+            {
+                OnProjectHousingCountChanging(value);
+                ReportPropertyChanging("ProjectHousingCount");
+                _ProjectHousingCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectHousingCount");
+                OnProjectHousingCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ProjectHousingCount;
+        partial void OnProjectHousingCountChanging(Nullable<global::System.Int32> value);
+        partial void OnProjectHousingCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ProjectTotalArea
+        {
+            get
+            {
+                return _ProjectTotalArea;
+            }
+            set
+            {
+                OnProjectTotalAreaChanging(value);
+                ReportPropertyChanging("ProjectTotalArea");
+                _ProjectTotalArea = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectTotalArea");
+                OnProjectTotalAreaChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ProjectTotalArea;
+        partial void OnProjectTotalAreaChanging(Nullable<global::System.Int32> value);
+        partial void OnProjectTotalAreaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AreaRange
+        {
+            get
+            {
+                return _AreaRange;
+            }
+            set
+            {
+                OnAreaRangeChanging(value);
+                ReportPropertyChanging("AreaRange");
+                _AreaRange = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AreaRange");
+                OnAreaRangeChanged();
+            }
+        }
+        private global::System.String _AreaRange;
+        partial void OnAreaRangeChanging(global::System.String value);
+        partial void OnAreaRangeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RoomOptions
+        {
+            get
+            {
+                return _RoomOptions;
+            }
+            set
+            {
+                OnRoomOptionsChanging(value);
+                ReportPropertyChanging("RoomOptions");
+                _RoomOptions = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RoomOptions");
+                OnRoomOptionsChanged();
+            }
+        }
+        private global::System.String _RoomOptions;
+        partial void OnRoomOptionsChanging(global::System.String value);
+        partial void OnRoomOptionsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DeliveryDate
+        {
+            get
+            {
+                return _DeliveryDate;
+            }
+            set
+            {
+                OnDeliveryDateChanging(value);
+                ReportPropertyChanging("DeliveryDate");
+                _DeliveryDate = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DeliveryDate");
+                OnDeliveryDateChanged();
+            }
+        }
+        private global::System.String _DeliveryDate;
+        partial void OnDeliveryDateChanging(global::System.String value);
+        partial void OnDeliveryDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CityObjectId
+        {
+            get
+            {
+                return _CityObjectId;
+            }
+            set
+            {
+                OnCityObjectIdChanging(value);
+                ReportPropertyChanging("CityObjectId");
+                _CityObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CityObjectId");
+                OnCityObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _CityObjectId;
+        partial void OnCityObjectIdChanging(global::System.Int32 value);
+        partial void OnCityObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CityName
+        {
+            get
+            {
+                return _CityName;
+            }
+            set
+            {
+                OnCityNameChanging(value);
+                ReportPropertyChanging("CityName");
+                _CityName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CityName");
+                OnCityNameChanged();
+            }
+        }
+        private global::System.String _CityName;
+        partial void OnCityNameChanging(global::System.String value);
+        partial void OnCityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TownObjectId
+        {
+            get
+            {
+                return _TownObjectId;
+            }
+            set
+            {
+                OnTownObjectIdChanging(value);
+                ReportPropertyChanging("TownObjectId");
+                _TownObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TownObjectId");
+                OnTownObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _TownObjectId;
+        partial void OnTownObjectIdChanging(global::System.Int32 value);
+        partial void OnTownObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TownName
+        {
+            get
+            {
+                return _TownName;
+            }
+            set
+            {
+                OnTownNameChanging(value);
+                ReportPropertyChanging("TownName");
+                _TownName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TownName");
+                OnTownNameChanged();
+            }
+        }
+        private global::System.String _TownName;
+        partial void OnTownNameChanging(global::System.String value);
+        partial void OnTownNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DistrictObjectId
+        {
+            get
+            {
+                return _DistrictObjectId;
+            }
+            set
+            {
+                OnDistrictObjectIdChanging(value);
+                ReportPropertyChanging("DistrictObjectId");
+                _DistrictObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DistrictObjectId");
+                OnDistrictObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _DistrictObjectId;
+        partial void OnDistrictObjectIdChanging(global::System.Int32 value);
+        partial void OnDistrictObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DistrictName
+        {
+            get
+            {
+                return _DistrictName;
+            }
+            set
+            {
+                OnDistrictNameChanging(value);
+                ReportPropertyChanging("DistrictName");
+                _DistrictName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DistrictName");
+                OnDistrictNameChanged();
+            }
+        }
+        private global::System.String _DistrictName;
+        partial void OnDistrictNameChanging(global::System.String value);
+        partial void OnDistrictNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Latitude
+        {
+            get
+            {
+                return _Latitude;
+            }
+            set
+            {
+                OnLatitudeChanging(value);
+                ReportPropertyChanging("Latitude");
+                _Latitude = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Latitude");
+                OnLatitudeChanged();
+            }
+        }
+        private global::System.String _Latitude;
+        partial void OnLatitudeChanging(global::System.String value);
+        partial void OnLatitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Longitude
+        {
+            get
+            {
+                return _Longitude;
+            }
+            set
+            {
+                OnLongitudeChanging(value);
+                ReportPropertyChanging("Longitude");
+                _Longitude = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Longitude");
+                OnLongitudeChanged();
+            }
+        }
+        private global::System.String _Longitude;
+        partial void OnLongitudeChanging(global::System.String value);
+        partial void OnLongitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GAddress
+        {
+            get
+            {
+                return _GAddress;
+            }
+            set
+            {
+                OnGAddressChanging(value);
+                ReportPropertyChanging("GAddress");
+                _GAddress = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("GAddress");
+                OnGAddressChanged();
+            }
+        }
+        private global::System.String _GAddress;
+        partial void OnGAddressChanging(global::System.String value);
+        partial void OnGAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Project", "ProjectAdvertRelation")]
+        public EntityCollection<ProjectAdvertRelation> ProjectAdvertRelation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectAdvertRelation>("RealEstateModel.FK_ProjectAdvertRelation_Project", "ProjectAdvertRelation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectAdvertRelation>("RealEstateModel.FK_ProjectAdvertRelation_Project", "ProjectAdvertRelation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_AdvertPhoto_Project", "AdvertPhoto")]
+        public EntityCollection<AdvertPhoto> AdvertPhoto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AdvertPhoto>("RealEstateModel.FK_AdvertPhoto_Project", "AdvertPhoto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AdvertPhoto>("RealEstateModel.FK_AdvertPhoto_Project", "AdvertPhoto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_Advert_Project", "Advert")]
+        public EntityCollection<Advert> Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Advert>("RealEstateModel.FK_Advert_Project", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Advert>("RealEstateModel.FK_Advert_Project", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="ProjectAdvertRelation")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ProjectAdvertRelation : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ProjectAdvertRelation object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="housingTypeName">Initial value of the HousingTypeName property.</param>
+        /// <param name="projectObjectId">Initial value of the ProjectObjectId property.</param>
+        /// <param name="advertObjectId">Initial value of the AdvertObjectId property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static ProjectAdvertRelation CreateProjectAdvertRelation(global::System.Int32 objectId, global::System.String housingTypeName, global::System.Int32 projectObjectId, global::System.Int32 advertObjectId, global::System.Boolean deleted)
+        {
+            ProjectAdvertRelation projectAdvertRelation = new ProjectAdvertRelation();
+            projectAdvertRelation.ObjectId = objectId;
+            projectAdvertRelation.HousingTypeName = housingTypeName;
+            projectAdvertRelation.ProjectObjectId = projectObjectId;
+            projectAdvertRelation.AdvertObjectId = advertObjectId;
+            projectAdvertRelation.Deleted = deleted;
+            return projectAdvertRelation;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String HousingTypeName
+        {
+            get
+            {
+                return _HousingTypeName;
+            }
+            set
+            {
+                OnHousingTypeNameChanging(value);
+                ReportPropertyChanging("HousingTypeName");
+                _HousingTypeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("HousingTypeName");
+                OnHousingTypeNameChanged();
+            }
+        }
+        private global::System.String _HousingTypeName;
+        partial void OnHousingTypeNameChanging(global::System.String value);
+        partial void OnHousingTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectObjectId
+        {
+            get
+            {
+                return _ProjectObjectId;
+            }
+            set
+            {
+                OnProjectObjectIdChanging(value);
+                ReportPropertyChanging("ProjectObjectId");
+                _ProjectObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectObjectId");
+                OnProjectObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectObjectId;
+        partial void OnProjectObjectIdChanging(global::System.Int32 value);
+        partial void OnProjectObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AdvertObjectId
+        {
+            get
+            {
+                return _AdvertObjectId;
+            }
+            set
+            {
+                OnAdvertObjectIdChanging(value);
+                ReportPropertyChanging("AdvertObjectId");
+                _AdvertObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AdvertObjectId");
+                OnAdvertObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _AdvertObjectId;
+        partial void OnAdvertObjectIdChanging(global::System.Int32 value);
+        partial void OnAdvertObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Project", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectAdvertRelation_Project", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectAdvertRelation_Project", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectAdvertRelation_Project", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("RealEstateModel.FK_ProjectAdvertRelation_Project", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Advert", "Advert")]
+        public Advert Advert
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "Advert").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "Advert").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Advert> AdvertReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Advert>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "Advert");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "Advert", value);
                 }
             }
         }

@@ -18,6 +18,8 @@
         RouteTable.Routes.Add("iletisim", new Route("iletisim", new PageRouteHandler("~/Contact.aspx")));
         RouteTable.Routes.Add("detayli-arama", new Route("detayli-arama", new PageRouteHandler("~/AdvencedSearch.aspx")));
         RouteTable.Routes.Add("arama-sonuclari1", new Route("arama-sonuclari/{page}", new PageRouteHandler("~/SearchResult.aspx")));
+        RouteTable.Routes.Add("projeler", new Route("projeler", new PageRouteHandler("~/Projects.aspx")));
+        RouteTable.Routes.Add("projeler-detay", new Route("projeler/detay/{projectId}/{advertId}", new PageRouteHandler("~/ProjectDetail.aspx")));
         
     }
     
