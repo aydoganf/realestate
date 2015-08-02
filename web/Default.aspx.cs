@@ -282,4 +282,56 @@ public partial class _Default : BasePage
             }
         }
     }
+
+    protected void lbtnBina_Click(object sender, EventArgs e)
+    {
+        EstateType binaEmlagi = KonutEmalgi.ChildEstateTypeList.FirstOrDefault(i => !i.Deleted && i.TypeKey == "bina");
+        string _childEstateType = "";
+        if (binaEmlagi == null)
+            _childEstateType = "-1";
+        else
+            _childEstateType = binaEmlagi.ObjectId.ToString();
+
+        string redirect = "~/arama-sonuclari";
+
+        string city = "-1";
+        string town = "-1";
+        string district = "-1";
+        string estateType = KonutEmalgi.ObjectId.ToString();
+        string childEstateType = _childEstateType;
+        string marketingType = "-1";
+        string areaFrom = "-1";
+        string areaTo = "-1";
+        string priceFrom = "-1";
+        string priceTo = "-1";
+        string priceCurrency = "-1";
+        string isExchangable = "-1";
+        string _ageFrom = "-1";
+        string _ageTo = "-1";
+        string _bathCount = "-1";
+        string _floorCount = "-1";
+        string _floor = "-1";
+        string _heatingType = "-1";
+        string _roomHall = "-1";
+        string _advertOwner = "-1";
+        string _isFlatForLandMethod = "-1";
+        string _creditType = "-1";
+        string _deedType = "-1";
+        string _fuelType = "-1";
+        string _isSublease = "-1";
+        string _advertStatus = "-1";
+        string _advertUsing = "-1";
+        string _starCount = "-1";
+        string _isSettlement = "-1";
+        string _bedCountFrom = "-1";
+        string _bedCountTo = "-1";
+        string _roomCountFrom = "-1";
+        string _roomCountTo = "-1";
+        string _features = "-1";
+
+        string hash = GetSearchQueryHash(city, town, district, estateType, childEstateType, marketingType, areaFrom, areaTo, priceFrom, priceTo, priceCurrency, isExchangable, _ageFrom, _ageTo, _bathCount, _floorCount, _floor, _heatingType, _roomHall, _advertOwner, _isFlatForLandMethod, _creditType, _deedType, _fuelType, _isSublease, _advertStatus, _advertUsing, _starCount, _isSettlement, _bedCountFrom, _bedCountTo, _roomCountFrom, _roomCountTo, _features);
+
+        redirect += "/1/?q=" + hash;
+        Response.Redirect(redirect);
+    }
 }

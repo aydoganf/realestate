@@ -1,14 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProjectMaster.master" AutoEventWireup="true" CodeFile="Projects.aspx.cs" Inherits="Projects" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphCSS" runat="Server">
-</asp:Content>
+   </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphNavigation" runat="Server">
-    Projeler
+    <asp:Label ID="lblNavigation" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphRightSide" runat="Server">
 
     <div id="main" class="span9">
-        <h1 class="page-header">Projeler</h1>
+        <h1 class="page-header">
+            <asp:Label ID="lblPageTitle" runat="server"></asp:Label>
+        </h1>
         <div class="properties-grid">
             <asp:Repeater ID="rptRecentProjects" runat="server">
                 <HeaderTemplate>
@@ -19,22 +21,60 @@
                         <div class="property">
                             <div class="image">
                                 <div class="content">
-                                    <a href="">
+                                    <a href="/proje/<%#Eval("ObjectId") %>">
                                         <img src="/uploads/<%#Eval("PrimarySmallProjectPhoto") %>">
                                     </a>
                                 </div>
-                                <%--<div class="rent-sale">
-                                    
-                                </div>--%>
-                                <%--<div class="price">
-                                    <%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %>
-                                </div>--%>
                             </div>
 
                             <div class="info">
                                 <div class="title clearfix">
                                     <h2>
-                                        <a href="">
+                                        <a href="/proje/<%#Eval("ObjectId") %>">
+                                            <%#Eval("ProjectName") %>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div class="location"><%#Eval("CityName") %>/<%#Eval("TownName") %></div>
+                            </div>
+                        </div>
+                        <div class="property-info clearfix">
+                            <div class="area">
+                                <i class="icon icon-normal-cursor-scale-up"></i>
+                                <%#Eval("ProjectTotalArea") %> m<sup>2</sup>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </div>
+                </FooterTemplate>
+            </asp:Repeater>
+
+
+            <asp:Panel ID="pnlEmpty" runat="server" Visible="false" CssClass="span8 clearfix emptyPanel">
+
+            </asp:Panel>
+
+            <asp:Repeater ID="rptSearchedProjects" runat="server" Visible="false">
+                <HeaderTemplate>
+                    <div class="row-fluid">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <div class="span3">
+                        <div class="property">
+                            <div class="image">
+                                <div class="content">
+                                    <a href="/proje/<%#Eval("ObjectId") %>">
+                                        <img src="/uploads/<%#Eval("PrimarySmallProjectPhoto") %>">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="info">
+                                <div class="title clearfix">
+                                    <h2>
+                                        <a href="/proje/<%#Eval("ObjectId") %>">
                                             <%#Eval("ProjectName") %>
                                         </a>
                                     </h2>

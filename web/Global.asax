@@ -19,8 +19,8 @@
         RouteTable.Routes.Add("detayli-arama", new Route("detayli-arama", new PageRouteHandler("~/AdvencedSearch.aspx")));
         RouteTable.Routes.Add("arama-sonuclari1", new Route("arama-sonuclari/{page}", new PageRouteHandler("~/SearchResult.aspx")));
         RouteTable.Routes.Add("projeler", new Route("projeler", new PageRouteHandler("~/Projects.aspx")));
-        RouteTable.Routes.Add("projeler-detay", new Route("projeler/detay/{projectId}/{advertId}", new PageRouteHandler("~/ProjectDetail.aspx")));
-        
+        RouteTable.Routes.Add("proje-detay", new Route("proje/{projectId}", new PageRouteHandler("~/ProjectDetail.aspx")));
+        RouteTable.Routes.Add("proje-detay2", new Route("proje/{projectId}/{advertId}", new PageRouteHandler("~/ProjectDetail.aspx")));
     }
     
     void Application_End(object sender, EventArgs e) 

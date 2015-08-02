@@ -22,7 +22,7 @@
         }
 
         .tabbable.tabbable-custom.tabbable-full-width {
-            margin-left: 30px !important;
+            /*margin-left: 30px !important;*/
         }
 
         .single-property .property-detail ul li {

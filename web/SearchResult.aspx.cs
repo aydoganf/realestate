@@ -106,11 +106,24 @@ public partial class SearchResult : BasePage
             }
             else
                 divPagination.Visible = false;
+
+            #region Marketing Type Navigation
+
+            rptMarketingType.DataSource = DBProvider.GetMarketingTypeList();
+            rptMarketingType.DataBind();
+            hfSearchedMarketingTypeId.Value = searchQuery.MarketingTypeId.ToString();
+
+            SearchQuery _searchQuery = GetSearchQueryFromHash(PageSearchQuery);
+            _searchQuery.MarketingTypeId = -1;
+            aMarketingTypeAll.HRef = "/arama-sonuclari/1/?q=" + _searchQuery.GetHash();
+            
+            #endregion
         }
         else
         {
             pnlEmpty.Visible = true;
             divPagination.Visible = false;
+            ulMarketingNavigation.Visible = false;
         }
 
         EstateType _estateType = DBProvider.GetEstateTypeByObjectId(searchQuery.EstateTypeId);
@@ -276,8 +289,6 @@ public partial class SearchResult : BasePage
             default:
                 break;
         }
-
-        
     }
     protected void rptPagination_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -290,6 +301,33 @@ public partial class SearchResult : BasePage
             {
                 liPaginationItem.Attributes["class"] = "active";
             }
+        }
+    }
+
+    protected void rptMarketingType_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            SearchQuery searchQuery = GetSearchQueryFromHash(PageSearchQuery);
+            MarketingType data = e.Item.DataItem as MarketingType;
+            HtmlAnchor aMarketingTypeLink = e.Item.FindControl("aMarketingTypeLink") as HtmlAnchor;
+            HtmlGenericControl liMarketingTypeName = e.Item.FindControl("liMarketingTypeName") as HtmlGenericControl;
+
+
+            SearchQuery _searchQuery = searchQuery;
+            _searchQuery.MarketingTypeId = data.ObjectId;
+            int count;
+            List<Advert> results = DBProvider.AdvancedSearchAdvert(_searchQuery, 1, 1, out count);
+            if (count > 0)
+            {
+                aMarketingTypeLink.HRef = "/arama-sonuclari/1/?q=" + _searchQuery.GetHash();
+            }
+            else
+            {
+                aMarketingTypeLink.HRef = "javascript:;";
+            }
+
+            aMarketingTypeLink.InnerText = data.TypeName + " (" + count + ")";
         }
     }
 }

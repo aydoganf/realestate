@@ -187,6 +187,11 @@
                                                     Projeler
                                                 </div>
                                             </a>
+                                            <asp:LinkButton ID="lbtnBina" runat="server" OnClick="lbtnBina_Click">
+                                                <div class="property-type-custom">
+                                                    Bina
+                                                </div>
+                                            </asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>

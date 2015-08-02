@@ -21,16 +21,16 @@
 
     <link rel='stylesheet' id='revolution-fullwidth' href='/assets/libraries/rs-plugin/css/fullwidth.css' type='text/css' media='all' />
     <link rel='stylesheet' id='revolution-settings' href='/assets/libraries/rs-plugin/css/settings.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='bootstrap-css' href='/assets/libraries/bootstrap/css/bootstrap.min.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='bootstrap-responsive-css' href='/assets/libraries/bootstrap/css/bootstrap-responsive.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/assets/libraries/bootstrap/css/bootstrap.min.css?v=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-responsive-css' href='/assets/libraries/bootstrap/css/bootstrap-responsive.min.css?v=1.1' type='text/css' media='all' />
 
     <link rel='stylesheet' id='pictopro-normal-css' href='/assets/icons/pictopro-normal/style.css' type='text/css' media='all' />
     <link rel='stylesheet' id='justvector-web-font-css' href='/assets/icons/justvector-web-font/stylesheet.css' type='text/css' media='all' />
     <link rel='stylesheet' id='chosen-css' href='/assets/libraries/chosen/chosen.css' type='text/css' media='all' />
 
     <link rel='stylesheet' id='aviators-css' href='/assets/css/jquery.bxslider.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css?v=26.6.2015' type='text/css' media='all' />
-    <link rel="stylesheet" id="custom-css" href="/assets/css/custom.css?v=26.6.2015" type="text/css" media="all" />
+    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css?v=02.08.2015' type='text/css' media='all' />
+    <link rel="stylesheet" id="custom-css" href="/assets/css/custom.css?v=02.08.2015" type="text/css" media="all" />
     <link href="/assets/libraries/sumoselect/sumoselect.css" rel="stylesheet" type="text/css" media="all" />
 
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>

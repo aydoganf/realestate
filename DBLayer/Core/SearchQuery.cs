@@ -477,7 +477,7 @@ namespace DBLayer
             query += "&isSublease=" + GetBooleanStringFormat(IsSublease);
             query += "&advertStatusType=" + AdvertStatusId;
             query += "&advertUsingType=" + AdvertUsingTypeId;
-            query += "&starCount=" + StarCountId;
+            query += "&starCount=" + GetArrayStringFormat(StarCountId, _StarCountId);
             query += "&isSettlement=" + GetBooleanStringFormat(IsSettlement);
             query += "&bedCountFrom=" + BedCountFrom;
             query += "&bedCountTo=" + BedCountTo;

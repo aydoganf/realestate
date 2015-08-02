@@ -52,6 +52,12 @@ public partial class admin_project_data : BasePage
         {
             #region Project Detail
 
+            ddlTown.DataSource = DBProvider.GetTownListByCityObjectId(CurrentProject.CityObjectId);
+            ddlTown.DataBind();
+
+            ddlDistrict.DataSource = DBProvider.GetDistrictListByTownObjectId(CurrentProject.TownObjectId);
+            ddlDistrict.DataBind();
+
             ddlCity.SelectedValue = CurrentProject.CityObjectId.ToString();
             ddlTown.SelectedValue = CurrentProject.TownObjectId.ToString();
             ddlDistrict.SelectedValue = CurrentProject.DistrictObjectId.ToString();
@@ -213,6 +219,9 @@ public partial class admin_project_data : BasePage
                 CurrentProject.TownName = town.TownName;
                 CurrentProject.DistrictObjectId = districtId;
                 CurrentProject.DistrictName = district.DistrictName;
+                CurrentProject.Latitude = hfLat.Value;
+                CurrentProject.Longitude = hfLong.Value;
+                CurrentProject.GAddress = tbGAddress.Text.Trim();
 
                 DBProvider.SaveChanges();
                 BindData();

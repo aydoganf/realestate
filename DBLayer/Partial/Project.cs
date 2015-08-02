@@ -106,6 +106,13 @@ namespace DBLayer
             && (districtObjectId.HasValue ? i.DistrictObjectId == districtObjectId : true) && i.IsActive && !i.Deleted).ToList();
         }
 
+        public List<Project> AdvancedProjectSearch(int cityId, bool townParam, int[] townArr = null)
+        {
+            return Project.Where(i => i.IsActive && !i.Deleted &&
+            (cityId != -1 ? i.CityObjectId == cityId : true) && 
+            (townParam ? townArr.Contains(i.TownObjectId) : true)).ToList();
+        }
+
         public List<Project> GetRecentlyProjects()
         {
             return Project.Where(i => !i.Deleted && i.IsActive).OrderByDescending(i => i.ObjectId).ToList();
