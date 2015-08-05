@@ -59,7 +59,7 @@ public partial class ProjectDetail : BasePage
 
         rptPhotos.DataSource = CurrentProject.AdvertPhoto.Where(i => !i.Deleted);
         rptPhotos.DataBind();
-
+        
         if (CurrentAdvert != null)
         {
             List<FeatureType> featureTypeList = DBProvider.GetFeatureTypeListByEstateTypeObjectId(Convert.ToInt32(CurrentAdvert.ParentEstateTypeObjectId));
@@ -74,6 +74,14 @@ public partial class ProjectDetail : BasePage
         {
             hfLat.Value = CurrentProject.Latitude;
             hfLong.Value = CurrentProject.Longitude;
+
+            List<FeatureType> projectFeatureTypeList = DBProvider.GetFeatureTypeListByProjectType();
+
+            rptProjectFeatureType.DataSource = projectFeatureTypeList;
+            rptProjectFeatureType.DataBind();
+
+            rptProjectFeatureTypeTabs.DataSource = projectFeatureTypeList;
+            rptProjectFeatureTypeTabs.DataBind();
         }
     }
 
@@ -119,6 +127,38 @@ public partial class ProjectDetail : BasePage
             if (CurrentAdvert != null && CurrentAdvert.ObjectId == relation.AdvertObjectId)
             {
                 liProjectAdvertHousingTypeName.Attributes["class"] = "active";
+            }
+        }
+    }
+
+    protected void rptProjectFeatureTypeTabs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            FeatureType featureType = e.Item.DataItem as FeatureType;
+            Repeater rptProjectFeatures = e.Item.FindControl("rptProjectFeatures") as Repeater;
+
+            rptProjectFeatures.DataSource = DBProvider.GetFeatureListByFeatureTypeObjectId(featureType.ObjectId);
+            rptProjectFeatures.DataBind();
+        }
+    }
+
+    protected void rptProjectFeatures_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            HtmlGenericControl liFeature = e.Item.FindControl("liFeature") as HtmlGenericControl;
+            Feature feature = e.Item.DataItem as Feature;
+
+            if (CurrentProject.ProjectFeatureRelation.Where(i => !i.Deleted && i.FeatureObjectId == feature.ObjectId).Count() != 0)
+            {
+                liFeature.Attributes["data-checked"] = "1";
+                liFeature.Attributes["class"] = "checked";
+            }
+            else
+            {
+                liFeature.Attributes["data-checked"] = "0";
+                liFeature.Attributes["class"] = "plain";
             }
         }
     }

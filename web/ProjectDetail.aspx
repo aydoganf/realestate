@@ -149,8 +149,8 @@
                         </div>
 
                         <% }
-                        else
-                        { %>
+                            else
+                            { %>
 
                         <div class="span6 gallery">
                             <div class="preview">
@@ -574,6 +574,58 @@
                 <%=CurrentProject.ProjectDescription %>
             </p>
 
+            <div class="row">
+                <div class="span9">
+                    <div class="row">
+                        <div class="span9">
+                            <%--<h2>General amenities</h2>--%>
+                            <div class="mb-20">&nbsp;</div>
+
+                            <div class="row">
+                                <div class="tabbable tabbable-custom tabbable-full-width">
+                                    <ul class="nav nav-tabs">
+                                        <asp:Repeater ID="rptProjectFeatureType" runat="server">
+                                            <ItemTemplate>
+                                                <li class="<%#Container.ItemIndex == 0 ? "active" : "" %>">
+                                                    <a href="#tabFeatureType<%#Container.ItemIndex+1 %>" data-toggle="tab">
+                                                        <%#Eval("TypeName") %>
+                                                    </a>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <asp:Repeater ID="rptProjectFeatureTypeTabs" runat="server" OnItemDataBound="rptProjectFeatureTypeTabs_ItemDataBound">
+                                        <ItemTemplate>
+                                            <div class="tab-pane <%#Container.ItemIndex == 0 ? "active" : "" %>" id="tabFeatureType<%#Container.ItemIndex+1 %>">
+                                                <asp:Repeater ID="rptProjectFeatures" runat="server" OnItemDataBound="rptProjectFeatures_ItemDataBound">
+                                                    <HeaderTemplate>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <ul class="span2">
+                                                            <li id="liFeature" runat="server"><%#Eval("FeatureName") %></li>
+                                                        </ul>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                    </FooterTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.span12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <div class="span3">
+                </div>
+
+            </div>
 
             <div class="row">
                 <div class="span9">
@@ -678,8 +730,8 @@
             </div>
 
             <% }
-            else
-            { %>
+                else
+                { %>
 
             <h2>Emlak Bilgileri</h2>
 

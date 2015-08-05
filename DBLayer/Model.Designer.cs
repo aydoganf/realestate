@@ -50,6 +50,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertFeatureRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "AdvertFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertFeatureRelation), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_AdvertPhoto_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DBLayer.Advert), "AdvertPhoto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.AdvertPhoto), true)]
 [assembly: EdmRelationshipAttribute("RealEstateModel", "FK_ProjectAdvertRelation_Advert", "Advert", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Advert), "ProjectAdvertRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.ProjectAdvertRelation), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Feature", "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Feature), "ProjectFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.ProjectFeatureRelation), true)]
+[assembly: EdmRelationshipAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DBLayer.Project), "ProjectFeatureRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DBLayer.ProjectFeatureRelation), true)]
 
 #endregion
 
@@ -516,6 +518,22 @@ namespace DBLayer
             }
         }
         private ObjectSet<Advert> _Advert;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ProjectFeatureRelation> ProjectFeatureRelation
+        {
+            get
+            {
+                if ((_ProjectFeatureRelation == null))
+                {
+                    _ProjectFeatureRelation = base.CreateObjectSet<ProjectFeatureRelation>("ProjectFeatureRelation");
+                }
+                return _ProjectFeatureRelation;
+            }
+        }
+        private ObjectSet<ProjectFeatureRelation> _ProjectFeatureRelation;
 
         #endregion
 
@@ -727,6 +745,14 @@ namespace DBLayer
         public void AddToAdvert(Advert advert)
         {
             base.AddObject("Advert", advert);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ProjectFeatureRelation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProjectFeatureRelation(ProjectFeatureRelation projectFeatureRelation)
+        {
+            base.AddObject("ProjectFeatureRelation", projectFeatureRelation);
         }
 
         #endregion
@@ -5355,6 +5381,28 @@ namespace DBLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Feature", "ProjectFeatureRelation")]
+        public EntityCollection<ProjectFeatureRelation> ProjectFeatureRelation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFeatureRelation>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "ProjectFeatureRelation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFeatureRelation>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "ProjectFeatureRelation", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -5487,6 +5535,30 @@ namespace DBLayer
         private Nullable<global::System.Int32> _EstateTypeObjectId;
         partial void OnEstateTypeObjectIdChanging(Nullable<global::System.Int32> value);
         partial void OnEstateTypeObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsProjectType
+        {
+            get
+            {
+                return _IsProjectType;
+            }
+            set
+            {
+                OnIsProjectTypeChanging(value);
+                ReportPropertyChanging("IsProjectType");
+                _IsProjectType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsProjectType");
+                OnIsProjectTypeChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsProjectType;
+        partial void OnIsProjectTypeChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsProjectTypeChanged();
 
         #endregion
 
@@ -7120,6 +7192,28 @@ namespace DBLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Project", "ProjectFeatureRelation")]
+        public EntityCollection<ProjectFeatureRelation> ProjectFeatureRelation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFeatureRelation>("RealEstateModel.FK_ProjectFeatureRelation_Project", "ProjectFeatureRelation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFeatureRelation>("RealEstateModel.FK_ProjectFeatureRelation_Project", "ProjectFeatureRelation", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -7358,6 +7452,221 @@ namespace DBLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Advert>("RealEstateModel.FK_ProjectAdvertRelation_Advert", "Advert", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RealEstateModel", Name="ProjectFeatureRelation")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ProjectFeatureRelation : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ProjectFeatureRelation object.
+        /// </summary>
+        /// <param name="objectId">Initial value of the ObjectId property.</param>
+        /// <param name="projectObjectId">Initial value of the ProjectObjectId property.</param>
+        /// <param name="featureObjectId">Initial value of the FeatureObjectId property.</param>
+        /// <param name="deleted">Initial value of the Deleted property.</param>
+        public static ProjectFeatureRelation CreateProjectFeatureRelation(global::System.Int32 objectId, global::System.Int32 projectObjectId, global::System.Int32 featureObjectId, global::System.Boolean deleted)
+        {
+            ProjectFeatureRelation projectFeatureRelation = new ProjectFeatureRelation();
+            projectFeatureRelation.ObjectId = objectId;
+            projectFeatureRelation.ProjectObjectId = projectObjectId;
+            projectFeatureRelation.FeatureObjectId = featureObjectId;
+            projectFeatureRelation.Deleted = deleted;
+            return projectFeatureRelation;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                if (_ObjectId != value)
+                {
+                    OnObjectIdChanging(value);
+                    ReportPropertyChanging("ObjectId");
+                    _ObjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ObjectId");
+                    OnObjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ObjectId;
+        partial void OnObjectIdChanging(global::System.Int32 value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectObjectId
+        {
+            get
+            {
+                return _ProjectObjectId;
+            }
+            set
+            {
+                OnProjectObjectIdChanging(value);
+                ReportPropertyChanging("ProjectObjectId");
+                _ProjectObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectObjectId");
+                OnProjectObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectObjectId;
+        partial void OnProjectObjectIdChanging(global::System.Int32 value);
+        partial void OnProjectObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FeatureObjectId
+        {
+            get
+            {
+                return _FeatureObjectId;
+            }
+            set
+            {
+                OnFeatureObjectIdChanging(value);
+                ReportPropertyChanging("FeatureObjectId");
+                _FeatureObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FeatureObjectId");
+                OnFeatureObjectIdChanged();
+            }
+        }
+        private global::System.Int32 _FeatureObjectId;
+        partial void OnFeatureObjectIdChanging(global::System.Int32 value);
+        partial void OnFeatureObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Deleted
+        {
+            get
+            {
+                return _Deleted;
+            }
+            set
+            {
+                OnDeletedChanging(value);
+                ReportPropertyChanging("Deleted");
+                _Deleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Deleted");
+                OnDeletedChanged();
+            }
+        }
+        private global::System.Boolean _Deleted;
+        partial void OnDeletedChanging(global::System.Boolean value);
+        partial void OnDeletedChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Feature", "Feature")]
+        public Feature Feature
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Feature>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "Feature").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Feature>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "Feature").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Feature> FeatureReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Feature>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "Feature");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Feature>("RealEstateModel.FK_ProjectFeatureRelation_Feature", "Feature", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RealEstateModel", "FK_ProjectFeatureRelation_Project", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectFeatureRelation_Project", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectFeatureRelation_Project", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("RealEstateModel.FK_ProjectFeatureRelation_Project", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("RealEstateModel.FK_ProjectFeatureRelation_Project", "Project", value);
                 }
             }
         }

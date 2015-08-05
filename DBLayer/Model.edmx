@@ -193,6 +193,7 @@
           <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="EstateTypeObjectId" Type="int" />
+          <Property Name="IsProjectType" Type="bit" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Floor">
@@ -278,6 +279,15 @@
           <Property Name="HousingTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProjectObjectId" Type="int" Nullable="false" />
           <Property Name="AdvertObjectId" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectFeatureRelation">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectObjectId" Type="int" Nullable="false" />
+          <Property Name="FeatureObjectId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RoomHall">
@@ -667,6 +677,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectFeatureRelation_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="ProjectFeatureRelation" Type="Self.ProjectFeatureRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="ProjectFeatureRelation">
+              <PropertyRef Name="FeatureObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeatureRelation_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectFeatureRelation" Type="Self.ProjectFeatureRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="ProjectFeatureRelation">
+              <PropertyRef Name="ProjectObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Town_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="Town" Type="Self.Town" Multiplicity="*" />
@@ -703,6 +737,7 @@
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectAdvertRelation" EntityType="Self.ProjectAdvertRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectFeatureRelation" EntityType="Self.ProjectFeatureRelation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomHall" EntityType="Self.RoomHall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StarCount" EntityType="Self.StarCount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
@@ -826,6 +861,14 @@
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectAdvertRelation" EntitySet="ProjectAdvertRelation" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeatureRelation_Feature" Association="Self.FK_ProjectFeatureRelation_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="ProjectFeatureRelation" EntitySet="ProjectFeatureRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeatureRelation_Project" Association="Self.FK_ProjectFeatureRelation_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectFeatureRelation" EntitySet="ProjectFeatureRelation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Town_City" Association="Self.FK_Town_City">
             <End Role="City" EntitySet="City" />
             <End Role="Town" EntitySet="Town" />
@@ -921,6 +964,7 @@
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AdvertFeatureRelation" Relationship="Self.FK_AdvertFeatureRelation_Feature" FromRole="Feature" ToRole="AdvertFeatureRelation" />
           <NavigationProperty Name="FeatureType" Relationship="Self.FK_Feature_FeatureType" FromRole="Feature" ToRole="FeatureType" />
+          <NavigationProperty Name="ProjectFeatureRelation" Relationship="RealEstateModel.FK_ProjectFeatureRelation_Feature" FromRole="Feature" ToRole="ProjectFeatureRelation" />
         </EntityType>
         <EntityType Name="FeatureType">
           <Key>
@@ -932,6 +976,7 @@
           <NavigationProperty Name="Feature" Relationship="Self.FK_Feature_FeatureType" FromRole="FeatureType" ToRole="Feature" />
           <Property Name="EstateTypeObjectId" Type="Int32" />
           <NavigationProperty Name="EstateType" Relationship="RealEstateModel.FK_FeatureType_EstateType" FromRole="FeatureType" ToRole="EstateType" />
+          <Property Name="IsProjectType" Type="Boolean" />
         </EntityType>
         <EntityType Name="Floor">
           <Key>
@@ -1192,6 +1237,15 @@
             <End Role="Advert" EntitySet="Advert" />
             <End Role="ProjectAdvertRelation" EntitySet="ProjectAdvertRelation" />
           </AssociationSet>
+          <EntitySet Name="ProjectFeatureRelation" EntityType="RealEstateModel.ProjectFeatureRelation" />
+          <AssociationSet Name="FK_ProjectFeatureRelation_Feature" Association="RealEstateModel.FK_ProjectFeatureRelation_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="ProjectFeatureRelation" EntitySet="ProjectFeatureRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeatureRelation_Project" Association="RealEstateModel.FK_ProjectFeatureRelation_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectFeatureRelation" EntitySet="ProjectFeatureRelation" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdvertPhoto">
           <Key>
@@ -1359,6 +1413,7 @@
           <NavigationProperty Name="ProjectAdvertRelation" Relationship="RealEstateModel.FK_ProjectAdvertRelation_Project" FromRole="Project" ToRole="ProjectAdvertRelation" />
           <NavigationProperty Name="AdvertPhoto" Relationship="RealEstateModel.FK_AdvertPhoto_Project" FromRole="Project" ToRole="AdvertPhoto" />
           <NavigationProperty Name="Advert" Relationship="RealEstateModel.FK_Advert_Project" FromRole="Project" ToRole="Advert" />
+          <NavigationProperty Name="ProjectFeatureRelation" Relationship="RealEstateModel.FK_ProjectFeatureRelation_Project" FromRole="Project" ToRole="ProjectFeatureRelation" />
         </EntityType>
         <Association Name="FK_ProjectAdvertRelation_Project">
           <End Type="RealEstateModel.Project" Role="Project" Multiplicity="1" />
@@ -1723,6 +1778,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProjectFeatureRelation">
+          <Key>
+            <PropertyRef Name="ObjectId" />
+          </Key>
+          <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectObjectId" Type="Int32" Nullable="false" />
+          <Property Name="FeatureObjectId" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Feature" Relationship="RealEstateModel.FK_ProjectFeatureRelation_Feature" FromRole="ProjectFeatureRelation" ToRole="Feature" />
+          <NavigationProperty Name="Project" Relationship="RealEstateModel.FK_ProjectFeatureRelation_Project" FromRole="ProjectFeatureRelation" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_ProjectFeatureRelation_Feature">
+          <End Type="RealEstateModel.Feature" Role="Feature" Multiplicity="1" />
+          <End Type="RealEstateModel.ProjectFeatureRelation" Role="ProjectFeatureRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="ProjectFeatureRelation">
+              <PropertyRef Name="FeatureObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeatureRelation_Project">
+          <End Type="RealEstateModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="RealEstateModel.ProjectFeatureRelation" Role="ProjectFeatureRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ObjectId" />
+            </Principal>
+            <Dependent Role="ProjectFeatureRelation">
+              <PropertyRef Name="ProjectObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1812,6 +1902,7 @@
           <EntitySetMapping Name="FeatureType">
             <EntityTypeMapping TypeName="RealEstateModel.FeatureType">
               <MappingFragment StoreEntitySet="FeatureType">
+                <ScalarProperty Name="IsProjectType" ColumnName="IsProjectType" />
                 <ScalarProperty Name="EstateTypeObjectId" ColumnName="EstateTypeObjectId" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -2053,6 +2144,16 @@
                 <ScalarProperty Name="Area" ColumnName="Area" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectFeatureRelation">
+            <EntityTypeMapping TypeName="RealEstateModel.ProjectFeatureRelation">
+              <MappingFragment StoreEntitySet="ProjectFeatureRelation">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="FeatureObjectId" ColumnName="FeatureObjectId" />
+                <ScalarProperty Name="ProjectObjectId" ColumnName="ProjectObjectId" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
               </MappingFragment>
             </EntityTypeMapping>

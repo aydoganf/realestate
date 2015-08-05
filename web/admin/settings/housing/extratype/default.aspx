@@ -36,7 +36,8 @@
                     <tr>
                         <td>İşlem</td>
                         <td>Adı</td>
-                        <td>Emlak Tipi</td>                
+                        <td>Emlak Tipi</td>
+                        <td>Proje Tipi mi?</td>                
                     </tr>
                 </thead>
                 <tbody id="content">
@@ -54,6 +55,7 @@
                         </td>
                         <td><%#Eval("TypeName") %></td>
                         <td><%#Eval("EstateType.TypeName") %></td>
+                        <td><%# Eval("IsprojectType") != null ? ((bool)Eval("IsprojectType") ? "Evet" : "Hayır") : "Hayır" %></td>
                     </tr>
         </ItemTemplate>
         <FooterTemplate>

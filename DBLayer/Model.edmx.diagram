@@ -36,7 +36,7 @@
         <EntityTypeShape EntityType="RealEstateModel.StarCount" Width="1.5" PointX="9.375" PointY="0.875" />
         <AssociationConnector Association="RealEstateModel.FK_FeatureType_EstateType" />
         <EntityTypeShape EntityType="RealEstateModel.ProjectAdvertRelation" Width="1.5" PointX="12.5" PointY="14.5" />
-        <EntityTypeShape EntityType="RealEstateModel.Project" Width="1.5" PointX="9.375" PointY="4.125" />
+        <EntityTypeShape EntityType="RealEstateModel.Project" Width="2" PointX="9.375" PointY="4.125" />
         <AssociationConnector Association="RealEstateModel.FK_ProjectAdvertRelation_Project" />
         <AssociationConnector Association="RealEstateModel.FK_AdvertPhoto_Project" />
         <EntityTypeShape EntityType="RealEstateModel.Advert" Width="1.5" PointX="15.625" PointY="6" />
@@ -62,6 +62,9 @@
         <AssociationConnector Association="RealEstateModel.FK_AdvertFeatureRelation_Advert" />
         <AssociationConnector Association="RealEstateModel.FK_AdvertPhoto_Advert" />
         <AssociationConnector Association="RealEstateModel.FK_ProjectAdvertRelation_Advert" />
+        <EntityTypeShape EntityType="RealEstateModel.ProjectFeatureRelation" Width="1.5" PointX="12" PointY="22.875" />
+        <AssociationConnector Association="RealEstateModel.FK_ProjectFeatureRelation_Feature" />
+        <AssociationConnector Association="RealEstateModel.FK_ProjectFeatureRelation_Project" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -38,8 +38,8 @@
     <div class="row">
         <div class="col-md-12">
 
-            <asp:Panel ID="pnlActiveStatus" runat="server" CssClass="text-center" 
-                style="background-color:red; color:white; margin-bottom:10px; font-size:18px; padding:15px;" Visible="false">
+            <asp:Panel ID="pnlActiveStatus" runat="server" CssClass="text-center"
+                Style="background-color: red; color: white; margin-bottom: 10px; font-size: 18px; padding: 15px;" Visible="false">
                 Proje henüz yayına alınmamış. Yayına almak için sağ üstten 'İşlemler' kısmından yayına alabilirsiniz.
             </asp:Panel>
 
@@ -176,6 +176,41 @@
                                             </div>
                                         </div>
 
+                                        <!-- Ekstra Özellikler -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">&nbsp;</label>
+                                                    <div class="tabbable tabbable-custom tabbable-full-width">
+                                                        <ul class="nav nav-tabs">
+                                                            <asp:Repeater ID="rptFeatureType" runat="server">
+                                                                <ItemTemplate>
+                                                                    <li class="<%#Container.ItemIndex == 0 ? "active" : "" %>">
+                                                                        <a href="#tabFeatureType<%#Container.ItemIndex+1 %>" data-toggle="tab">
+                                                                            <%#Eval("TypeName") %>
+                                                                        </a>
+                                                                    </li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="tab-content">
+                                                        <asp:Repeater ID="rptFeatureTypeTabs" runat="server" OnItemDataBound="rptFeatureTypeTabs_ItemDataBound">
+                                                            <ItemTemplate>
+                                                                <div class="tab-pane <%#Container.ItemIndex == 0 ? "active" : "" %>" id="tabFeatureType<%#Container.ItemIndex+1 %>">
+                                                                    <div class="table-responsive">
+                                                                        <asp:CheckBoxList ID="cblFeatureList" runat="server"
+                                                                            RepeatDirection="Horizontal" RepeatColumns="5" RepeatLayout="Table"
+                                                                            DataTextField="FeatureName" DataValueField="ObjectId" CssClass="table table-advance">
+                                                                        </asp:CheckBoxList>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-actions">
@@ -214,7 +249,8 @@
                                         <ItemTemplate>
                                             <div class="col-md-3 margin-bottom-10">
                                                 <%#Eval("HousingTypeName") %><br />
-                                                <a href="../advert/data.aspx?advert=<%#Eval("Advert.ObjectId") %>"><img src="/uploads/<%#Eval("Advert.PrimaryAdvertPhoto") %>" class="img-responsive" /></a>
+                                                <a href="../advert/data.aspx?advert=<%#Eval("Advert.ObjectId") %>">
+                                                    <img src="/uploads/<%#Eval("Advert.PrimaryAdvertPhoto") %>" class="img-responsive" /></a>
                                                 <div class="text-center">
                                                     <%#Eval("Advert.Title") %><br />
                                                     <asp:LinkButton ID="lbtnDeleteProjectAdvert" runat="server" CssClass="btn btn-danger"
@@ -251,7 +287,7 @@
                                         </div>
                                     </div>
                                     <div class="form-actions">
-                                        <asp:Button ID="btnSaveProjectAdvertRelation" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSaveProjectAdvertRelation_Click" />                                        
+                                        <asp:Button ID="btnSaveProjectAdvertRelation" runat="server" CssClass="btn green" Text="Kaydet" OnClick="btnSaveProjectAdvertRelation_Click" />
                                     </div>
 
                                 </asp:Panel>
@@ -266,7 +302,7 @@
                                     </p>
                                 </asp:Panel>
 
-                                <asp:Panel ID="pnlProjectPhoto" runat="server" Visible="false">                                                                       
+                                <asp:Panel ID="pnlProjectPhoto" runat="server" Visible="false">
 
                                     <asp:Panel ID="pnlProjectPhotoAdded" runat="server" CssClass="alert alert-success" Visible="false">
                                         <h4>Bilgi</h4>
@@ -310,7 +346,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <div class="col-md-offset-3 col-md-9">
-                                            <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Fotoğrafı Kaydet" OnClick="btnSavePicture_Click" />                                            
+                                            <asp:Button ID="btnSavePicture" runat="server" CssClass="btn green" Text="Fotoğrafı Kaydet" OnClick="btnSavePicture_Click" />
                                         </div>
                                     </div>
                                 </asp:Panel>

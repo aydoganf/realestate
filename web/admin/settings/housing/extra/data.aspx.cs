@@ -43,7 +43,12 @@ public partial class settings_housing_extra_data : BasePage
 
         foreach (FeatureType item in featureTypeList)
         {
-            ListItem li = new ListItem(item.EstateType.TypeName + " - " + item.TypeName, item.ObjectId.ToString());
+            string name = "";
+            if (item.EstateTypeObjectId.HasValue)
+                name = item.EstateType.TypeName + " - " + item.TypeName;
+            else
+                name = "Proje - " + item.TypeName;
+            ListItem li = new ListItem(name, item.ObjectId.ToString());
             ddlFeatureType.Items.Add(li);
         }
 

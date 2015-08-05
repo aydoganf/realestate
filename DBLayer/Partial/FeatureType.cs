@@ -15,12 +15,13 @@ namespace DBLayer
 
     public partial class RealEstateEntities
     {
-        public FeatureType AddFeatureType(string typeName, int estateTypeId)
+        public FeatureType AddFeatureType(string typeName, int? estateTypeId, bool isProjectType)
         {
             FeatureType obj = new FeatureType() 
             {
                 TypeName = typeName,
                 EstateTypeObjectId = estateTypeId,
+                IsProjectType = isProjectType,
                 Deleted = false
             };
             AddToFeatureType(obj);
@@ -39,7 +40,12 @@ namespace DBLayer
 
         public List<FeatureType> GetFeatureTypeListByEstateTypeObjectId(int estateTypeId)
         {
-            return FeatureType.Where(i => i.EstateTypeObjectId == estateTypeId && i.Deleted == false).ToList();
+            return FeatureType.Where(i => i.EstateTypeObjectId == estateTypeId && i.Deleted == false && i.IsProjectType == null).ToList();
+        }
+
+        public List<FeatureType> GetFeatureTypeListByProjectType()
+        {
+            return FeatureType.Where(i => i.IsProjectType == true && !i.Deleted && i.EstateTypeObjectId == null).ToList();
         }
     }
 }

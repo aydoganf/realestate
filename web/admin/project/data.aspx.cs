@@ -43,6 +43,14 @@ public partial class admin_project_data : BasePage
         ddlTown.Items.Insert(0, new ListItem("Önce il seçiniz", ""));
         ddlDistrict.Items.Insert(0, new ListItem("Önce ilçe seçiniz", ""));
 
+        List<FeatureType> featureTypeList = DBProvider.GetFeatureTypeListByProjectType();
+
+        rptFeatureType.DataSource = featureTypeList;
+        rptFeatureType.DataBind();
+
+        rptFeatureTypeTabs.DataSource = featureTypeList;
+        rptFeatureTypeTabs.DataBind();
+
         if (CurrentProject == null)
         {
             pnlNoProject.Visible = true;
@@ -73,6 +81,18 @@ public partial class admin_project_data : BasePage
             hfLong.Value = CurrentProject.Longitude;
             hfAddress.Value = CurrentProject.GAddress;
             hfCurrentProject.Value = CurrentProject.ObjectId.ToString();
+
+            List<ProjectFeatureRelation> featureRelationList = CurrentProject.ProjectFeatureRelation.Where(i => !i.Deleted).ToList();
+            foreach (RepeaterItem item in rptFeatureTypeTabs.Items)
+            {
+                CheckBoxList cblFeatureList = item.FindControl("cblFeatureList") as CheckBoxList;
+                foreach (ListItem citem in cblFeatureList.Items)
+                {
+                    if (featureRelationList.FirstOrDefault(i => i.FeatureObjectId == Convert.ToInt32(citem.Value)) != null)
+                        citem.Selected = true;
+                }
+            }
+
 
             if (!CurrentProject.IsActive)
             {
@@ -192,7 +212,6 @@ public partial class admin_project_data : BasePage
             Town town = DBProvider.GetTownByObjectId(townId);
             District district = DBProvider.GetDistrictByObjectId(districtId);
 
-
             if (CurrentProject == null)
             {
                 #region Create Project
@@ -200,12 +219,25 @@ public partial class admin_project_data : BasePage
                 Project obj = DBProvider.AddProject(_projectName, _projectDescription, projectHousingCount, projectTotalArea, _areaRange, _roomOptions, _deliveryDate, false,
                     cityId, city.CityName, townId, town.TownName, districtId, district.DistrictName, hfLat.Value, hfLong.Value, hfAddress.Value);
                 DBProvider.SaveChanges();
+
+                foreach (RepeaterItem rItem in rptFeatureTypeTabs.Items)
+                {
+                    CheckBoxList cbList = rItem.FindControl("cblFeatureList") as CheckBoxList;
+                    foreach (ListItem lItem in cbList.Items)
+                    {
+                        if (lItem.Selected)
+                            DBProvider.AddProjectFeatureRelation(obj.ObjectId, Convert.ToInt32(lItem.Value));
+                    }
+                }
+                DBProvider.SaveChanges();
+
                 Response.Redirect("data.aspx?project=" + obj.ObjectId.ToString() + "&project_status=0&tab=tab2");
 
                 #endregion
             }
             else
             {
+                #region Edit Project
                 CurrentProject.ProjectName = _projectName;
                 CurrentProject.ProjectDescription = _projectDescription;
                 CurrentProject.ProjectHousingCount = projectHousingCount;
@@ -223,14 +255,30 @@ public partial class admin_project_data : BasePage
                 CurrentProject.Longitude = hfLong.Value;
                 CurrentProject.GAddress = tbGAddress.Text.Trim();
 
+                foreach (RepeaterItem rItem in rptFeatureTypeTabs.Items)
+                {
+                    CheckBoxList cbList = rItem.FindControl("cblFeatureList") as CheckBoxList;
+                    foreach (ListItem lItem in cbList.Items)
+                    {
+                        int val = Convert.ToInt32(lItem.Value);
+                        if (lItem.Selected && CurrentProject.ProjectFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) == null)
+                        {
+                            DBProvider.AddProjectFeatureRelation(CurrentProject.ObjectId, val);
+                        }
+                        else if (!lItem.Selected && CurrentProject.ProjectFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val) != null)
+                        {
+                            CurrentProject.ProjectFeatureRelation.Where(i => i.Deleted == false).FirstOrDefault(i => i.FeatureObjectId == val).Delete();
+                        }
+                    }
+                }
+
                 DBProvider.SaveChanges();
                 BindData();
                 SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle,
                     ApplicationGenericControls.OperationStatus.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
+                #endregion
             }
-
         }
-
     }
 
     protected void btnSaveProjectAdvertRelation_Click(object sender, EventArgs e)
@@ -347,6 +395,18 @@ public partial class admin_project_data : BasePage
                 ApplicationGenericControls.Operations.ProjectAdvert.StatusDELETEDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
             string script = "setTab('tab3');";
             RegisterStartupScript("setTabKey", script);
+        }
+    }
+
+    protected void rptFeatureTypeTabs_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            FeatureType featureType = e.Item.DataItem as FeatureType;
+            List<Feature> featureList = DBProvider.GetFeatureListByFeatureTypeObjectId(featureType.ObjectId);
+            CheckBoxList cblFeatureList = e.Item.FindControl("cblFeatureList") as CheckBoxList;
+            cblFeatureList.DataSource = featureList;
+            cblFeatureList.DataBind();
         }
     }
     #endregion

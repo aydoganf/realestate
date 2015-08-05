@@ -36,6 +36,12 @@
                             <asp:DropDownList ID="ddlEstateType" runat="server" DataTextField="TypeName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Proje Tipi mi?</label>
+                        <div class="col-md-6">
+                            <asp:CheckBox ID="cbIsProjectType" runat="server" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
