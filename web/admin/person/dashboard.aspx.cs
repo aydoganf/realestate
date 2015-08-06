@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 
+[AuthenticationRequired()]
 public partial class person_dashboard : BasePage
 {
     private Person currentPerson;

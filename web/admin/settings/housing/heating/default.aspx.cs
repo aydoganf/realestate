@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 
+[AuthenticationRequired()]
 public partial class settings_housing_heating_default : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)

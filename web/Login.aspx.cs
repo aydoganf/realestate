@@ -74,7 +74,7 @@ public partial class Login : BasePage
                 formsCookieStr = FormsAuthentication.Encrypt(ticket);
                 HttpCookie FormsCookie = new HttpCookie(FormsAuthentication.FormsCookieName, formsCookieStr);
                 currentContext.Response.Cookies.Add(FormsCookie);
-                Session["CurrentUserId"] = 0;
+                Session["CurrentUserId"] = person.ObjectId;
 
                 Response.Redirect("~/admin/default.aspx");
             }

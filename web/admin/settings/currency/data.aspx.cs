@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 
+[AuthenticationRequired()]
 public partial class settings_currency_data : BasePage
 {
     private Currency currentCurrency;

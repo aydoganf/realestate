@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 
+[AuthenticationRequired()]
 public partial class admin_settings_account_change_password : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)

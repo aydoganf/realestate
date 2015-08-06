@@ -15,6 +15,44 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class BasePage : System.Web.UI.Page
 {
+
+    public BasePage()
+    {
+        this.PreInit += new EventHandler(BasePage_PreInit);
+    }
+
+    void BasePage_PreInit(object sender, EventArgs e)
+    {
+        CheckAuthentication();
+    }
+
+    void CheckAuthentication()
+    {
+        object[] attribs = this.GetType().GetCustomAttributes(true);
+        bool auth = false;
+        bool attribute = false;
+        foreach (object item in attribs)
+        {
+            if (item is AuthenticationRequiredAttribute && Session["CurrentUserId"] != null)
+            {
+                attribute = true;
+                AuthenticationRequiredAttribute aitem = (AuthenticationRequiredAttribute)item;
+
+                int personId = Convert.ToInt32(Session["CurrentUserId"]);
+                Person p = DBProvider.GetPersonByObjectId(personId);
+                if (p != null && p.AccountTypeObjectId == 2 && Page.User.Identity.IsAuthenticated && p.Email == Page.User.Identity.Name)
+                    auth = true;
+            }
+            if (auth)
+                break;
+        }
+
+        if (!auth && attribute)
+        {
+            Response.Redirect("~/default.aspx");
+        }
+    }
+
     private string FieldSiteName;
     public string SiteName
     {
@@ -91,10 +129,7 @@ public class BasePage : System.Web.UI.Page
     {
         ClientScript.RegisterStartupScript(GetType(), scriptKey, script, true);
     }
-
-    public BasePage()
-    {
-    }
+    
 
     private string CyrptoKey = "Faruk";
     private TripleDESCryptoServiceProvider _cryptDES3;
