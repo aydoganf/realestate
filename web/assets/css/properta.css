@@ -2701,11 +2701,11 @@ textarea {
     }
 
         .properties-grid .property .info:hover .title h2 a {
-            white-space: normal;
+            /*white-space: normal;*/
         }
 
         .properties-grid .property .info:hover .location {
-            white-space: normal;
+            /*white-space: normal;*/
         }
 
     .properties-grid .property .info .title h2 {

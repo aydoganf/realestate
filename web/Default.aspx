@@ -29,7 +29,7 @@
     <link rel='stylesheet' id='chosen-css' href='/assets/libraries/chosen/chosen.css' type='text/css' media='all' />
 
     <link rel='stylesheet' id='aviators-css' href='/assets/css/jquery.bxslider.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css?v=26.6.2015' type='text/css' media='all' />
+    <link rel='stylesheet' id='properta-css' href='/assets/css/properta.css?v=25.08.2015' type='text/css' media='all' />
     <link rel="stylesheet" id="custom-css" href="/assets/css/custom.css?v=26.6.2015" type="text/css" media="all" />
 
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
@@ -208,7 +208,7 @@
                                         <p class="realEstateMapItem-price"><%# FormatPrice(Eval("Price").ToString()) %></p>
                                         <p class="realEstateMapItem-priceCurrency"><%# Eval("PriceCurrency.CurrencyName") %></p>
                                         <p class="realEstateMapItem-title"><%#Eval("Title") %></p>
-                                        <p class="realEstateMapItem-shortTitle"><%#Eval("Title").ToString().Substring(0,25) %></p>
+                                        <p class="realEstateMapItem-shortTitle"><%#Eval("Title").ToString().Length > 25 ? Eval("Title").ToString().Substring(0,25) : Eval("Title").ToString() %></p>
                                         <p class="realEstateMapItem-picture"><%#Eval("PrimarySmallAdvertPhoto") %></p>
                                         <p class="realEstateMapItem-area"><%#Eval("Area") %></p>
                                         <p class="realEstateMapItem-estateType"><%#Eval("EstateType.TypeName") %></p>
@@ -288,14 +288,14 @@
                                 contents: infoBoxes,
                                 transparentMarkerImage: '/assets/img/marker-transparent.png',
                                 transparentClusterImage: '/assets/img/markers/cluster-transparent.png',
-                                zoom: 14,
+                                zoom: 10,
                                 center: {
                                     latitude: latCenter,
                                     longitude: longCenter
                                 },
                                 filterForm: '.map-filtering',
                                 enableGeolocation: '',
-                                pixelOffsetX: -75,
+                                pixelOffsetX: -55,
                                 pixelOffsetY: -200
                             });
 
@@ -352,7 +352,7 @@
 
                         }
                     </script>
-                    <div id="map" class="map-inner" style="height: 750px"></div>
+                    <div id="map" class="map-inner" style="height: 550px"></div>
                 </div>
             </div>
             <%-- Map Wrapper Bitti --%>

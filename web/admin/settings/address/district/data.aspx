@@ -69,10 +69,14 @@
 
             $('#<%=cbAddMultiple.ClientID%>').change(function () {
                 console.log($(this).is(':checked'));
-                if ($(this).is(':checked'))
+                if ($(this).is(':checked')) {
                     $('#divAddMultiple').removeClass('hidden');
-                else
+                    $('#divAddUnique').addClass('hidden');
+                }
+                else {
                     $('#divAddMultiple').addClass('hidden');
+                    $('#divAddUnique').removeClass('hidden');
+                }
 
             });
 

@@ -40,7 +40,8 @@ namespace DBLayer
 
         public List<FeatureType> GetFeatureTypeListByEstateTypeObjectId(int estateTypeId)
         {
-            return FeatureType.Where(i => i.EstateTypeObjectId == estateTypeId && i.Deleted == false && i.IsProjectType == null).ToList();
+            return FeatureType.Where(i => i.EstateTypeObjectId == estateTypeId && i.Deleted == false && 
+            (i.IsProjectType == null || i.IsProjectType == false)).ToList();
         }
 
         public List<FeatureType> GetFeatureTypeListByProjectType()
