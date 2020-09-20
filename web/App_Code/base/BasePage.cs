@@ -1,4 +1,5 @@
 ﻿using DBLayer;
+using REModel.Old.Api;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,15 +16,21 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class BasePage : System.Web.UI.Page
 {
+    protected readonly IREUserApi _userApi;
+
+    protected readonly IREAdvertApi _advertApi;
 
     public BasePage()
     {
+        _userApi = Refit.RestService.For<IREUserApi>(ConfigurationManager.AppSettings["IREUserApi"]); 
+        _advertApi = Refit.RestService.For<IREAdvertApi>(ConfigurationManager.AppSettings["IREAdvertApi"]);
+
         this.PreInit += new EventHandler(BasePage_PreInit);
     }
 
     void BasePage_PreInit(object sender, EventArgs e)
     {
-        CheckAuthentication();
+        //CheckAuthentication();
     }
 
     void CheckAuthentication()
@@ -79,6 +86,8 @@ public class BasePage : System.Web.UI.Page
         }
     }
 
+    
+
     protected static string MD5Crypto(string metin)
     {
         MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
@@ -105,7 +114,7 @@ public class BasePage : System.Web.UI.Page
             {
                 if (Page.User.Identity.IsAuthenticated)
                 {
-                    currentPerson = DBProvider.GetPersonByEmailAddress(Page.User.Identity.Name);
+                    currentPerson = new Person() { }; //DBProvider.GetPersonByEmailAddress(Page.User.Identity.Name);
                 }
                 else
                 {

@@ -8,7 +8,25 @@ using System.Web;
 /// </summary>
 public class ApplicationGenericControls
 {
-	public static class OperationStatus
+    public static List<KeyValueStore> _estateTypes = new List<KeyValueStore>()
+    {
+        new KeyValueStore("Konut", "Konut"),
+        new KeyValueStore("Daire", "Daire", "Konut"),
+        new KeyValueStore("Müstakil Ev", "Müstakil Ev", "Konut"),
+
+        new KeyValueStore("Işyeri", "İşyeri"),
+        new KeyValueStore("Dükkan", "Dükkan", "İşyeri"),
+        new KeyValueStore("Ofis", "Ofis", "İşyeri"),
+        new KeyValueStore("Depo", "Depo", "İşyeri"),
+
+        new KeyValueStore("Arsa", "Arsa"),
+        new KeyValueStore("Tarla", "Tarla", "Arsa"),
+        new KeyValueStore("Bahçe", "Bahçe", "Arsa"),
+        new KeyValueStore("Bağ", "Bağ", "Arsa"),
+
+    };
+
+    public static class OperationStatus
     {
         public static string StatusOKTitle = "Başarılı !";
         public static string StatusOKDescription = "İşleminiz başarıyla gerçekleştirilmiştir.";

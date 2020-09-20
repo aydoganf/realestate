@@ -36,8 +36,16 @@ namespace TestApi.Mongo
             services.AddScoped<IMongoInitializer, MongoInitializer>();
             services.AddScoped<IDatabaseSeeder, MongoSeeder>();
             services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
-            services.AddScoped<IUserRepository, UserRepository>();
+        }
 
+        public static void AddREModel(this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAdvertRepository, AdvertRepository>();
+        }
+
+        public static void InitMongo(this IServiceCollection services)
+        {
             services.BuildServiceProvider().GetService<IMongoInitializer>().InitializeAsync();
         }
     }

@@ -56,6 +56,7 @@ public partial class _Default : BasePage
 
     protected void BindData()
     {
+        return;
         List<Advert> recentList = DBProvider.GetMostRecentAdvertList(100);
 
         #region Map Databinding

@@ -5,7 +5,7 @@ using System.Web;
 
 public class JSEstateTpe
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string text { get; set; }
     public string icon { get; set; }
     public string li_attr { get; set; }

@@ -62,7 +62,7 @@ public class MasterBasePage : System.Web.UI.MasterPage
         {
             if (FieldCurrentPerson == default(Person))
             {
-                FieldCurrentPerson = DBProvider.GetPersonByEmailAddress(Page.User.Identity.Name);
+                FieldCurrentPerson = new Person() {  }; //DBProvider.GetPersonByEmailAddress(Page.User.Identity.Name);
             }
             return FieldCurrentPerson;
         }

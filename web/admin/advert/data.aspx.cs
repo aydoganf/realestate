@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
 
+
+
 [AuthenticationRequired()]
 public partial class advert_data : BasePage
 {
@@ -31,6 +33,32 @@ public partial class advert_data : BasePage
     }
 
     private static readonly string[] _validExtensions = { "image/gif", "image/jpeg", "image/jpg", "image/png" };
+
+    private List<KeyValueStore> _cities
+    {
+        get
+        {
+            return new List<KeyValueStore>()
+            {
+                new KeyValueStore("Niğde", "Niğde")
+            };
+        }
+    }
+
+    private List<KeyValueStore> _towns
+    {
+        get
+        {
+            return new List<KeyValueStore>()
+            {
+                new KeyValueStore("Bor", "Bor", "Niğde"),
+                new KeyValueStore("Merkez", "Merkez", "Niğde"),
+                new KeyValueStore("Ulukışla", "Ulukışla", "Niğde"),
+                new KeyValueStore("Çamardı", "Çamardı", "Niğde"),
+                new KeyValueStore("Çiftlik", "Çiftlik", "Niğde")
+            };
+        }
+    }
     #endregion
     
     #region Helpers
@@ -55,29 +83,45 @@ public partial class advert_data : BasePage
 
     protected void BindData()
     {
-        #region Dropdowns
-        ddlMarketingType.DataSource = DBProvider.GetMarketingTypeList();
+        ddlMarketingType.DataSource = new List<KeyValueStore>()
+        {
+            new KeyValueStore("Satılık", "satılık"),
+            new KeyValueStore("Kiralık", "kiralık")
+        };
         ddlMarketingType.DataBind();
-        ddlMarketingType.SelectedValue = "1";
+        ddlMarketingType.SelectedValue = "satılık";
 
-        List<Currency> currenyList = DBProvider.GetCurrencyList();
-        ddlDepositCurrency.DataSource = currenyList;
+        var currencies = new List<KeyValueStore>()
+        {
+            new KeyValueStore("TL", "TL"),
+            new KeyValueStore("Euro", "Euro"),
+            new KeyValueStore("USD", "USD")
+        };
+
+        ddlPriceCurreny.DataSource = currencies;
+        ddlPriceCurreny.DataBind();
+        ddlDepositCurrency.DataSource = currencies;
         ddlDepositCurrency.DataBind();
 
-        ddlPriceCurreny.DataSource = currenyList;
-        ddlPriceCurreny.DataBind();
-
-        ddlCity.DataSource = DBProvider.GetCityList();
+        ddlCity.DataSource = _cities;
         ddlCity.DataBind();
         ddlCity.Items.Insert(0, new ListItem("Seçiniz", ""));
 
-        ddlTown.Items.Insert(0, new ListItem("Önce il seçiniz", ""));
-        ddlDistrict.Items.Insert(0, new ListItem("Önce ilçe seçiniz", ""));
+        if (false)
+        {
+            #region Dropdowns
 
-        ddlAdvertOwner.DataSource = DBProvider.GetAdvertOwnerTypeList();
-        ddlAdvertOwner.DataBind();
-        ddlAdvertOwner.Items.Insert(0, new ListItem("Seçebilirsiniz", ""));
-        #endregion
+            
+
+            ddlTown.Items.Insert(0, new ListItem("Önce il seçiniz", ""));
+            ddlDistrict.Items.Insert(0, new ListItem("Önce ilçe seçiniz", ""));
+
+            ddlAdvertOwner.DataSource = DBProvider.GetAdvertOwnerTypeList();
+            ddlAdvertOwner.DataBind();
+            ddlAdvertOwner.Items.Insert(0, new ListItem("Seçebilirsiniz", ""));
+            #endregion
+        }
+
 
 
         if (CurrentAdvert == null)
@@ -379,14 +423,14 @@ public partial class advert_data : BasePage
         }
     }
 
-    protected void BindFeatures(int estateTypeId)
+    protected void BindFeatures(string estateTypeId)
     { 
-        List<FeatureType> typeList = DBProvider.GetFeatureTypeListByEstateTypeObjectId(estateTypeId);
-        rptFeatureType.DataSource = typeList;
-        rptFeatureType.DataBind();
+        //List<FeatureType> typeList = DBProvider.GetFeatureTypeListByEstateTypeObjectId(estateTypeId);
+        //rptFeatureType.DataSource = typeList;
+        //rptFeatureType.DataBind();
 
-        rptFeatureTypeTabs.DataSource = typeList;
-        rptFeatureTypeTabs.DataBind();
+        //rptFeatureTypeTabs.DataSource = typeList;
+        //rptFeatureTypeTabs.DataBind();
     }
     #endregion    
 
@@ -397,7 +441,7 @@ public partial class advert_data : BasePage
 
         if (ddlCity.SelectedValue != "")
         {
-            ddlTown.DataSource = DBProvider.GetTownListByCityObjectId(Convert.ToInt32(ddlCity.SelectedValue));
+            ddlTown.DataSource = _towns.Where(t => t.ParentValue == ddlCity.SelectedValue);
             ddlTown.DataBind();
             ddlTown.Items.Insert(0, new ListItem("İlçe seçiniz", ""));
         }
@@ -791,11 +835,13 @@ public partial class advert_data : BasePage
 
     protected void btnSelectBaseEstateType_Click(object sender, EventArgs e)
     {
-        int estateTypeId = Convert.ToInt32(hfSelectedEstateTypeId.Value);
-        EstateType estateType = DBProvider.GetEstateTypeByObjectId(estateTypeId);
-        hfSelectedEstateTypeName.Value = estateType.TypeName;
-        SetPanels(estateType.ParentEstateType.TypeKey);
-        BindFeatures((int)estateType.ParentEstateTypeObjectId);
+        string estateTypeId = hfSelectedEstateTypeId.Value;
+        KeyValueStore estateType = ApplicationGenericControls._estateTypes.FirstOrDefault(i => i.Value == estateTypeId);
+        KeyValueStore parent = ApplicationGenericControls._estateTypes.FirstOrDefault(i => i.Value == estateType.ParentValue);
+        
+        hfSelectedEstateTypeName.Value = estateType.Key;
+        SetPanels(parent.Key);
+        BindFeatures(estateType.ParentValue);
     }
 
     protected void btnActivateAdvert_Click(object sender, EventArgs e)

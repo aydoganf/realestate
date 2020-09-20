@@ -15,6 +15,13 @@ public partial class service_service : BasePage
 
     }
 
+    public const int Konut = 2;
+    public const int Isyeri = 3;
+    public const int Arsa = 4;
+    public const int Devremulk = 5;
+    public const int Turistik = 6;
+
+    
 
     #region EstateType
     [WebMethod]
@@ -23,15 +30,15 @@ public partial class service_service : BasePage
     {
         List<JSEstateTpe> result = new List<JSEstateTpe>();
 
-        List<EstateType> baseList = GetBaseEstateTypeList();
-        foreach (EstateType item in baseList)
+        List<KeyValueStore> baseList = GetBaseEstateTypeList();
+        foreach (KeyValueStore item in baseList)
         {
-            List<EstateType> childList = GetEstateTypeListByParentEstateTypeID(item.ObjectId);
+            List<KeyValueStore> childList = GetEstateTypeListByParentEstateTypeID(item.Value);
             JSEstateTpe js = ConvertEstateTypeToJS(item, childList.Count != 0);
 
             js.children = new JSEstateTpe[childList.Count];
             int i = 0;
-            foreach (EstateType childItem in childList)
+            foreach (KeyValueStore childItem in childList)
             {
                 js.children[i] = recursiveTreeConstruct(childItem);
                 i++;
@@ -42,21 +49,21 @@ public partial class service_service : BasePage
         return result;
     }
 
-    private static JSEstateTpe recursiveTreeConstruct(EstateType estateType)
+    private static JSEstateTpe recursiveTreeConstruct(KeyValueStore estateType)
     {
         JSEstateTpe parentNode = new JSEstateTpe();
-        List<EstateType> childEstateTypeList = new List<EstateType>();
+        List<KeyValueStore> childEstateTypeList = new List<KeyValueStore>();
 
 
-        parentNode = ConvertEstateTypeToJS(estateType, GetEstateTypeListByParentEstateTypeID(estateType.ObjectId).Count != 0);
+        parentNode = ConvertEstateTypeToJS(estateType, GetEstateTypeListByParentEstateTypeID(estateType.Value).Count != 0);
 
-        childEstateTypeList = GetEstateTypeListByParentEstateTypeID(estateType.ObjectId);
+        childEstateTypeList = GetEstateTypeListByParentEstateTypeID(estateType.Value);
 
         if (childEstateTypeList.Count != 0)
         {
             parentNode.children = new JSEstateTpe[childEstateTypeList.Count];
             int i = 0;
-            foreach (EstateType childItem in childEstateTypeList)
+            foreach (KeyValueStore childItem in childEstateTypeList)
             {
                 parentNode.children[i] = recursiveTreeConstruct(childItem);
                 i++;
@@ -70,19 +77,22 @@ public partial class service_service : BasePage
         }
     }
 
-    private static List<EstateType> GetEstateTypeListByParentEstateTypeID(int parentEstateTypeId)
+    private static List<KeyValueStore> GetEstateTypeListByParentEstateTypeID(string parentValue)
     {
-        RealEstateEntities dc = new RealEstateEntities();
-        return dc.GetEstateTypeListByParentId(parentEstateTypeId);
+        //RealEstateEntities dc = new RealEstateEntities();
+        //return dc.GetEstateTypeListByParentId(parentEstateTypeId);
+
+        return ApplicationGenericControls._estateTypes.Where(e => e.ParentValue == parentValue).ToList();
     }
 
-    private static List<EstateType> GetBaseEstateTypeList()
+    private static List<KeyValueStore> GetBaseEstateTypeList()
     {
-        RealEstateEntities dc = new RealEstateEntities();
-        return dc.GetBaseEstateTypeList();
+        //RealEstateEntities dc = new RealEstateEntities();
+        //return dc.GetBaseEstateTypeList();
+        return ApplicationGenericControls._estateTypes.Where(e => string.IsNullOrEmpty(e.ParentValue)).ToList();
     }
 
-    private static JSEstateTpe ConvertEstateTypeToJS(EstateType obj, bool isDisabled)
+    private static JSEstateTpe ConvertEstateTypeToJS(KeyValueStore obj, bool isDisabled)
     {
         string a_attr_class = "";
         if (isDisabled)
@@ -90,8 +100,8 @@ public partial class service_service : BasePage
 
         return new JSEstateTpe()
         {
-            id = obj.ObjectId,
-            text = obj.TypeName,
+            id = obj.Value,
+            text = obj.Key,
             state = new JSEstateTpeState()
             {
                 disabled = isDisabled

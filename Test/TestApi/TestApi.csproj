@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\REModel.Api.Core\REModel.Api.Core.csproj" />
     <ProjectReference Include="..\..\Infrastructure\REModel.DatabaseConnection\REModel.DatabaseConnection.csproj" />
     <ProjectReference Include="..\..\Infrastructure\REModel\REModel.csproj" />
   </ItemGroup>

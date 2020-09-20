@@ -8,8 +8,8 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "http://localhost:3640", "{4924DC4E-75D6-4762-A190-5FD29C10D3D9}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{f5e107ca-8240-413d-bc88-d80bbd4be864}|DBLayer.dll;"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{f5e107ca-8240-413d-bc88-d80bbd4be864}|DBLayer.dll;{40c8b4f1-373a-428f-b51b-b23a2a1ab71b}|REModel.Old.Api.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_3640"
 		Debug.AspNetCompiler.PhysicalPath = "web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3640\"
@@ -36,9 +36,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "REModel.DatabaseConnection"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CFBAC258-6ED9-4E18-A3DA-9ED3E6164BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "Test\TestApplication\TestApplication.csproj", "{2AAEA521-51EF-44CA-A348-24BF851E75EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplication", "Test\TestApplication\TestApplication.csproj", "{2AAEA521-51EF-44CA-A348-24BF851E75EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApi", "Test\TestApi\TestApi.csproj", "{E27D2535-7771-4A6C-A29B-B8CF33184E21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApi", "Test\TestApi\TestApi.csproj", "{E27D2535-7771-4A6C-A29B-B8CF33184E21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "REModel.Api.Core", "Infrastructure\REModel.Api.Core\REModel.Api.Core.csproj", "{5872D039-B546-4C35-A28E-A50887AF631E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REModel.Api", "Infrastructure\REModel.Api\REModel.Api.csproj", "{CD28ABA5-7810-4860-846B-BD8587E30292}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure_Old", "Infrastructure_Old", "{B651F987-CCF1-4A3E-8C07-60DF82B55CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REModel.Old.Api", "Infrastructure_Old\REModel.Old.Api\REModel.Old.Api.csproj", "{40C8B4F1-373A-428F-B51B-B23A2A1AB71B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +78,18 @@ Global
 		{E27D2535-7771-4A6C-A29B-B8CF33184E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E27D2535-7771-4A6C-A29B-B8CF33184E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E27D2535-7771-4A6C-A29B-B8CF33184E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5872D039-B546-4C35-A28E-A50887AF631E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5872D039-B546-4C35-A28E-A50887AF631E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5872D039-B546-4C35-A28E-A50887AF631E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5872D039-B546-4C35-A28E-A50887AF631E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD28ABA5-7810-4860-846B-BD8587E30292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD28ABA5-7810-4860-846B-BD8587E30292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD28ABA5-7810-4860-846B-BD8587E30292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD28ABA5-7810-4860-846B-BD8587E30292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40C8B4F1-373A-428F-B51B-B23A2A1AB71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C8B4F1-373A-428F-B51B-B23A2A1AB71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C8B4F1-373A-428F-B51B-B23A2A1AB71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C8B4F1-373A-428F-B51B-B23A2A1AB71B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +99,9 @@ Global
 		{1BE9F8BD-A526-4A97-9275-1DB38FE5693A} = {59FBACF1-68F2-42A6-B9DC-C3637A1FB071}
 		{2AAEA521-51EF-44CA-A348-24BF851E75EA} = {CFBAC258-6ED9-4E18-A3DA-9ED3E6164BDA}
 		{E27D2535-7771-4A6C-A29B-B8CF33184E21} = {CFBAC258-6ED9-4E18-A3DA-9ED3E6164BDA}
+		{5872D039-B546-4C35-A28E-A50887AF631E} = {59FBACF1-68F2-42A6-B9DC-C3637A1FB071}
+		{CD28ABA5-7810-4860-846B-BD8587E30292} = {59FBACF1-68F2-42A6-B9DC-C3637A1FB071}
+		{40C8B4F1-373A-428F-B51B-B23A2A1AB71B} = {B651F987-CCF1-4A3E-8C07-60DF82B55CDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38B86566-F534-42E3-AC8B-73AA1C4A717D}

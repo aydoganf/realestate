@@ -70,8 +70,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Parazlama Tipi *</label>
-                                                    <asp:DropDownList ID="ddlMarketingType" runat="server" DataTextField="TypeName"
-                                                        DataValueField="ObjectId" CssClass="form-control">
+                                                    <asp:DropDownList ID="ddlMarketingType" runat="server" DataTextField="Key"
+                                                        DataValueField="Id" CssClass="form-control">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -91,8 +91,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">İl *</label>
-                                                    <asp:DropDownList ID="ddlCity" runat="server" DataTextField="CityName"
-                                                        DataValueField="ObjectId" CssClass="form-control"
+                                                    <asp:DropDownList ID="ddlCity" runat="server" DataTextField="Key"
+                                                        DataValueField="Value" CssClass="form-control"
                                                         AutoPostBack="true" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged" EnableViewState="true">
                                                     </asp:DropDownList>
                                                 </div>
@@ -100,8 +100,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">İlçe *</label>
-                                                    <asp:DropDownList ID="ddlTown" runat="server" DataTextField="TownName"
-                                                        DataValueField="ObjectId" CssClass="form-control"
+                                                    <asp:DropDownList ID="ddlTown" runat="server" DataTextField="Key"
+                                                        DataValueField="Value" CssClass="form-control"
                                                         AutoPostBack="true" OnSelectedIndexChanged="ddlTown_SelectedIndexChanged" EnableViewState="true">
                                                     </asp:DropDownList>
                                                 </div>
@@ -145,7 +145,8 @@
                                                             <asp:TextBox ID="tbPrice" runat="server" CssClass="form-control input-medium mask_number"></asp:TextBox>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <asp:DropDownList ID="ddlPriceCurreny" runat="server" DataTextField="CurrencyName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlPriceCurreny" runat="server" 
+                                                                DataTextField="Key" DataValueField="Value" CssClass="form-control"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -159,7 +160,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <asp:DropDownList ID="ddlDepositCurrency" runat="server"
-                                                                DataTextField="CurrencyName" DataValueField="ObjectId" CssClass="form-control">
+                                                                DataTextField="Key" DataValueField="Value" CssClass="form-control">
                                                             </asp:DropDownList>
                                                         </div>
                                                     </div>

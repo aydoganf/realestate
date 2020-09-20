@@ -17,7 +17,7 @@
                     <h5 class="block">Sistemdeki kullanıcı bilgilerini buradan yönetebilirsiniz.</h5>
                     <ul class="list-inline">
                         <li class="li-first">
-                            <a href="person/" class="btn blue a-item">
+                            <a href="user/" class="btn blue a-item">
                                 <i class="fa fa-user"></i>Kullanıcılar </a>
                         </li>
                     </ul>

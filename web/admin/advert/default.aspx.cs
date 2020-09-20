@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using REModel.Old;
+using System;
 using System.Web.UI.WebControls;
-using DBLayer;
 
 [AuthenticationRequired()]
 public partial class advert_default : BasePage
@@ -19,7 +15,7 @@ public partial class advert_default : BasePage
 
     protected void BindData()
     {
-        rptAdvert.DataSource = DBProvider.GetAdvertList();
+        rptAdvert.DataSource = _advertApi.GetAllAdvertAsync("").Result.Response; //DBProvider.GetAdvertList();
         rptAdvert.DataBind();
     }
     protected void rptAdvert_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -47,8 +43,8 @@ public partial class advert_default : BasePage
     }
     protected void rptAdvert_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        int advertId = Convert.ToInt32(e.CommandArgument);
-        Advert advert = DBProvider.GetAdvertByObjectId(advertId);
+        var advertId = Guid.Parse(e.CommandArgument.ToString());
+        Advert advert = _advertApi.GetAdvertAsync("", advertId).Result.Response; //DBProvider.GetAdvertByObjectId(advertId);
 
         if (e.CommandName == "deactivate")
         {
@@ -60,10 +56,10 @@ public partial class advert_default : BasePage
         }
         else if (e.CommandName == "delete")
         {
-            advert.Delete();
+            //advert.Delete();
         }
 
-        DBProvider.SaveChanges();
+        //DBProvider.SaveChanges();
         BindData();
         SetOperationStatus(pnlOperationStatus, h4StatusTitle, pStatusInfo, ApplicationGenericControls.OperationStatus.StatusOKTitle, ApplicationGenericControls.OperationStatus.StatusOKDescription, ApplicationGenericControls.OperationStatus.StatusOKCSS);
     }

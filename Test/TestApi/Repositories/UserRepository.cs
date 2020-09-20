@@ -20,9 +20,10 @@ namespace TestApi.Repositories
 
         private IMongoCollection<User> Collection => _mongoDatabase.GetCollection<User>("Users");
 
-        public async Task AddAsync(User user)
+        public async Task<User> AddAsync(User user)
         {
             await Collection.InsertOneAsync(user);
+            return user;
         }
 
         public async Task<List<User>> GetAllAsync()

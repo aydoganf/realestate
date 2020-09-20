@@ -61,21 +61,21 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <asp:LinkButton ID="lbtnDeactivate" runat="server" Visible="false"
-                                    CommandName="deactivate" CommandArgument='<%#Eval("ObjectId") %>'
+                                    CommandName="deactivate" CommandArgument='<%#Eval("Id") %>'
                                     OnClientClick="return confirm('Pasife almak istediğinize emin misiniz?');">
                                     <i class="fa fa-exclamation"></i>&nbsp;Pasife Al
                                 </asp:LinkButton>
                             </li>
                             <li>
                                 <asp:LinkButton ID="lbtnActivate" runat="server" Visible="false"
-                                    CommandName="activate" CommandArgument='<%#Eval("ObjectId") %>'
+                                    CommandName="activate" CommandArgument='<%#Eval("Id") %>'
                                     OnClientClick="return confirm('Aktife almak istediğinize emin misiniz?');">
                                     <i class="fa fa-flash"></i>&nbsp;Aktife Al
                                 </asp:LinkButton>
                             </li>
                             <li>
                                 <asp:LinkButton ID="lbtnDelete" runat="server"
-                                    CommandName="delete" CommandArgument='<%#Eval("ObjectId") %>'
+                                    CommandName="delete" CommandArgument='<%#Eval("Id") %>'
                                     OnClientClick="return confirm('Silmek istediğinize emin misiniz?');">
                                     <i class="fa fa-trash-o"></i>&nbsp;Sil
                                 </asp:LinkButton>
@@ -84,12 +84,12 @@
                     </div>
                 </td>
                 <td>
-                    <a href='data.aspx?advert=<%#Eval("ObjectId") %>'><%#Eval("AdvertNumber") %></a></td>
+                    <a href='data.aspx?advert=<%#Eval("Id") %>'><%#Eval("AdvertNumber") %></a></td>
                 <td>
-                    <a href='data.aspx?advert=<%#Eval("ObjectId") %>'><%# TruncateString(Eval("GAddress").ToString(), 50) %>..</a></td>
-                <td><%#Eval("MarketingType.TypeName") %></td>
-                <td><%# Eval("EstateType.ParentEstateType.TypeName") + "-" + Eval("EstateType.TypeName") %></td>
-                <td><%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency.CurrencyName") %></td>                
+                    <a href='data.aspx?advert=<%#Eval("Id") %>'><%# TruncateString(Eval("GAddress").ToString(), 50) %>..</a></td>
+                <td><%#Eval("MarketingType") %></td>
+                <td><%# Eval("ParentEstateType") + "-" + Eval("EstateType") %></td>
+                <td><%# FormatPrice(Eval("Price")) %> <%#Eval("PriceCurrency") %></td>                
                 <td><%# (bool)Eval("IsActive") ? "Aktif" : "Pasif" %></td>
             </tr>
         </ItemTemplate>
@@ -116,7 +116,7 @@
                     "sInfoEmpty": "Kayıt Yok",
                     "sInfoFiltered": "( _MAX_ Kayıt İçerisinden Bulunan)",
                     "sInfoPostFix": "",
-                    "sSearch": "Arama yap:",
+                    "sSearch": "Bu tabloda arama yap:",
                     "sUrl": "",
                     "oPaginate": {
                         "sFirst": "İlk",
