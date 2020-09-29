@@ -27,14 +27,14 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">İl</label>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlCityList" runat="server" DataTextField="CityName" 
-                                DataValueField="ObjectId" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCityList_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlCityList" runat="server" DataTextField="Key" 
+                                DataValueField="Value" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCityList_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">İlçe</label>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlTownList" runat="server" DataTextField="TownName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTownList" runat="server" DataTextField="Key" DataValueField="Value" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-group" id="divAddUnique">

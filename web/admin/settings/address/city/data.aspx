@@ -32,6 +32,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Değeri</label>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="tbCityValue" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-actions">
                 <div class="col-md-offset-3 col-md-9">
@@ -60,15 +68,15 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <a href='../town/data.aspx?town=<%#Eval("ObjectId") %>'>
+                        <a href='../town/data.aspx?town=<%#Eval("Id") %>'>
                             <i class="fa fa-list"></i>&nbsp;Detay
                         </a>
                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="delete"
-                            CommandArgument='<%#Eval("ObjectId") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
+                            CommandArgument='<%#Eval("Id") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                         </asp:LinkButton>
                     </td>
-                    <td><%#Eval("TownName") %></td>
+                    <td><%#Eval("Value") %></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

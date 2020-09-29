@@ -42,6 +42,7 @@ namespace TestApi.Mongo
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAdvertRepository, AdvertRepository>();
+            services.AddScoped<IKeyValueStoreRepository, KeyValueStoreRepository>();
         }
 
         public static void InitMongo(this IServiceCollection services)

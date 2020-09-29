@@ -1,4 +1,5 @@
 ﻿using REModel.Old;
+using REModel.Old.Api;
 using System;
 using System.Web.UI.WebControls;
 
@@ -22,7 +23,7 @@ public partial class advert_default : BasePage
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Advert advert = e.Item.DataItem as Advert;
+            DBLayer.Advert advert = e.Item.DataItem as DBLayer.Advert;
             LinkButton lbtnDeactivate = e.Item.FindControl("lbtnDeactivate") as LinkButton;
             LinkButton lbtnActivate = e.Item.FindControl("lbtnActivate") as LinkButton;
 

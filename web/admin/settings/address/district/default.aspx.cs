@@ -19,7 +19,7 @@ public partial class settings_address_district_default : BasePage
 
     protected void BindData()
     {
-        ddlCityList.DataSource = DBProvider.GetCityList();
+        ddlCityList.DataSource = GetKeyValueStores("city");
         ddlCityList.DataBind();
         ddlCityList.Items.Insert(0, new ListItem("Seçiniz", ""));
         ddlTownList.Items.Insert(0, new ListItem("Önce İl Seçiniz", ""));
@@ -30,7 +30,7 @@ public partial class settings_address_district_default : BasePage
         ddlTownList.Items.Clear();
         if (ddlCityList.SelectedValue != "")
         {
-            ddlTownList.DataSource = DBProvider.GetTownListByCityObjectId(Convert.ToInt32(ddlCityList.SelectedValue));
+            ddlTownList.DataSource = GetKeyValueStores("town", ddlCityList.SelectedValue);
             ddlTownList.DataBind();
         }
         else
@@ -41,7 +41,7 @@ public partial class settings_address_district_default : BasePage
 
     protected void btnSelect_Click(object sender, EventArgs e)
     {
-        rptDistrict.DataSource = DBProvider.GetDistrictListByTownObjectId(Convert.ToInt32(ddlTownList.SelectedValue));
+        rptDistrict.DataSource = GetKeyValueStores("district", ddlTownList.SelectedValue);
         rptDistrict.DataBind();
 
         pnlDistrictList.Visible = true;

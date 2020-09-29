@@ -39,22 +39,22 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">Şehir Adı</label>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlCityList" runat="server" DataTextField="CityName"
-                                DataValueField="ObjectId" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCityList_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlCityList" runat="server" DataTextField="Key"
+                                DataValueField="Value" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCityList_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">İlçe Adı</label>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlTownList" runat="server" DataTextField="TownName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTownList" runat="server" DataTextField="Key" DataValueField="Value" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-actions">
                 <div class="col-md-offset-3 col-md-9">
-                    <asp:Button ID="btnSelect" runat="server" CssClass="btn green" Text="İlçeleri Getir" OnClick="btnSelect_Click" />
+                    <asp:Button ID="btnSelect" runat="server" CssClass="btn green" Text="Semtleri Getir" OnClick="btnSelect_Click" />
                 </div>
             </div>
         </div>
@@ -79,15 +79,15 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <a href='data.aspx?district=<%#Eval("ObjectId") %>'>
+                        <a href='data.aspx?district=<%#Eval("Id") %>'>
                             <i class="fa fa-list"></i>&nbsp;Detay
                         </a>
                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="delete"
-                            CommandArgument='<%#Eval("ObjectId") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
+                            CommandArgument='<%#Eval("Id") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                         </asp:LinkButton>
                     </td>
-                    <td><%#Eval("DistrictName") %></td>
+                    <td><%#Eval("Key") %></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

@@ -36,7 +36,7 @@
                     <tr>
                         <td>İşlem</td>
                         <td>Adı</td>
-                        <td>Sıralama</td>                        
+                        <td>Değeri</td>                        
                     </tr>
                 </thead>
                 <tbody id="content">
@@ -44,16 +44,16 @@
         <ItemTemplate>
                     <tr>
                         <td>
-                            <a href='data.aspx?city=<%#Eval("ObjectId") %>'>
+                            <a href='data.aspx?city=<%#Eval("Id") %>'>
                                 <i class="fa fa-list"></i>&nbsp;Detay
                             </a>
                             <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="delete" 
-                                CommandArgument='<%#Eval("ObjectId") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
+                                CommandArgument='<%#Eval("Id") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                             </asp:LinkButton>
                         </td>
-                        <td><%#Eval("CityName") %></td>
-                        <td><%#Eval("SortOrder") %></td>
+                        <td><%#Eval("Key") %></td>
+                        <td><%#Eval("Value") %></td>
                     </tr>
         </ItemTemplate>
         <FooterTemplate>

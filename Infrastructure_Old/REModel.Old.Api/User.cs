@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace REModel.Old
+namespace REModel.Old.Api
 {
     public class User
     {

@@ -39,7 +39,8 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">Şehir Adı</label>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlCityList" runat="server" DataTextField="CityName" DataValueField="ObjectId" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlCityList" runat="server" 
+                                DataTextField="Key" DataValueField="Value" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -70,15 +71,15 @@
         <ItemTemplate>
             <tr>
                 <td>
-                    <a href='data.aspx?town=<%#Eval("ObjectId") %>'>
+                    <a href='data.aspx?town=<%#Eval("Id") %>'>
                         <i class="fa fa-list"></i>&nbsp;Detay
                     </a>
                     <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="delete"
-                        CommandArgument='<%#Eval("ObjectId") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
+                        CommandArgument='<%#Eval("Id") %>' OnClientClick="return confirm('Bunu silmek istediğinize emin misiniz?')">
                                 <i class="fa fa-trash-o"></i>&nbsp;Sil
                     </asp:LinkButton>
                 </td>
-                <td><%#Eval("TownName") %></td>
+                <td><%#Eval("Key") %></td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>

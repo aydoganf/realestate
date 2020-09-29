@@ -1,4 +1,5 @@
 ﻿using DBLayer;
+using Refit;
 using REModel.Old.Api;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,30 @@ public class BasePage : System.Web.UI.Page
 
     protected readonly IREAdvertApi _advertApi;
 
+    protected readonly IREKeyValueStoreApi _keyValueStoreApi;
+
     public BasePage()
     {
-        _userApi = Refit.RestService.For<IREUserApi>(ConfigurationManager.AppSettings["IREUserApi"]); 
-        _advertApi = Refit.RestService.For<IREAdvertApi>(ConfigurationManager.AppSettings["IREAdvertApi"]);
+        _userApi = RestService.For<IREUserApi>(ConfigurationManager.AppSettings["IREUserApi"]); 
+        _advertApi = RestService.For<IREAdvertApi>(ConfigurationManager.AppSettings["IREAdvertApi"]);
+        _keyValueStoreApi = RestService.For<IREKeyValueStoreApi>(ConfigurationManager.AppSettings["IREKeyValueStoreApi"]);
 
         this.PreInit += new EventHandler(BasePage_PreInit);
+    }
+
+    protected List<REModel.Old.Api.KeyValueStore> GetKeyValueStores(string type)
+    {
+        return _keyValueStoreApi.GetByType(
+            authorization: "",
+            type: type).Result.Response;
+    }
+
+    protected List<REModel.Old.Api.KeyValueStore> GetKeyValueStores(string type, string parent)
+    {
+        return _keyValueStoreApi.GetByTypeAndParent(
+            authorization: "",
+            type: type,
+            parent: parent).Result.Response;
     }
 
     void BasePage_PreInit(object sender, EventArgs e)
@@ -197,7 +216,7 @@ public class BasePage : System.Web.UI.Page
         return Regex.Replace(String.Format("{0:#,#}", input), "\\.00$", "");
     }
 
-    public string FormatAdvertLink(Advert obj)
+    public string FormatAdvertLink(DBLayer.Advert obj)
     {
         return "/emlak-detay/" + obj.CityName + "/" + obj.TownName + "/" + obj.DistrictName + "/" + obj.AdvertNumber + "/" + FormatAdvertTitle(obj.Title);
     }

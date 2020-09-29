@@ -5,26 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DBLayer;
+using REModel.Old.Api;
 
 [AuthenticationRequired()]
 public partial class settings_currency_data : BasePage
 {
-    private Currency currentCurrency;
+    private REModel.Old.Api.KeyValueStore currentCurrency;
 
-    public Currency CurrentCurrency
+    public REModel.Old.Api.KeyValueStore CurrentCurrency
     {
         get
         {
-            if (currentCurrency == default(Currency))
+            if (currentCurrency == null)
             {
                 if (Request.QueryString["currency"] != null)
                 {
-                    currentCurrency = DBProvider.GetCurrencyByObjectId(Convert.ToInt32(Request.QueryString["currency"]));
-                }
-                else
-                {
-                    currentCurrency = null;
-                }
+                    currentCurrency = _keyValueStoreApi.GetById(
+                        authorization: "",
+                        id: Guid.Parse(Request.QueryString["currency"])).Result.Response;
+                }            
             }
             return currentCurrency;
         }
@@ -42,20 +41,34 @@ public partial class settings_currency_data : BasePage
     {
         if (CurrentCurrency != null)
         {
-            tbCurrencyName.Text = CurrentCurrency.CurrencyName;
+            tbCurrencyName.Text = CurrentCurrency.Key;
+            tbCurrencyValue.Text = CurrentCurrency.Value;
         }
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
         if (CurrentCurrency != null)
         {
-            CurrentCurrency.CurrencyName = tbCurrencyName.Text.Trim();
+            CurrentCurrency.Key = tbCurrencyName.Text.Trim();
+            CurrentCurrency.Value  = tbCurrencyValue.Text.Trim();
+
+            var updated = _keyValueStoreApi.Update(
+                authorization: "",
+                id: CurrentCurrency.Id,
+                obj: CurrentCurrency).Result.Response;
         }
         else
         {
-            DBProvider.AddCurrency(tbCurrencyName.Text.Trim());
+            var added = _keyValueStoreApi.Add(
+                authorization: "",
+                obj: new REModel.Old.Api.KeyValueStore()
+                {
+                    Key = tbCurrencyName.Text.Trim(),
+                    Value = tbCurrencyValue.Text.Trim(),
+                    Type = "currency"
+                }).Result.Response;
         }
-        DBProvider.SaveChanges();
+
         Response.Redirect("default.aspx?status=0");
     }
 }

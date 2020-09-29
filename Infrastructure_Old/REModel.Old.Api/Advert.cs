@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace REModel.Old
+namespace REModel.Old.Api
 {
     public class Advert
     {

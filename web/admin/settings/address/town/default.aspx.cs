@@ -13,7 +13,12 @@ public partial class settings_address_town_default : BasePage
     {
         if (!IsPostBack)
         {
-            ddlCityList.DataSource = DBProvider.GetCityList();
+            ddlCityList.DataSource = _keyValueStoreApi.GetByType(
+                authorization: "",
+                type: "city")
+                .Result
+                .Response;
+                
             ddlCityList.DataBind();
 
             BindData();
@@ -22,7 +27,14 @@ public partial class settings_address_town_default : BasePage
 
     protected void BindData()
     {
-        rptTown.DataSource = DBProvider.GetTownListByCityObjectId(Convert.ToInt32(ddlCityList.SelectedValue));
+        rptTown.DataSource = _keyValueStoreApi.GetByTypeAndParent(
+            authorization: "",
+            type: "town",
+            parent: ddlCityList.SelectedValue)
+        .Result
+        .Response;
+            
+        //DBProvider.GetTownListByCityObjectId(Convert.ToInt32(ddlCityList.SelectedValue));
         rptTown.DataBind();
     }
 

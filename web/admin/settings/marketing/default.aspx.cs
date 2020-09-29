@@ -19,17 +19,23 @@ public partial class settings_marketing_default : BasePage
 
     protected void BindData()
     {
-        rptMarketing.DataSource = DBProvider.GetMarketingTypeList();
+        rptMarketing.DataSource = GetKeyValueStores("marketing"); //DBProvider.GetMarketingTypeList();
         rptMarketing.DataBind();
     }
     protected void rptMarketing_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "delete")
         {
-            int marketingId = Convert.ToInt32(e.CommandArgument);
-            MarketingType obj = DBProvider.GetMarketingTypeByObjectId(marketingId);
-            obj.Delete();
-            DBProvider.SaveChanges();
+            //int marketingId = Convert.ToInt32(e.CommandArgument);
+            //MarketingType obj = DBProvider.GetMarketingTypeByObjectId(marketingId);
+            //obj.Delete();
+            //DBProvider.SaveChanges();
+
+            Guid marketingId = Guid.Parse(e.CommandArgument.ToString());
+
+            _keyValueStoreApi.Delete(
+                authorization: "",
+                id: marketingId).GetAwaiter().GetResult();
 
             BindData();
         }

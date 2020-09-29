@@ -19,7 +19,7 @@ public partial class address_city_default : BasePage
 
     protected void BindData()
     {
-        rptCity.DataSource = DBProvider.GetCityList();
+        rptCity.DataSource = _keyValueStoreApi.GetByType(authorization: "", type: "city").Result.Response;  //DBProvider.GetCityList();
         rptCity.DataBind();
     }
 

@@ -19,7 +19,7 @@ public partial class settings_currency_default : BasePage
 
     protected void BindData()
     {
-        rptCurrency.DataSource = DBProvider.GetCurrencyList();
+        rptCurrency.DataSource = GetKeyValueStores("currency"); //DBProvider.GetCurrencyList();
         rptCurrency.DataBind();
     }
 
@@ -27,10 +27,15 @@ public partial class settings_currency_default : BasePage
     {
         if (e.CommandName == "delete")
         {
-            int currencyId = Convert.ToInt32(e.CommandArgument);
-            Currency obj = DBProvider.GetCurrencyByObjectId(currencyId);
-            obj.Delete();
-            DBProvider.SaveChanges();
+            //int currencyId = Convert.ToInt32(e.CommandArgument);
+            //Currency obj = DBProvider.GetCurrencyByObjectId(currencyId);
+            //obj.Delete();
+            //DBProvider.SaveChanges();
+
+            Guid currencyId = Guid.Parse(e.CommandArgument.ToString());
+            _keyValueStoreApi.Delete(
+                authorization: "",
+                id: currencyId).GetAwaiter().GetResult();
 
             BindData();
         }

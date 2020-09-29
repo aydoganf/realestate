@@ -30,6 +30,12 @@
                             <asp:TextBox ID="tbCurrencyName" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Para Birimi Değeri</label>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="tbCurrencyValue" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
